@@ -1,10 +1,13 @@
 # Juan Carlos Gutiérrez Pesquero — Portfolio de Ingeniería QA & SDET
 
-[![CI Quality Gate & E2E Matrix](https://github.com/JuanCarlosGP/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/JuanCarlosGP/portfolio/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-juancarlosgp.github.io%2Fportfolio-brightgreen?style=flat&logo=github)](https://juancarlosgp.github.io/portfolio/)
+[![CI Quality Gate & Deploy to GitHub Pages](https://github.com/JuanCarlosGP/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/JuanCarlosGP/portfolio/actions/workflows/ci.yml)
 [![Astro 5](https://img.shields.io/badge/Astro-5.x-BC52EE?style=flat&logo=astro&logoColor=white)](https://astro.build/)
 [![TypeScript Strict](https://img.shields.io/badge/TypeScript-Strict_6.x-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Playwright Test](https://img.shields.io/badge/Playwright-E2E_Matrix-2EAD33?style=flat&logo=playwright&logoColor=white)](https://playwright.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-gray.svg)](LICENSE)
+
+> 🌐 **URL Pública en vivo:** [https://juancarlosgp.github.io/portfolio/](https://juancarlosgp.github.io/portfolio/)
 
 > Portafolio técnico personal de **Juan Carlos Gutiérrez Pesquero**, QA Automation Engineer & SDET especializado en Playwright, WebdriverIO, arquitecturas de prueba sin falsos positivos, contratos de API y pipelines CI/CD de alta velocidad.
 

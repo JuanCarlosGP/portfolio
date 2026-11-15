@@ -24,17 +24,17 @@ const { project } = Astro.props;
       <div class="slider-track" id="psp-slider-track">
         <!-- Slide 1: Live Hardware Video Demo -->
         <div class="slider-slide" data-index="0" data-caption="01 / 03 · VIDEO DEMO">
-          <video id="psp-demo-video" src="/psp-video.mp4" poster="/psp-video-poster.jpg" autoplay loop muted playsinline class="slider-video" aria-label="Demostración en vídeo de Panel PSP en hardware físico"></video>
+          <video id="psp-demo-video" src={`${import.meta.env.BASE_URL}psp-video.mp4`} poster={`${import.meta.env.BASE_URL}psp-video-poster.jpg`} autoplay loop muted playsinline class="slider-video" aria-label="Demostración en vídeo de Panel PSP en hardware físico"></video>
         </div>
 
         <!-- Slide 2: Front Studio Photo -->
         <div class="slider-slide" data-index="1" data-caption="02 / 03 · FRONT UI">
-          <img src="/psp-front.jpg" alt="Panel PSP - Software de diagnóstico ejecutándose en Sony PSP-3004 transparente con LED verde" class="slider-img" loading="lazy" />
+          <img src={`${import.meta.env.BASE_URL}psp-front.jpg`} alt="Panel PSP - Software de diagnóstico ejecutándose en Sony PSP-3004 transparente con LED verde" class="slider-img" loading="lazy" />
         </div>
 
         <!-- Slide 3: Rear Studio Photo -->
         <div class="slider-slide" data-index="2" data-caption="03 / 03 · REAR MOD">
-          <img src="/psp-back.jpg" alt="Panel PSP - Chasis transparente, bahía UMD y mod de batería extendida 3600mAh" class="slider-img" loading="lazy" />
+          <img src={`${import.meta.env.BASE_URL}psp-back.jpg`} alt="Panel PSP - Chasis transparente, bahía UMD y mod de batería extendida 3600mAh" class="slider-img" loading="lazy" />
         </div>
       </div>
 

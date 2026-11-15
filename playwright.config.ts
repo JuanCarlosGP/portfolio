@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'list',
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://localhost:4321/portfolio/',
     trace: 'on-first-retry',
   },
   projects: [
@@ -34,7 +34,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npx vite preview --port 4321',
+    command: 'npx vite preview --port 4321 --base /portfolio/',
     port: 4321,
     reuseExistingServer: !process.env.CI,
     timeout: 30000,
