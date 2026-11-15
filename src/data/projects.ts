@@ -22,20 +22,20 @@ export const projects: Project[] = [
   {
     id: 'banking',
     num: '02',
-    title: 'Enterprise Banking E2E Framework',
-    statusText: 'STABLE CI SUITE',
+    title: 'Enterprise Banking E2E & Mobile Framework',
+    statusText: 'STABLE CI & TEST PLANS',
     statusCategory: 'IZERTIS / LABORALKUTXA',
     statusIndicatorColor: 'var(--emerald)',
     clientLabel: 'LaboralKutxa',
-    tags: ['WebdriverIO', 'Playwright', 'TypeScript', 'CI/CD OTA'],
-    terminalCommand: '$ npx wdio run wdio.conf.ts --suite banking-core',
+    tags: ['Playwright E2E', 'Maestro Mobile', 'Azure DevOps', 'TypeScript'],
+    terminalCommand: '$ npx playwright test --project=banking-e2e && maestro test flows/transfers.yaml',
     terminalLines: [
-      '[Mobile-Android] 24 specs passed in 1m 12s',
-      '[Web-Desktop] 42 specs passed in 48s',
-      'OTA Pipeline: All release verifications approved ✔'
+      '[Playwright-Web] 48 specs passed (POM & Azure Test Plans linked)',
+      '[Maestro-Mobile] Composite flow: Biometrics & Transfer approved (34s)',
+      '[AzDO-Reporter] 82 test results synced to Test Plan #67607 ✔'
     ],
     description:
-      'Framework integral de pruebas automatizadas para banca electrónica y móvil. Cobertura de flujos críticos de autenticación biométrica, transferencias, estados contables y validación de despliegues OTA.'
+      'Arquitectura integral de testing automatizado para banca electrónica web y app móvil nativa. Cobertura de flujos críticos de autenticación biométrica, transferencias y estados contables. Integración bidireccional con Azure DevOps Test Plans mediante extensión personalizada y optimización de flujos Maestro mediante runner compuesto.'
   },
   {
     id: 'ecommerce',
@@ -65,11 +65,11 @@ export const projects: Project[] = [
     statusIndicatorColor: 'var(--accent2)',
     clientLabel: 'Harness',
     tags: ['Ajv JSON Schema', 'Contract Testing', 'Node.js ESM', 'POSIX Tests'],
-    terminalCommand: '$ node scripts/verify-grok-client.mjs call',
+    terminalCommand: '$ node harness/verify-contracts.mjs --suite=mcp-tools',
     terminalLines: [
       '[SchemaValidator] Ajv2020 validated 24 tool contracts',
       '[Trace] Preserved artifact digest sha256:7f4a...',
-      'Verifier receipt: clientCompatibility OK (100%)'
+      'Verifier receipt: contractCompatibility OK (100%)'
     ],
     description:
       'Arnés de verificación en entorno POSIX con validación estricta de esquemas JSON (Draft 2020-12), aserción de contratos de herramientas MCP, fixtures de modelo en bucle local y digests criptográficos de evidencias.'
@@ -95,21 +95,21 @@ export const projects: Project[] = [
   {
     id: 'opensource',
     num: '06',
-    title: 'Open Source Tooling & Android Utilities',
+    title: 'Open Source Tooling & Mobile Utilities',
     statusText: 'OPEN SOURCE & LABS',
     statusCategory: 'GITHUB REPOSITORIES',
     statusIndicatorColor: 'var(--accent2)',
     repoUrl: 'https://github.com/JuanCarlosGP',
     clientLabel: 'Perfil ↗',
-    tags: ['Android A11y', 'Kotlin', 'Hardware Modding', 'Git Automation'],
+    tags: ['Android A11y', 'Kotlin', 'React Native', 'Hardware Modding'],
     terminalCommand: '$ gh repo list JuanCarlosGP --public',
     terminalLines: [
-      'JuanCarlosGP/panel-psp  [C / Embedded QA Tooling]',
+      'JuanCarlosGP/NLC          [React Native / Expo Mobile]',
       'JuanCarlosGP/glyphTyping  [Android / Accessibility]',
-      'JuanCarlosGP/NLC          [Media Streaming / NAS]',
-      'Continuous releases, hardware mods & tooling'
+      'JuanCarlosGP/panel-psp    [C / Bare Metal Diagnostics]',
+      'Continuous releases, mobile apps & tooling'
     ],
     description:
-      'Repositorios open source adicionales que incluyen herramientas de accesibilidad en Android con retroalimentación lumínica (glyphTyping para Nothing Phone) y reproductores multimedia sincronizados con NAS (NLC).'
+      'Repositorios open source y aplicaciones móviles que incluyen herramientas de accesibilidad en Android con retroalimentación lumínica (glyphTyping para Nothing Phone) y aplicaciones móviles en React Native / Expo SDK 54 (NLC).'
   }
 ];

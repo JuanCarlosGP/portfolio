@@ -7,9 +7,9 @@ export const experience: ExperienceItem[] = [
     role: 'Consultoría Tecnológica & QA',
     badge: 'LEAD AUTOMATION',
     bullets: [
-      'Desarrollo y mantenimiento de frameworks de automatización E2E en WebdriverIO y Playwright para banca digital (LaboralKutxa).',
-      'Aseguramiento de calidad en pipelines de despliegue continuo y validaciones de actualizaciones OTA en aplicaciones móviles y de escritorio.',
-      'Implementación de contratos de API y pruebas de integración con TypeScript, reduciendo el tiempo de regresión en un 70%.',
+      'Desarrollo y arquitectura de suites de automatización E2E con Playwright (web) y Maestro (mobile) para banca digital (LaboralKutxa).',
+      'Integración de suites de prueba con Azure DevOps Test Plans y pipelines de CI/CD, sincronizando evidencias y estados de ejecución mediante extensiones personalizadas.',
+      'Auditorías y automatización de accesibilidad web (A11y / WCAG 2.1) con Axe-core, validación de contratos de API y pruebas de integración con TypeScript.',
       'Supervisión de métricas de fiabilidad, contención de tests inestables y coordinación técnica en equipos multidisciplinares de desarrollo.'
     ]
   }
@@ -24,7 +24,7 @@ export const proHighlights = [
   {
     company: 'Entornos Linux & Self-Hosted',
     detail:
-      'Configuración de servidores de alto rendimiento (Arch Linux, gateways locales, NSSM y monitorización distribuida).'
+      'Configuración de infraestructura y runners locales de alto rendimiento (Linux, systemd, automatización POSIX y monitorización distribuida).'
   },
   {
     company: 'Cultura de calidad Shift-Left',

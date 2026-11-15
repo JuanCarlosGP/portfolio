@@ -27,9 +27,9 @@ export const methodologySteps: MethodologyStep[] = [
     step: '03',
     title: 'CI/CD Sharding & Gating',
     description:
-      'Paralelización masiva distribuida en runners de GitHub Actions, recopilación automática de trazas de ejecución en fallos y bloqueo automático de despliegues cuando no se cumplen los umbrales de calidad.',
+      'Paralelización masiva distribuida en runners de GitHub Actions y Azure DevOps, recopilación automática de trazas de ejecución en fallos y bloqueo automático de despliegues cuando no se cumplen los umbrales de calidad.',
     bullets: [
-      'Sharding paralelo en GitHub Actions',
+      'Pipelines en GitHub & Azure DevOps',
       'Captura de trazas y vídeos en fallo',
       'Quality Gates infranqueables'
     ]

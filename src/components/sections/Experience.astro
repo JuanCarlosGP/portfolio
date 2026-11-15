@@ -32,7 +32,7 @@ const izertis = experience[0];
 
         <ul class="ticks">
           {izertis.bullets.map((bullet) => (
-            <li set:html={bullet.replace('WebdriverIO', '<strong>WebdriverIO</strong>').replace('Playwright', '<strong>Playwright</strong>')} />
+            <li set:html={bullet.replace('Playwright', '<strong>Playwright</strong>').replace('Maestro', '<strong>Maestro</strong>').replace('Azure DevOps', '<strong>Azure DevOps</strong>').replace('Axe-core', '<strong>Axe-core</strong>')} />
           ))}
         </ul>
 
