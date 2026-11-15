@@ -16,17 +16,11 @@ const { name } = Astro.props;
       <path d="M18 19v2" />
     </svg>
   )}
-  {name === 'WebdriverIO' && (
+  {(name === 'Maestro (Mobile)' || name === 'WebdriverIO') && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect width="18" height="12" x="3" y="6" rx="2" />
-      <circle cx="9" cy="12" r="1.5" />
-      <circle cx="15" cy="12" r="1.5" />
-      <path d="M12 2v4" />
-      <path d="M8 2h8" />
-      <path d="M2 12h1" />
-      <path d="M21 12h1" />
-      <path d="M9 18v3" />
-      <path d="M15 18v3" />
+      <rect width="14" height="20" x="5" y="2" rx="2.5" />
+      <path d="M12 18h.01" />
+      <path d="m13 6-3 4.5h3.5L10.5 15" />
     </svg>
   )}
   {name === 'Jest / Vitest' && (
@@ -49,12 +43,12 @@ const { name } = Astro.props;
       <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
     </svg>
   )}
-  {name === 'Pixelmatch (Visual)' && (
+  {(name === 'Axe-core (A11y)' || name === 'Pixelmatch (Visual)') && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-      <circle cx="12" cy="12" r="3" />
-      <line x1="12" x2="12" y1="2" y2="5" />
-      <line x1="12" x2="12" y1="19" y2="22" />
+      <circle cx="12" cy="4.5" r="2" />
+      <path d="m4.5 9 7.5 1.5 7.5-1.5" />
+      <path d="m9 21.5 3-8 3 8" />
+      <path d="M12 11v4" />
     </svg>
   )}
   {name === 'TypeScript' && (
@@ -64,11 +58,12 @@ const { name } = Astro.props;
       <path d="M14 17c.5.5 1 .8 1.8.8 1 0 1.7-.5 1.7-1.3 0-1.8-3.2-.8-3.2-2.7 0-.9.7-1.6 1.7-1.6.7 0 1.3.3 1.7.7" />
     </svg>
   )}
-  {name === 'JavaScript (ESM)' && (
+  {(name === 'JavaScript (Node.js)' || name === 'JavaScript (ESM)') && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect width="18" height="18" x="3" y="3" rx="3" />
-      <path d="M9 14.5c0 1.4-.7 2.5-2 2.5a2 2 0 0 1-1.5-.6" />
-      <path d="M14 17c.5.5 1 .8 1.8.8 1 0 1.7-.5 1.7-1.3 0-1.8-3.2-.8-3.2-2.7 0-.9.7-1.6 1.7-1.6.7 0 1.3.3 1.7.7" />
+      <polygon points="12 2 21 7.5 21 16.5 12 22 3 16.5 3 7.5" />
+      <line x1="12" x2="12" y1="12" y2="22" />
+      <line x1="12" x2="21" y1="12" y2="7.5" />
+      <line x1="12" x2="3" y1="12" y2="7.5" />
     </svg>
   )}
   {name === 'Python' && (
@@ -85,7 +80,7 @@ const { name } = Astro.props;
       <line x1="12" x2="20" y1="19" y2="19" />
     </svg>
   )}
-  {name === 'Java (Paper / Core)' && (
+  {(name === 'Java (Core / JVM)' || name === 'Java (Paper / Core)') && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
       <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
@@ -111,6 +106,13 @@ const { name } = Astro.props;
       <polyline points="15 6 18 9 15 12" />
     </svg>
   )}
+  {(name === 'Azure DevOps' || name === 'NSSM Windows Svc') && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+      <polyline points="13 13 15 15 13 17" />
+      <line x1="9" x2="15" y1="15" y2="15" />
+    </svg>
+  )}
   {name === 'Docker & Containers' && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="2" y="7" width="20" height="14" rx="2" />
@@ -127,25 +129,19 @@ const { name } = Astro.props;
       <path d="m11 13 3-4h-2.5l1.5-3" />
     </svg>
   )}
-  {name === 'Arch / Debian Linux' && (
+  {(name === 'Linux / POSIX Env' || name === 'Arch / Debian Linux') && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect width="18" height="18" x="3" y="3" rx="3" />
-      <path d="m9 8 4 4-4 4" />
-      <line x1="14" x2="16" y1="16" y2="16" />
+      <path d="m8 9 3 3-3 3" />
+      <line x1="13" x2="16" y1="15" y2="15" />
     </svg>
   )}
-  {name === 'Git Worktrees & CI' && (
+  {(name === 'Git Workflows' || name === 'Git Worktrees & CI') && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="6" x2="6" y1="3" y2="15" />
       <circle cx="18" cy="6" r="3" />
       <circle cx="6" cy="18" r="3" />
       <path d="M18 9a9 9 0 0 1-9 9" />
-    </svg>
-  )}
-  {name === 'NSSM Windows Svc' && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
     </svg>
   )}
   {name === 'Page Object Model' && (
@@ -155,16 +151,16 @@ const { name } = Astro.props;
       <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
     </svg>
   )}
-  {name === 'Ajv / JSON Schema' && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
-      <path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" />
-    </svg>
-  )}
   {name === 'Contract Testing' && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       <path d="m9 12 2 2 4-4" />
+    </svg>
+  )}
+  {name === 'Ajv / JSON Schema' && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
+      <path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" />
     </svg>
   )}
   {name === 'BDD / Cucumber' && (
@@ -173,10 +169,13 @@ const { name } = Astro.props;
       <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
     </svg>
   )}
-  {name === 'Trace & Video Capture' && (
+  {(name === 'Allure Reporting' || name === 'Trace & Video Capture') && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="m22 8-6 4 6 4V8Z" />
-      <rect width="14" height="12" x="2" y="6" rx="2" />
+      <path d="M3 3v18h18" />
+      <path d="M7 16v-4" />
+      <path d="M11 16V8" />
+      <path d="M15 16v-6" />
+      <path d="m18 7-3 3-4-4-4 4" />
     </svg>
   )}
   {name === 'Network Mocking' && (
