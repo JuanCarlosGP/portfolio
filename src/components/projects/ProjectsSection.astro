@@ -1,0 +1,38 @@
+---
+import { projects } from '@data/projects';
+import PspSlider from './PspSlider.astro';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+<!-- 2. Section 01: Projects & Test Frameworks -->
+<section class="band section" id="projects">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-title">
+        <p class="kicker"><b>01</b><span class="shine">Proyectos destacados</span></p>
+        <h2>Arquitecturas E2E<br />y frameworks de prueba.</h2>
+      </div>
+      <div class="sec-aside">
+        <p class="sub">
+          Sistemas de prueba automáticos diseñados para soportar altos volúmenes de transacciones, validaciones cross-platform y compuertas automáticas de entrega continua.
+        </p>
+      </div>
+    </div>
+
+    <div class="cmp-grid">
+      {projects.map((project) => (
+        project.isSlider ? (
+          <PspSlider project={project} />
+        ) : (
+          <ProjectCard project={project} />
+        )
+      ))}
+    </div>
+
+    <p class="note-row">
+      Todos los proyectos incluyen arquitectura Page Object Model (POM), aislamiento de fixtures y trazabilidad total con capturas de vídeo y logs estructurados.
+    </p>
+  </div>
+</section>

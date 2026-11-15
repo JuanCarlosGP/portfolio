@@ -1,0 +1,9 @@
+---
+interface Props {
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+}
+
+const { position } = Astro.props;
+---
+
+<span class={`cad-cross ${position}`}>+</span>

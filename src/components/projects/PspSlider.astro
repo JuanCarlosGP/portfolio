@@ -1,0 +1,91 @@
+---
+import type { Project } from '@portfolio-types/portfolio';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="cmp-card">
+  <div class="project-preview project-preview--slider" id="preview-psp" tabindex="0" role="region" aria-label="Galería de imágenes de PSP Hardware Diagnostic">
+    <!-- Top Header Bar with Status & Slide Indicator -->
+    <div class="preview-top">
+      <span style={`color: ${project.statusIndicatorColor};`} class="preview-status-indicator">
+        <span class="label-full">● {project.statusText}</span>
+        <span class="label-short">● {project.statusCategory}</span>
+      </span>
+      <span class="slider-counter" id="psp-slider-counter" aria-live="polite">01 / 03 · VIDEO DEMO</span>
+    </div>
+
+    <!-- Slider Viewport & Slides Track -->
+    <div class="slider-viewport">
+      <div class="slider-track" id="psp-slider-track">
+        <!-- Slide 1: Live Hardware Video Demo -->
+        <div class="slider-slide" data-index="0" data-caption="01 / 03 · VIDEO DEMO">
+          <video id="psp-demo-video" src="/psp-video.mp4" poster="/psp-video-poster.jpg" autoplay loop muted playsinline class="slider-video" aria-label="Demostración en vídeo de Panel PSP en hardware físico"></video>
+        </div>
+
+        <!-- Slide 2: Front Studio Photo -->
+        <div class="slider-slide" data-index="1" data-caption="02 / 03 · FRONT UI">
+          <img src="/psp-front.jpg" alt="Panel PSP - Software de diagnóstico ejecutándose en Sony PSP-3004 transparente con LED verde" class="slider-img" loading="lazy" />
+        </div>
+
+        <!-- Slide 3: Rear Studio Photo -->
+        <div class="slider-slide" data-index="2" data-caption="03 / 03 · REAR MOD">
+          <img src="/psp-back.jpg" alt="Panel PSP - Chasis transparente, bahía UMD y mod de batería extendida 3600mAh" class="slider-img" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Lateral Navigation Arrows -->
+      <button type="button" class="slider-arrow slider-arrow--prev" id="psp-slide-prev" aria-label="Ver imagen anterior" title="Imagen anterior">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </button>
+      <button type="button" class="slider-arrow slider-arrow--next" id="psp-slide-next" aria-label="Ver siguiente imagen" title="Siguiente imagen">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </button>
+
+      <!-- Sound Toggle Button for Video -->
+      <button type="button" class="slider-sound-btn" id="psp-sound-btn" aria-label="Activar o silenciar audio" title="Activar/Silenciar sonido de botones">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sound-icon-mute">
+          <path d="M11 5 6 9H2v6h4l5 4V5z"/>
+          <line x1="23" y1="9" x2="17" y2="15"/>
+          <line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sound-icon-unmute" style="display:none;">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
+      </button>
+
+      <!-- Slider Bottom Indicator Bars/Dots -->
+      <div class="slider-dots" role="tablist" aria-label="Navegación de diapositivas">
+        <button type="button" class="slider-dot active" data-slide-to="0" role="tab" aria-selected="true" aria-label="Slide 1: Vídeo Demo"></button>
+        <button type="button" class="slider-dot" data-slide-to="1" role="tab" aria-selected="false" aria-label="Slide 2: Frontal UI"></button>
+        <button type="button" class="slider-dot" data-slide-to="2" role="tab" aria-selected="false" aria-label="Slide 3: Mod Trasero"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tags placed OUTSIDE the image -->
+  <div class="preview-tags">
+    {project.tags.map((tag) => (
+      <span class="tag-badge">{tag}</span>
+    ))}
+  </div>
+
+  <div class="cmp-meta">
+    <span class="cmp-n">{project.num}</span>
+    <h3>{project.title}</h3>
+    {project.repoUrl && (
+      <a class="cmp-try" href={project.repoUrl} target="_blank" rel="noopener">Repo ↗</a>
+    )}
+  </div>
+  <p>{project.description}</p>
+</article>

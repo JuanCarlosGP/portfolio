@@ -1,0 +1,49 @@
+---
+import type { Project } from '@portfolio-types/portfolio';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="cmp-card">
+  <div class="project-preview">
+    <div class="preview-top">
+      <span style={`color: ${project.statusIndicatorColor};`}>● {project.statusText}</span>
+      <span>{project.statusCategory}</span>
+    </div>
+    <div class="preview-terminal">
+      {project.terminalCommand && (
+        <>
+          {project.terminalCommand}
+          <br />
+        </>
+      )}
+      {project.terminalLines && project.terminalLines.map((line, idx) => (
+        <>
+          {line}
+          {idx < project.terminalLines!.length - 1 && <br />}
+        </>
+      ))}
+    </div>
+  </div>
+  <div class="preview-tags">
+    {project.tags.map((tag) => (
+      <span class="tag-badge">{tag}</span>
+    ))}
+  </div>
+  <div class="cmp-meta">
+    <span class="cmp-n">{project.num}</span>
+    <h3>{project.title}</h3>
+    {project.repoUrl ? (
+      <a class="cmp-try" href={project.repoUrl} target="_blank" rel="noopener">
+        {project.clientLabel || 'Repo ↗'}
+      </a>
+    ) : (
+      <span class="cmp-try">{project.clientLabel}</span>
+    )}
+  </div>
+  <p>{project.description}</p>
+</article>

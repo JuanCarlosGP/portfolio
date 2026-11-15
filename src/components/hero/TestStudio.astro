@@ -1,0 +1,115 @@
+---
+import GoogleMockup from './GoogleMockup.astro';
+---
+
+<div class="hero-right">
+  <div class="dots" aria-hidden="true"></div>
+
+  <div class="demo-bar">
+    <span class="demo-info" id="active-scenario-title">
+      <span class="badge-spec">SPEC</span>
+      <span>google-website-e2e.spec.ts</span>
+    </span>
+    <span class="demo-live">
+      <i aria-hidden="true"></i>
+      <span id="demo-live-text">6/6 Passed · 0.18s</span>
+    </span>
+  </div>
+
+  <div class="demo-stage" id="demo-stage" tabindex="0" role="slider" aria-label="Comparar buscador Google.com con suite de pruebas QA Automation" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+    <!-- Left View (Clipped from 0 to --p): QA Automation Test Runner -->
+    <div class="demo-view demo-view-after" id="qa-suite-view">
+      <div class="test-suite-screen" id="console-view">
+        <div class="test-header-bar">
+          <span>PLAYWRIGHT RUNNER v1.49 · HEADLESS CHROMIUM</span>
+          <span>TARGET: google.com</span>
+        </div>
+
+        <div class="test-rows-container" id="test-rows-container">
+          <div class="test-row">
+            <span class="test-name">
+              <span class="badge-pass">PASS</span>
+              <span>page.goto('https://www.google.com')</span>
+            </span>
+            <span>38ms</span>
+          </div>
+          <div class="test-row">
+            <span class="test-name">
+              <span class="badge-pass">PASS</span>
+              <span>locator('textarea[name="q"]').fill('playwright test automation engineer')</span>
+            </span>
+            <span>14ms</span>
+          </div>
+          <div class="test-row">
+            <span class="test-name">
+              <span class="badge-pass">PASS</span>
+              <span>page.waitForResponse('**/complete/search?*') &rarr; HTTP 200</span>
+            </span>
+            <span>22ms</span>
+          </div>
+          <div class="test-row">
+            <span class="test-name">
+              <span class="badge-pass">PASS</span>
+              <span>expect(page.getByRole('button', &#123; name: 'Buscar con Google' &#125;)).toBeVisible()</span>
+            </span>
+            <span>9ms</span>
+          </div>
+          <div class="test-row">
+            <span class="test-name">
+              <span class="badge-pass">PASS</span>
+              <span>page.keyboard.press('Enter') &rarr; Results loaded</span>
+            </span>
+            <span>31ms</span>
+          </div>
+          <div class="test-row">
+            <span class="test-name">
+              <span class="badge-pass">PASS</span>
+              <span>expect(page.locator('#search .g')).toHaveCount(10)</span>
+            </span>
+            <span>18ms</span>
+          </div>
+        </div>
+
+        <div class="ascii-test-art" id="console-ascii">{`   ____   _    ____ ____  _____ ____  
+  |  _ \\ / \\  / ___/ ___|| ____|  _ \\ 
+  | |_) / _ \\ \\___ \\___ \\|  _| | | | |
+  |  __/ ___ \\ ___) |__) | |___| |_| |
+  |_| /_/   \\_\\____/____/|_____|____/ 
+  ─────────────────────────────────────────────
+  ✔ Target App: https://www.google.com
+  ✔ 6/6 E2E specs executed with zero flakiness
+  ✔ Network mocks: 0 timeout leaks
+  ✔ Artifacts: trace.playwright.dev, video, snapshot`}</div>
+      </div>
+    </div>
+
+    <GoogleMockup />
+
+    <span class="cmp-bar" id="cmp-bar" aria-hidden="true">
+      <span class="cmp-grip" id="cmp-grip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square">
+          <path d="m9 7-5 5 5 5M15 7l5 5-5 5" />
+        </svg>
+      </span>
+    </span>
+  </div>
+
+  <!-- Bottom Interactive Pills to switch scenarios -->
+  <div class="pills" role="tablist" aria-label="Escenarios de prueba">
+    <button class="pill" role="tab" aria-selected="true" aria-pressed="true" data-scenario="e2e">
+      <span>Website E2E</span>
+    </button>
+    <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="api">
+      <span>API Testing</span>
+    </button>
+    <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="a11y">
+      <span>Accessibility</span>
+    </button>
+    <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="cicd">
+      <span>CI/CD</span>
+    </button>
+    <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="perf">
+      <span>Performance</span>
+    </button>
+  </div>
+</div>

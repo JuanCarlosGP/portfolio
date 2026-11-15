@@ -1,0 +1,90 @@
+---
+import { experience, proHighlights } from '@data/experience';
+
+const izertis = experience[0];
+---
+
+<div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+<!-- 4. Section 03: Career & Experience -->
+<section class="band section" id="experience">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-title">
+        <p class="kicker"><b>03</b><span class="shine">Experiencia profesional</span></p>
+        <h2>Trayectoria probada en<br />calidad de software.</h2>
+      </div>
+      <div class="sec-aside">
+        <p class="sub">
+          Aportando rigor técnico, automatización escalable y metodologías ágiles en entornos de consultoría tecnológica y desarrollo corporativo.
+        </p>
+      </div>
+    </div>
+
+    <div class="pair">
+      <!-- Left Card: IZERTIS, S.A. -->
+      <div class="pair-card">
+        <p class="mono-cap" style="color: var(--accent2);">{izertis.role}</p>
+        <h3>{izertis.company}</h3>
+        <p style="color: var(--mute); font-family: var(--mono); font-size: 11px; margin-bottom: 20px;">
+          {izertis.period}
+        </p>
+
+        <ul class="ticks">
+          {izertis.bullets.map((bullet) => (
+            <li set:html={bullet.replace('WebdriverIO', '<strong>WebdriverIO</strong>').replace('Playwright', '<strong>Playwright</strong>')} />
+          ))}
+        </ul>
+
+        <a class="btn" href="#contact">
+          <span>Contactar para referencias</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Right Card: Pro Card (Devault rotating glow card) -->
+      <div class="pair-card pro-card">
+        <div class="pro-in">
+          <span class="pro-badge">
+            <i aria-hidden="true"></i>
+            <span class="shine">MÉTRICAS DE RENDIMIENTO</span>
+          </span>
+
+          <h3>Excelencia en <em>Automatización</em></h3>
+
+          <div class="pro-stats">
+            <div>
+              <dt>&lt; 0.5%</dt>
+              <dd>Flaky Rate</dd>
+            </div>
+            <div>
+              <dt>&lt; 3min</dt>
+              <dd>E2E Feedback</dd>
+            </div>
+            <div>
+              <dt>100%</dt>
+              <dd>POM Pattern</dd>
+            </div>
+          </div>
+
+          <ul class="ticks" style="margin-bottom: 24px;">
+            {proHighlights.map((item) => (
+              <li>
+                <strong>{item.company}:</strong> {item.detail}
+              </li>
+            ))}
+          </ul>
+
+          <a class="btn primary" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
+            <span>Explorar repositorios en GitHub</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17 17 7M8 7h9v9" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

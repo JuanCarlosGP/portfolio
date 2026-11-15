@@ -1,7 +1,16 @@
-node_modules
-dist
-.DS_Store
+# Dependencies & Build
+node_modules/
+dist/
+.astro/
+
+# Testing & Artifacts
+test-results/
+playwright-report/
+blob-report/
+
+# Logs & Environment
 *.log
+.DS_Store
 .env
 .env.*
 !.env.example

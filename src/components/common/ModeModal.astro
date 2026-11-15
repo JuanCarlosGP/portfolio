@@ -1,0 +1,58 @@
+---
+import CadCross from './CadCross.astro';
+---
+
+<div id="mode-select-overlay" class="mode-select-overlay" role="dialog" aria-modal="true" aria-labelledby="mode-select-title">
+  <div class="mode-select-backdrop"></div>
+  <div class="mode-select-card cad-box">
+    <CadCross position="top-left" />
+    <CadCross position="top-right" />
+    <CadCross position="bottom-left" />
+    <CadCross position="bottom-right" />
+
+    <div class="mode-select-header">
+      <div class="mode-select-chip">
+        <span class="pulse-dot"></span>
+        <span class="mono-cap">// MODO DE INICIO</span>
+      </div>
+      <h2 id="mode-select-title" class="mode-select-heading">Elige cómo ver el portafolio</h2>
+    </div>
+
+    <div class="mode-select-grid">
+      <!-- Option 1: Agentes -->
+      <div class="mode-option-card mode-option-agent" id="mode-agent-card">
+        <div class="mode-badge-row">
+          <span class="tag tag-spec">🔊 CON SONIDO</span>
+        </div>
+        <div class="mode-option-body">
+          <h3 class="mode-option-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg>Con Agentes
+          </h3>
+          <p class="mode-option-copy">Reconstrucción en vivo con enjambre de cursores y sonido.</p>
+        </div>
+        <button class="btn primary mode-btn" id="btn-mode-agent">
+          <span>Iniciar [1]</span>
+        </button>
+      </div>
+
+      <!-- Option 2: Vista Normal -->
+      <div class="mode-option-card mode-option-normal" id="mode-normal-card">
+        <div class="mode-badge-row">
+          <span class="tag">DIRECTO</span>
+        </div>
+        <div class="mode-option-body">
+          <h3 class="mode-option-title">📄 Vista Normal</h3>
+          <p class="mode-option-copy">Acceso directo al portafolio sin animaciones de espera.</p>
+        </div>
+        <button class="btn mode-btn" id="btn-mode-normal">
+          <span>Entrar [2]</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mode-select-footer">
+      <span class="mono-cap">Juan Carlos · SDET</span>
+      <span class="mono-cap">[ 1 ] Agentes · [ 2 ] Normal</span>
+    </div>
+  </div>
+</div>
