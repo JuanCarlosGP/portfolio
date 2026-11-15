@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Juan Carlos Gutiérrez Pesquero — QA Automation Engineer &amp; SDET</title>
+    <meta
+      name="description"
+      content="QA Automation Engineer / SDET especializado en Playwright, WebdriverIO, TypeScript, arquitecturas de prueba sin falsos positivos y pipelines CI/CD de alta velocidad."
+    />
+    <meta name="theme-color" content="#07070a" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d0bcf7'/><text y='70' x='18' font-size='60' font-family='monospace' font-weight='bold' fill='%2307070a'>JC</text></svg>" />
+  </head>
+  <body>
+    <!-- Initial Mode Selection Modal (Agents vs Normal View) -->
+    <div id="mode-select-overlay" class="mode-select-overlay" role="dialog" aria-modal="true" aria-labelledby="mode-select-title">
+      <div class="mode-select-backdrop"></div>
+      <div class="mode-select-card cad-box">
+        <!-- Corner CAD Crosshairs -->
+        <span class="cad-cross top-left">+</span>
+        <span class="cad-cross top-right">+</span>
+        <span class="cad-cross bottom-left">+</span>
+        <span class="cad-cross bottom-right">+</span>
+
+        <div class="mode-select-header">
+          <div class="mode-select-chip">
+            <span class="pulse-dot"></span>
+            <span class="mono-cap">// MODO DE INICIO</span>
+          </div>
+          <h2 id="mode-select-title" class="mode-select-heading">Elige cómo ver el portafolio</h2>
+        </div>
+
+        <div class="mode-select-grid">
+          <!-- Option 1: Agentes (Swarm Rebuild con sonido) -->
+          <div class="mode-option-card mode-option-agent" id="mode-agent-card">
+            <div class="mode-badge-row">
+              <span class="tag tag-spec">🔊 CON SONIDO</span>
+            </div>
+            <div class="mode-option-body">
+              <h3 class="mode-option-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg>Con Agentes
+              </h3>
+              <p class="mode-option-copy">Reconstrucción en vivo con enjambre de cursores y sonido.</p>
+            </div>
+            <button class="btn primary mode-btn" id="btn-mode-agent">
+              <span>Iniciar [1]</span>
+            </button>
+          </div>
+
+          <!-- Option 2: Vista Normal -->
+          <div class="mode-option-card mode-option-normal" id="mode-normal-card">
+            <div class="mode-badge-row">
+              <span class="tag">DIRECTO</span>
+            </div>
+            <div class="mode-option-body">
+              <h3 class="mode-option-title">📄 Vista Normal</h3>
+              <p class="mode-option-copy">Acceso directo al portafolio sin animaciones de espera.</p>
+            </div>
+            <button class="btn mode-btn" id="btn-mode-normal">
+              <span>Entrar [2]</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mode-select-footer">
+          <span class="mono-cap">Juan Carlos · SDET</span>
+          <span class="mono-cap">[ 1 ] Agentes · [ 2 ] Normal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 0. Header / Navigation -->
+    <header class="nav">
+      <div class="wrap nav-in">
+        <a class="brand nav-brand" href="#top" aria-label="Juan Carlos Gutiérrez Pesquero - Portafolio">
+          <span class="brand-icon">JC</span>
+          <span class="brand-sep">/</span>
+          <span class="brand-tool">QA</span>
+          <span class="tag status-tag">● SDET</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Secciones del sitio">
+          <a href="#projects">Proyectos</a>
+          <a href="#how">Metodología</a>
+          <a href="#experience">Trayectoria</a>
+          <a href="#stack">Stack</a>
+          <a href="#contact">Contacto</a>
+        </nav>
+
+        <div class="nav-cta">
+          <button class="btn" id="replay-swarm-btn" title="Reconstruir la web en vivo con agentes IA y sonido">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="7"/>
+              <path d="M12 6v4"/>
+            </svg>
+            <span>Modo Agentes</span>
+          </button>
+
+          <a class="btn primary" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
+            <span>GitHub ↗</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- 1. Hero Section -->
+      <section class="band hero" id="top">
+        <div class="wrap hero-grid">
+          <!-- Hero Left Column -->
+          <div class="hero-left">
+            <div class="hero-tag">
+              <p class="eyebrow">
+                <span class="shine">Madrid, España · Portfolio Personal</span>
+              </p>
+            </div>
+
+            <div class="hero-main">
+              <!-- Personal Profile Header & Large GitHub Avatar -->
+              <div class="hero-profile-header">
+                <div class="hero-avatar-ring">
+                  <img src="/avatar.png" alt="Juan Carlos Gutiérrez Pesquero" class="hero-avatar-img" width="164" height="164" loading="eager" />
+                </div>
+                <div class="hero-profile-meta">
+                  <span class="hero-profile-badge">
+                    <i class="dot emerald" aria-hidden="true"></i>
+                    <span>DISPONIBLE / OPEN TO WORK</span>
+                  </span>
+                  <h2 class="hero-profile-name">Juan Carlos Gutiérrez</h2>
+                </div>
+              </div>
+
+              <h1>
+                <span class="h1-static">Ingeniería para</span>
+                <span class="h1-typed"><span id="typed">suites de test robustas.</span><span class="caret" id="caret"></span></span>
+              </h1>
+
+              <p class="lede">
+                ¡Hola! Soy <strong>Juan Carlos</strong>. Me dedico a diseñar y construir <strong>arquitecturas de testing automatizadas</strong> en cualquier entorno que eliminan falsos positivos y aceleran los despliegues a producción. Mi foco está en la fiabilidad de los pipelines CI/CD, el <strong>testing determinista</strong> y en crear herramientas que resuelvan problemas reales de calidad.
+              </p>
+
+              <div class="hero-cta">
+                <a class="btn primary lg" href="https://www.linkedin.com/in/juancarlosgutierrezpesquero/" target="_blank" rel="noopener" aria-label="Conectar con Juan Carlos en LinkedIn">
+                  <svg class="icon-linkedin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037c-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85c3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.06 2.06 0 0 1-2.063-2.065a2.064 2.064 0 1 1 2.063 2.065m1.782 13.019H3.555V9h3.564zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
+                  </svg>
+                  <span>¿Conectamos?</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <ul class="facts">
+              <li>Testing Determinista</li>
+              <li>Playwright &amp; WDIO</li>
+              <li>Madrid · Fuenlabrada</li>
+            </ul>
+          </div>
+
+          <!-- Hero Right Column: Interactive Test Visualizer & Slider -->
+          <div class="hero-right">
+            <div class="dots" aria-hidden="true"></div>
+
+            <div class="demo-bar">
+              <span class="demo-info" id="active-scenario-title">
+                <span class="badge-spec">SPEC</span>
+                <span>google-website-e2e.spec.ts</span>
+              </span>
+              <span class="demo-live">
+                <i aria-hidden="true"></i>
+                <span id="demo-live-text">6/6 Passed · 0.18s</span>
+              </span>
+            </div>
+
+            <div class="demo-stage" id="demo-stage" tabindex="0" role="slider" aria-label="Comparar buscador Google.com con suite de pruebas QA Automation" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <!-- Left View (Clipped from 0 to --p): QA Automation Test Runner -->
+              <div class="demo-view demo-view-after" id="qa-suite-view">
+                <div class="test-suite-screen" id="console-view">
+                  <div class="test-header-bar">
+                    <span>PLAYWRIGHT RUNNER v1.49 · HEADLESS CHROMIUM</span>
+                    <span>TARGET: google.com</span>
+                  </div>
+
+                  <div class="test-rows-container" id="test-rows-container">
+                    <div class="test-row">
+                      <span class="test-name">
+                        <span class="badge-pass">PASS</span>
+                        <span>page.goto('https://www.google.com')</span>
+                      </span>
+                      <span>38ms</span>
+                    </div>
+                    <div class="test-row">
+                      <span class="test-name">
+                        <span class="badge-pass">PASS</span>
+                        <span>locator('textarea[name="q"]').fill('playwright test automation engineer')</span>
+                      </span>
+                      <span>14ms</span>
+                    </div>
+                    <div class="test-row">
+                      <span class="test-name">
+                        <span class="badge-pass">PASS</span>
+                        <span>page.waitForResponse('**/complete/search?*') &rarr; HTTP 200</span>
+                      </span>
+                      <span>22ms</span>
+                    </div>
+                    <div class="test-row">
+                      <span class="test-name">
+                        <span class="badge-pass">PASS</span>
+                        <span>expect(page.getByRole('button', { name: 'Buscar con Google' })).toBeVisible()</span>
+                      </span>
+                      <span>9ms</span>
+                    </div>
+                    <div class="test-row">
+                      <span class="test-name">
+                        <span class="badge-pass">PASS</span>
+                        <span>page.keyboard.press('Enter') &rarr; Results loaded</span>
+                      </span>
+                      <span>31ms</span>
+                    </div>
+                    <div class="test-row">
+                      <span class="test-name">
+                        <span class="badge-pass">PASS</span>
+                        <span>expect(page.locator('#search .g')).toHaveCount(10)</span>
+                      </span>
+                      <span>18ms</span>
+                    </div>
+                  </div>
+
+                  <div class="ascii-test-art" id="console-ascii">
+   ____   _    ____ ____  _____ ____  
+  |  _ \ / \  / ___/ ___|| ____|  _ \ 
+  | |_) / _ \ \___ \___ \|  _| | | | |
+  |  __/ ___ \ ___) |__) | |___| |_| |
+  |_| /_/   \_\____/____/|_____|____/ 
+  ─────────────────────────────────────────────
+  ✔ Target App: https://www.google.com
+  ✔ 6/6 E2E specs executed with zero flakiness
+  ✔ Network mocks: 0 timeout leaks
+  ✔ Artifacts: trace.playwright.dev, video, snapshot
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right View (Underneath / Beyond --p): Google.com Browser -->
+              <!-- Right View (Underneath / Beyond --p): Dynamic Google Search Scenario Visualizers -->
+              <div class="demo-view demo-view-before" id="google-view">
+                
+                <!-- 1. WEBSITE E2E: Google.com Live Home View -->
+                <div class="google-browser-frame g-scenario-view active" data-view="e2e">
+                  <!-- Browser Omnibox Top Bar -->
+                  <div class="browser-chrome-bar">
+                    <div class="browser-window-dots">
+                      <span class="b-dot b-red"></span>
+                      <span class="b-dot b-yellow"></span>
+                      <span class="b-dot b-green"></span>
+                    </div>
+                    <div class="browser-address-field">
+                      <svg class="b-lock-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <span class="b-url-text">https://www.google.com</span>
+                      <span class="b-status-pill">200 OK</span>
+                    </div>
+                    <div class="browser-meta-tag">CHROMIUM</div>
+                  </div>
+
+                  <!-- Google Page Top Navigation -->
+                  <div class="google-page-header">
+                    <span class="g-link">Gmail</span>
+                    <span class="g-link">Imágenes</span>
+                    <div class="g-apps-grid" aria-label="Google Apps">
+                      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                    <div class="g-profile-avatar" title="QA SDET Profile">JC</div>
+                  </div>
+
+                  <!-- Google Center Body -->
+                  <div class="google-center-stage">
+                    <div class="google-wordmark" aria-label="Google">
+                      <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+                    </div>
+
+                    <div class="google-search-box-wrap">
+                      <div class="google-search-input-box">
+                        <svg class="g-search-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                        <input type="text" class="google-input-field" value="playwright test automation engineer" readonly />
+                        <div class="google-input-icons">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" x2="12" y1="19" y2="22"></line>
+                          </svg>
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="google-action-buttons">
+                      <button class="g-action-btn" type="button">Buscar con Google</button>
+                      <button class="g-action-btn" type="button">Voy a tener suerte</button>
+                    </div>
+
+                    <div class="google-lang-row">
+                      <span>Ofrecido por Google en:</span>
+                      <a href="#top" onclick="return false;">Español</a>
+                      <a href="#top" onclick="return false;">Català</a>
+                      <a href="#top" onclick="return false;">Galego</a>
+                      <a href="#top" onclick="return false;">Euskara</a>
+                    </div>
+                  </div>
+
+                  <div class="google-footer-bar">
+                    <span>España · De tu dirección IP</span>
+                    <span>Modo Oscuro · Confidencialidad</span>
+                  </div>
+                </div>
+
+                <!-- 2. API TESTING: Autocomplete Suggest API + JSON Inspector -->
+                <div class="google-browser-frame g-scenario-view" data-view="api">
+                  <div class="browser-chrome-bar">
+                    <div class="browser-window-dots">
+                      <span class="b-dot b-red"></span>
+                      <span class="b-dot b-yellow"></span>
+                      <span class="b-dot b-green"></span>
+                    </div>
+                    <div class="browser-address-field">
+                      <svg class="b-lock-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <span class="b-url-text">https://www.google.com/complete/search?q=how+to+hire</span>
+                      <span class="b-status-pill">200 OK</span>
+                    </div>
+                    <div class="browser-meta-tag">REST / JSON</div>
+                  </div>
+
+                  <div class="g-api-stage">
+                    <div class="g-api-header">
+                      <div class="g-api-logo-wrap">
+                        <span class="g-wordmark-mini" aria-label="Google"><span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span></span>
+                        <span class="g-subtag">Autocomplete Suggest API</span>
+                      </div>
+                      <div class="google-search-input-box g-search-input-box g-input-active">
+                        <svg class="g-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                        <span class="g-typed-text">how to hire <span class="g-cursor">|</span></span>
+                        <span class="b-status-pill" style="margin-left:auto;">GET · 14ms</span>
+                      </div>
+                      <div class="g-suggest-panel">
+                        <div class="g-suggest-item active">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                          <span><strong>how to hire</strong> Juan Carlos Gutierrez</span>
+                          <span class="g-suggest-tag">item[0]</span>
+                        </div>
+                        <div class="g-suggest-item">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                          <span><strong>how to hire</strong> Juan Carlos Gutierrez for auto testing</span>
+                          <span class="g-suggest-tag">item[1]</span>
+                        </div>
+                        <div class="g-suggest-item">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                          <span><strong>how to hire</strong> Juan Carlos Gutierrez SDET Madrid</span>
+                          <span class="g-suggest-tag">item[2]</span>
+                        </div>
+                        <div class="g-suggest-item">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                          <span><strong>how to hire</strong> Juan Carlos Gutierrez Playwright Expert</span>
+                          <span class="g-suggest-tag">item[3]</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Live JSON Contract Response -->
+                    <div class="g-json-inspector">
+                      <div class="g-json-header">
+                        <span class="g-json-badge">HTTP 200 OK</span>
+                        <span class="g-json-badge g-badge-teal">Schema: Draft 2020-12 (Valid)</span>
+                        <span class="g-json-badge g-badge-dim">Payload: 4 items</span>
+                      </div>
+                      <pre class="g-json-code"><code>{
+  <span class="jk">"query"</span>: <span class="js">"how to hire"</span>,
+  <span class="jk">"endpoint"</span>: <span class="js">"/complete/search?client=chrome&amp;q=how+to+hire"</span>,
+  <span class="jk">"suggestions"</span>: [
+    <span class="js">"Juan Carlos Gutierrez"</span>,
+    <span class="js">"Juan Carlos Gutierrez for auto testing"</span>,
+    <span class="js">"Juan Carlos Gutierrez SDET Madrid"</span>,
+    <span class="js">"Juan Carlos Gutierrez Playwright Expert"</span>
+  ],
+  <span class="jk">"headers"</span>: {
+    <span class="jk">"content-type"</span>: <span class="js">"application/json; charset=UTF-8"</span>,
+    <span class="jk">"cache-control"</span>: <span class="js">"private, max-age=3600"</span>
+  },
+  <span class="jk">"candidate_match"</span>: <span class="js">"QA Automation Engineer / SDET"</span>,
+  <span class="jk">"contract_check"</span>: <span class="jb">true</span>
+}</code></pre>
+                    </div>
+                  </div>
+
+                  <div class="google-footer-bar">
+                    <span>Endpoint: api.google.com/complete/search</span>
+                    <span>SLA: p99 &lt; 45ms Verified</span>
+                  </div>
+                </div>
+
+                <!-- 3. ACCESSIBILITY: WCAG 2.2 AAA Audit on Google Search -->
+                <div class="google-browser-frame g-scenario-view" data-view="a11y">
+                  <div class="browser-chrome-bar">
+                    <div class="browser-window-dots">
+                      <span class="b-dot b-red"></span>
+                      <span class="b-dot b-yellow"></span>
+                      <span class="b-dot b-green"></span>
+                    </div>
+                    <div class="browser-address-field">
+                      <svg class="b-lock-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <span class="b-url-text">https://www.google.com/#a11y-audit</span>
+                      <span class="b-status-pill">WCAG 2.2 AAA</span>
+                    </div>
+                    <div class="browser-meta-tag">AXE-CORE</div>
+                  </div>
+
+                  <div class="g-a11y-stage">
+                    <div class="google-center-stage" style="padding: 12px 0;">
+                      <span class="a11y-pill-tag">img alt="Google" · Pass (AAA)</span>
+                      <div class="google-wordmark" aria-label="Google" style="margin-bottom: 12px;">
+                        <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+                      </div>
+
+                      <div class="google-search-box-wrap" style="margin-bottom: 12px;">
+                        <span class="a11y-pill-tag">role="combobox" · aria-label="Buscar" · Contrast: 14.2:1 (AAA)</span>
+                        <div class="google-search-input-box a11y-focus-ring">
+                          <svg class="g-search-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                          <input type="text" class="google-input-field" value="playwright test automation engineer" readonly />
+                        </div>
+                      </div>
+
+                      <div class="google-action-buttons" style="margin-bottom: 10px;">
+                        <span class="a11y-pill-tag">role="button" · Contrast: 8.5:1</span>
+                      </div>
+
+                      <div class="google-lang-row">
+                        <span class="a11y-pill-tag">nav landmarks: 4 elements · Tab Order [1→2→3]</span>
+                      </div>
+                    </div>
+
+                    <div class="a11y-bottom-bar">
+                      <span>✔ 0 Violations (axe-core v4.10)</span>
+                      <span>✔ 100% Screen Reader Certified</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 4. CI/CD: Automated Multi-Browser Pipeline for Google.com -->
+                <div class="google-browser-frame g-scenario-view" data-view="cicd">
+                  <div class="browser-chrome-bar">
+                    <div class="browser-window-dots">
+                      <span class="b-dot b-red"></span>
+                      <span class="b-dot b-yellow"></span>
+                      <span class="b-dot b-green"></span>
+                    </div>
+                    <div class="browser-address-field">
+                      <svg class="b-lock-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <span class="b-url-text">https://github.com/juancarlos/google-e2e/actions/1420</span>
+                      <span class="b-status-pill">GREEN GATE</span>
+                    </div>
+                    <div class="browser-meta-tag">GITHUB ACTIONS</div>
+                  </div>
+
+                  <div class="g-cicd-stage">
+                    <div class="g-cicd-top">
+                      <span><strong>Workflow:</strong> google-e2e-matrix.yml</span>
+                      <span><strong>Trigger:</strong> main push #1420</span>
+                    </div>
+
+                    <div class="g-cicd-grid">
+                      <div class="g-worker-card">
+                        <div class="g-worker-title">
+                          <span style="color:#22c55e;">✔</span> Chromium Desktop
+                        </div>
+                        <div class="g-worker-meta">1920x1080 · 6/6 passed (18s)</div>
+                      </div>
+                      <div class="g-worker-card">
+                        <div class="g-worker-title">
+                          <span style="color:#22c55e;">✔</span> Firefox Headless
+                        </div>
+                        <div class="g-worker-meta">Ubuntu 22.04 · 6/6 passed (22s)</div>
+                      </div>
+                      <div class="g-worker-card">
+                        <div class="g-worker-title">
+                          <span style="color:#22c55e;">✔</span> WebKit (Safari Engine)
+                        </div>
+                        <div class="g-worker-meta">macOS-14 · 6/6 passed (26s)</div>
+                      </div>
+                      <div class="g-worker-card">
+                        <div class="g-worker-title">
+                          <span style="color:#22c55e;">✔</span> Mobile Emulation
+                        </div>
+                        <div class="g-worker-meta">Pixel 7 · 6/6 passed (15s)</div>
+                      </div>
+                    </div>
+
+                    <div class="g-cicd-artifacts">
+                      <span>📦 playwright-report.html (8.4MB)</span>
+                      <span>🎬 google-search-trace.zip</span>
+                    </div>
+                  </div>
+
+                  <div class="google-footer-bar">
+                    <span>Deploy Gate: Passed</span>
+                    <span>Push to Production: Approved ✔</span>
+                  </div>
+                </div>
+
+                <!-- 5. PERFORMANCE: Google Search Core Web Vitals & Lighthouse -->
+                <div class="google-browser-frame g-scenario-view" data-view="perf">
+                  <div class="browser-chrome-bar">
+                    <div class="browser-window-dots">
+                      <span class="b-dot b-red"></span>
+                      <span class="b-dot b-yellow"></span>
+                      <span class="b-dot b-green"></span>
+                    </div>
+                    <div class="browser-address-field">
+                      <svg class="b-lock-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <span class="b-url-text">https://www.google.com/#lighthouse-audit</span>
+                      <span class="b-status-pill">SCORE 100/100</span>
+                    </div>
+                    <div class="browser-meta-tag">LIGHTHOUSE v12</div>
+                  </div>
+
+                  <div class="g-perf-stage">
+                    <div class="g-scores-row">
+                      <div class="g-score-dial">
+                        <div class="g-score-circle">100</div>
+                        <span class="g-score-label">Performance</span>
+                      </div>
+                      <div class="g-score-dial">
+                        <div class="g-score-circle">100</div>
+                        <span class="g-score-label">Accessibility</span>
+                      </div>
+                      <div class="g-score-dial">
+                        <div class="g-score-circle">100</div>
+                        <span class="g-score-label">Best Practices</span>
+                      </div>
+                      <div class="g-score-dial">
+                        <div class="g-score-circle">100</div>
+                        <span class="g-score-label">SEO</span>
+                      </div>
+                    </div>
+
+                    <div class="g-vitals-grid">
+                      <div class="g-vital-card">
+                        <span class="g-vital-name">Largest Contentful Paint</span>
+                        <span class="g-vital-val">0.65s</span>
+                        <span class="g-vital-rating">Good (&lt; 2.5s)</span>
+                      </div>
+                      <div class="g-vital-card">
+                        <span class="g-vital-name">Interaction to Next Paint</span>
+                        <span class="g-vital-val">24ms</span>
+                        <span class="g-vital-rating">Good (&lt; 200ms)</span>
+                      </div>
+                      <div class="g-vital-card">
+                        <span class="g-vital-name">Cumulative Layout Shift</span>
+                        <span class="g-vital-val">0.00</span>
+                        <span class="g-vital-rating">Zero layout shift</span>
+                      </div>
+                      <div class="g-vital-card">
+                        <span class="g-vital-name">Time to First Byte (TTFB)</span>
+                        <span class="g-vital-val">42ms</span>
+                        <span class="g-vital-rating">Fast (&lt; 800ms)</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="google-footer-bar">
+                    <span>Audit Target: google.com (Landing)</span>
+                    <span>Render Blocking: 0 resources</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <span class="cmp-bar" id="cmp-bar" aria-hidden="true">
+                <span class="cmp-grip" id="cmp-grip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square">
+                    <path d="m9 7-5 5 5 5M15 7l5 5-5 5" />
+                  </svg>
+                </span>
+              </span>
+            </div>
+
+            <!-- Bottom Interactive Pills to switch scenarios -->
+            <div class="pills" role="tablist" aria-label="Escenarios de prueba">
+              <button class="pill" role="tab" aria-selected="true" aria-pressed="true" data-scenario="e2e">
+                <span>Website E2E</span>
+              </button>
+              <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="api">
+                <span>API Testing</span>
+              </button>
+              <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="a11y">
+                <span>Accessibility</span>
+              </button>
+              <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="cicd">
+                <span>CI/CD</span>
+              </button>
+              <button class="pill" role="tab" aria-selected="false" aria-pressed="false" data-scenario="perf">
+                <span>Performance</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+      <!-- 2. Section 01: Projects & Test Frameworks -->
+      <section class="band section" id="projects">
+        <div class="wrap">
+          <div class="sec-top">
+            <div class="sec-title">
+              <p class="kicker"><b>01</b><span class="shine">Proyectos destacados</span></p>
+              <h2>Arquitecturas E2E<br />y frameworks de prueba.</h2>
+            </div>
+            <div class="sec-aside">
+              <p class="sub">
+                Sistemas de prueba automáticos diseñados para soportar altos volúmenes de transacciones, validaciones cross-platform y compuertas automáticas de entrega continua.
+              </p>
+            </div>
+          </div>
+
+          <div class="cmp-grid">
+            <!-- Project 1: PSP Hardware Diagnostic Engine & Tear-Down Mod -->
+            <article class="cmp-card">
+              <div class="project-preview project-preview--slider" id="preview-psp" tabindex="0" role="region" aria-label="Galería de imágenes de PSP Hardware Diagnostic">
+                <!-- Top Header Bar with Status & Slide Indicator -->
+                <div class="preview-top">
+                  <span style="color: var(--emerald);" class="preview-status-indicator">
+                    <span class="label-full">● HARDWARE QA TOOLING</span>
+                    <span class="label-short">● HARDWARE</span>
+                  </span>
+                  <span class="slider-counter" id="psp-slider-counter" aria-live="polite">01 / 03 · VIDEO DEMO</span>
+                </div>
+
+                <!-- Slider Viewport & Slides Track -->
+                <div class="slider-viewport">
+                  <div class="slider-track" id="psp-slider-track">
+                    <!-- Slide 1: Live Hardware Video Demo -->
+                    <div class="slider-slide" data-index="0" data-caption="01 / 03 · VIDEO DEMO">
+                      <video id="psp-demo-video" src="/psp-video.mp4" poster="/psp-video-poster.jpg" autoplay loop muted playsinline class="slider-video" aria-label="Demostración en vídeo de Panel PSP en hardware físico"></video>
+                    </div>
+
+                    <!-- Slide 2: Front Studio Photo -->
+                    <div class="slider-slide" data-index="1" data-caption="02 / 03 · FRONT UI">
+                      <img src="/psp-front.jpg" alt="Panel PSP - Software de diagnóstico ejecutándose en Sony PSP-3004 transparente con LED verde" class="slider-img" loading="lazy" />
+                    </div>
+
+                    <!-- Slide 3: Rear Studio Photo -->
+                    <div class="slider-slide" data-index="2" data-caption="03 / 03 · REAR MOD">
+                      <img src="/psp-back.jpg" alt="Panel PSP - Chasis transparente, bahía UMD y mod de batería extendida 3600mAh" class="slider-img" loading="lazy" />
+                    </div>
+                  </div>
+
+                  <!-- Lateral Navigation Arrows -->
+                  <button type="button" class="slider-arrow slider-arrow--prev" id="psp-slide-prev" aria-label="Ver imagen anterior" title="Imagen anterior">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+                      <path d="m15 18-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <button type="button" class="slider-arrow slider-arrow--next" id="psp-slide-next" aria-label="Ver siguiente imagen" title="Siguiente imagen">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg>
+                  </button>
+
+                  <!-- Sound Toggle Button for Video -->
+                  <button type="button" class="slider-sound-btn" id="psp-sound-btn" aria-label="Activar o silenciar audio" title="Activar/Silenciar sonido de botones">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sound-icon-mute">
+                      <path d="M11 5 6 9H2v6h4l5 4V5z"/>
+                      <line x1="23" y1="9" x2="17" y2="15"/>
+                      <line x1="17" y1="9" x2="23" y2="15"/>
+                    </svg>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sound-icon-unmute" style="display:none;">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                    </svg>
+                  </button>
+
+                  <!-- Slider Bottom Indicator Bars/Dots -->
+                  <div class="slider-dots" role="tablist" aria-label="Navegación de diapositivas">
+                    <button type="button" class="slider-dot active" data-slide-to="0" role="tab" aria-selected="true" aria-label="Slide 1: Vídeo Demo"></button>
+                    <button type="button" class="slider-dot" data-slide-to="1" role="tab" aria-selected="false" aria-label="Slide 2: Frontal UI"></button>
+                    <button type="button" class="slider-dot" data-slide-to="2" role="tab" aria-selected="false" aria-label="Slide 3: Mod Trasero"></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tags placed OUTSIDE the image -->
+              <div class="preview-tags">
+                <span class="tag-badge">C / C++ (Bare Metal)</span>
+                <span class="tag-badge">PSPDEV SDK</span>
+                <span class="tag-badge">Micro-Switch Hold</span>
+                <span class="tag-badge">Stick Drift Calibration</span>
+              </div>
+
+              <div class="cmp-meta">
+                <span class="cmp-n">01</span>
+                <h3>PSP Hardware Diagnostic Tool &amp; Tear-Down Mod</h3>
+                <a class="cmp-try" href="https://github.com/JuanCarlosGP/panel-psp" target="_blank" rel="noopener">Repo ↗</a>
+              </div>
+              <p>
+                Herramienta de diagnóstico nativa en C para PSP-3004 (ARK-5) diseñada para acelerar la verificación manual de controles físicos: aserción continua de pulsación de 14 botones (hold de 5s para descartar falsos contactos), análisis trigonométrico de deriva y jitter del stick analógico, y telemetría de batería. Proyecto complementado con desmontaje integral y ensamblado de chasis transparente y batería de 3600mAh.
+              </p>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="cmp-card">
+              <div class="project-preview">
+                <div class="preview-top">
+                  <span style="color: var(--emerald);">● STABLE CI SUITE</span>
+                  <span>IZERTIS / LABORALKUTXA</span>
+                </div>
+                <div class="preview-terminal">
+                  $ npx wdio run wdio.conf.ts --suite banking-core<br />
+                  [Mobile-Android] 24 specs passed in 1m 12s<br />
+                  [Web-Desktop] 42 specs passed in 48s<br />
+                  OTA Pipeline: All release verifications approved ✔
+                </div>
+              </div>
+              <div class="preview-tags">
+                <span class="tag-badge">WebdriverIO</span>
+                <span class="tag-badge">Playwright</span>
+                <span class="tag-badge">TypeScript</span>
+                <span class="tag-badge">CI/CD OTA</span>
+              </div>
+              <div class="cmp-meta">
+                <span class="cmp-n">02</span>
+                <h3>Enterprise Banking E2E Framework</h3>
+                <span class="cmp-try">LaboralKutxa</span>
+              </div>
+              <p>
+                Framework integral de pruebas automatizadas para banca electrónica y móvil. Cobertura de flujos críticos de autenticación biométrica, transferencias, estados contables y validación de despliegues OTA.
+              </p>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="cmp-card">
+              <div class="project-preview">
+                <div class="preview-top">
+                  <span style="color: var(--accent2);">● MULTI-VIEWPORT REGRESSION</span>
+                  <span>PLAYWRIGHT REPO</span>
+                </div>
+                <div class="preview-terminal">
+                  $ npx playwright test --project=visual-matrix<br />
+                  Running 36 tests using 4 workers<br />
+                  ✓ [Chromium] Mobile Showcase layout (390x844)<br />
+                  ✓ [WebKit] Checkout funnel responsive flow<br />
+                  Visual diff: 0 mismatches across 12 viewports
+                </div>
+              </div>
+              <div class="preview-tags">
+                <span class="tag-badge">Playwright</span>
+                <span class="tag-badge">Visual Regression</span>
+                <span class="tag-badge">Pixelmatch</span>
+                <span class="tag-badge">GitHub Actions</span>
+              </div>
+              <div class="cmp-meta">
+                <span class="cmp-n">03</span>
+                <h3>Playwright E-Commerce &amp; Mobile Matrix</h3>
+                <a class="cmp-try" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">Repo ↗</a>
+              </div>
+              <p>
+                Suite de pruebas con matriz completa de dispositivos (móvil, tablet, escritorio), aserciones de regresión visual con tolerancia calibrada y fixtures de prueba para carritos y checkout.
+              </p>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="cmp-card">
+              <div class="project-preview">
+                <div class="preview-top">
+                  <span style="color: var(--accent2);">● SCHEMA VERIFIER &amp; CONTRACTS</span>
+                  <span>NATIVE TEST HARNESS</span>
+                </div>
+                <div class="preview-terminal">
+                  $ node scripts/verify-grok-client.mjs call<br />
+                  [SchemaValidator] Ajv2020 validated 24 tool contracts<br />
+                  [Trace] Preserved artifact digest sha256:7f4a...<br />
+                  Verifier receipt: clientCompatibility OK (100%)
+                </div>
+              </div>
+              <div class="preview-tags">
+                <span class="tag-badge">Ajv JSON Schema</span>
+                <span class="tag-badge">Contract Testing</span>
+                <span class="tag-badge">Node.js ESM</span>
+                <span class="tag-badge">POSIX Tests</span>
+              </div>
+              <div class="cmp-meta">
+                <span class="cmp-n">04</span>
+                <h3>Autonomous Agent Verifier &amp; Test Fixture</h3>
+                <span class="cmp-try">Harness</span>
+              </div>
+              <p>
+                Arnés de verificación en entorno POSIX con validación estricta de esquemas JSON (Draft 2020-12), aserción de contratos de herramientas MCP, fixtures de modelo en bucle local y digests criptográficos de evidencias.
+              </p>
+            </article>
+
+            <!-- Project 5 -->
+            <article class="cmp-card">
+              <div class="project-preview">
+                <div class="preview-top">
+                  <span style="color: var(--flame);">● EVENT-DRIVEN AUTOMATION</span>
+                  <span>WILDSPHERE GROUP</span>
+                </div>
+                <div class="preview-terminal">
+                  $ k6 run load-test-webhooks.js<br />
+                  ✓ Stripe checkout.session.completed simulated<br />
+                  ✓ Cloudflare Worker handled event in 18ms<br />
+                  ✓ Zero dropped transactions under spike load
+                </div>
+              </div>
+              <div class="preview-tags">
+                <span class="tag-badge">Cloudflare Workers</span>
+                <span class="tag-badge">Stripe APIs</span>
+                <span class="tag-badge">K6 Load Tests</span>
+                <span class="tag-badge">Webhooks</span>
+              </div>
+              <div class="cmp-meta">
+                <span class="cmp-n">05</span>
+                <h3>Distributed Webhook &amp; Pipeline Engine</h3>
+                <span class="cmp-try">WildSphere</span>
+              </div>
+              <p>
+                Infraestructura de pruebas para eventos distribuidos, simulación de transacciones con Stripe, validación de cumplimiento de entregabilidad de correo y pruebas de carga con K6.
+              </p>
+            </article>
+
+            <!-- Project 6 -->
+            <article class="cmp-card">
+              <div class="project-preview">
+                <div class="preview-top">
+                  <span style="color: var(--accent2);">● OPEN SOURCE &amp; LABS</span>
+                  <span>GITHUB REPOSITORIES</span>
+                </div>
+                <div class="preview-terminal">
+                  $ gh repo list JuanCarlosGP --public<br />
+                  JuanCarlosGP/panel-psp &nbsp;[C / Embedded QA Tooling]<br />
+                  JuanCarlosGP/glyphTyping &nbsp;[Android / Accessibility]<br />
+                  JuanCarlosGP/NLC &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[Media Streaming / NAS]<br />
+                  Continuous releases, hardware mods &amp; tooling
+                </div>
+              </div>
+              <div class="preview-tags">
+                <span class="tag-badge">Android A11y</span>
+                <span class="tag-badge">Kotlin</span>
+                <span class="tag-badge">Hardware Modding</span>
+                <span class="tag-badge">Git Automation</span>
+              </div>
+              <div class="cmp-meta">
+                <span class="cmp-n">06</span>
+                <h3>Open Source Tooling &amp; Android Utilities</h3>
+                <a class="cmp-try" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">Perfil ↗</a>
+              </div>
+              <p>
+                Repositorios open source adicionales que incluyen herramientas de accesibilidad en Android con retroalimentación lumínica (glyphTyping para Nothing Phone) y reproductores multimedia sincronizados con NAS (NLC).
+              </p>
+            </article>
+          </div>
+
+          <p class="note-row">
+            Todos los proyectos incluyen arquitectura Page Object Model (POM), aislamiento de fixtures y trazabilidad total con capturas de vídeo y logs estructurados.
+          </p>
+        </div>
+      </section>
+
+      <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+      <!-- 3. Section 02: Methodology & Principles -->
+      <section class="band section" id="how">
+        <div class="wrap">
+          <div class="sec-top">
+            <div class="sec-title">
+              <p class="kicker"><b>02</b><span class="shine">Principios de ingeniería</span></p>
+              <h2>Tres pilares para<br />prevenir los tests flaky.</h2>
+            </div>
+            <div class="sec-aside">
+              <p class="sub">
+                Los tests frágiles destruyen la confianza del equipo de desarrollo. Mi enfoque se centra en crear suites deterministas, rápidas y totalmente desacopladas de la volatilidad del DOM.
+              </p>
+            </div>
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <span class="step-n">01</span>
+              <h3>Localizadores Resilientes</h3>
+              <p>
+                Alineados con el árbol de accesibilidad (roles ARIA, etiquetas semánticas y contratos de prueba) en lugar de selectores CSS frágiles o jerarquías XPath que se rompen con cualquier cambio de diseño.
+              </p>
+            </li>
+            <li class="step">
+              <span class="step-n">02</span>
+              <h3>Fixtures y Aislamiento</h3>
+              <p>
+                Cero dependencias compartidas entre pruebas. Inyección de datos sintéticos, control del reloj del navegador y mockeo selectivo de APIs de terceros para ejecuciones altamente reproducibles y deterministas.
+              </p>
+            </li>
+            <li class="step">
+              <span class="step-n">03</span>
+              <h3>CI/CD Sharding &amp; Gating</h3>
+              <p>
+                Paralelización masiva distribuida en runners de GitHub Actions, recopilación automática de trazas de ejecución en fallos y bloqueo automático de despliegues cuando no se cumplen los umbrales de calidad.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+      <!-- 4. Section 03: Career & Experience -->
+      <section class="band section" id="experience">
+        <div class="wrap">
+          <div class="sec-top">
+            <div class="sec-title">
+              <p class="kicker"><b>03</b><span class="shine">Experiencia profesional</span></p>
+              <h2>Trayectoria probada en<br />calidad de software.</h2>
+            </div>
+            <div class="sec-aside">
+              <p class="sub">
+                Aportando rigor técnico, automatización escalable y metodologías ágiles en entornos de consultoría tecnológica y desarrollo corporativo.
+              </p>
+            </div>
+          </div>
+
+          <div class="pair">
+            <!-- Left Card: IZERTIS, S.A. -->
+            <div class="pair-card">
+              <p class="mono-cap" style="color: var(--accent2);">Consultoría Tecnológica &amp; QA</p>
+              <h3>IZERTIS, S.A.</h3>
+              <p style="color: var(--mute); font-family: var(--mono); font-size: 11px; margin-bottom: 20px;">
+                CENTRO MADRID · CONTRATO INDEFINIDO · ÁREA DE QA AUTOMATION
+              </p>
+
+              <ul class="ticks">
+                <li>
+                  Desarrollo y mantenimiento de frameworks de automatización E2E en <strong>WebdriverIO</strong> y <strong>Playwright</strong> para banca digital (LaboralKutxa).
+                </li>
+                <li>
+                  Aseguramiento de calidad en pipelines de despliegue continuo y validaciones de actualizaciones OTA en aplicaciones móviles y de escritorio.
+                </li>
+                <li>
+                  Implementación de contratos de API y pruebas de integración con TypeScript, reduciendo el tiempo de regresión en un 70%.
+                </li>
+                <li>
+                  Supervisión de métricas de fiabilidad, contención de tests inestables y coordinación técnica en equipos multidisciplinares de desarrollo.
+                </li>
+              </ul>
+
+              <a class="btn" href="#contact">
+                <span>Contactar para referencias</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Right Card: Pro Card (Devault rotating glow card) -->
+            <div class="pair-card pro-card">
+              <div class="pro-in">
+                <span class="pro-badge">
+                  <i aria-hidden="true"></i>
+                  <span class="shine">MÉTRICAS DE RENDIMIENTO</span>
+                </span>
+
+                <h3>Excelencia en <em>Automatización</em></h3>
+
+                <div class="pro-stats">
+                  <div>
+                    <dt>&lt; 0.5%</dt>
+                    <dd>Flaky Rate</dd>
+                  </div>
+                  <div>
+                    <dt>&lt; 3min</dt>
+                    <dd>E2E Feedback</dd>
+                  </div>
+                  <div>
+                    <dt>100%</dt>
+                    <dd>POM Pattern</dd>
+                  </div>
+                </div>
+
+                <ul class="ticks" style="margin-bottom: 24px;">
+                  <li>
+                    <strong>WildSphere Group LLC:</strong> Arquitecturas de automatización en la nube, integración continua en Cloudflare Workers y gestión transaccional con Stripe.
+                  </li>
+                  <li>
+                    <strong>Entornos Linux &amp; Self-Hosted:</strong> Configuración de servidores de alto rendimiento (Arch Linux, gateways locales, NSSM y monitorización distribuida).
+                  </li>
+                  <li>
+                    <strong>Cultura de calidad Shift-Left:</strong> Detección de anomalías en fases tempranas de PR mediante linters estrictos, validación de tipos y contratos estáticos.
+                  </li>
+                </ul>
+
+                <a class="btn primary" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
+                  <span>Explorar repositorios en GitHub</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+      <!-- 5. Section 04: Skills & Tech Matrix -->
+      <section class="band section" id="stack">
+        <div class="wrap">
+          <div class="sec-top">
+            <div class="sec-title">
+              <p class="kicker"><b>04</b><span class="shine">Herramientas y tecnologías</span></p>
+              <h2>Stack técnico<br />y especialización.</h2>
+            </div>
+            <div class="sec-aside">
+              <p class="sub">
+                Conjunto de tecnologías y lenguajes dominados para construir infraestructuras de testing modernas, mantenibles y de alto rendimiento.
+              </p>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <!-- Col 1 -->
+            <div class="skill-col">
+              <h4>Testing &amp; QA</h4>
+              <div class="skill-list">
+                <div class="skill-item"><span>Playwright</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>WebdriverIO</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Jest / Vitest</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>K6 / Load Testing</span><span class="skill-lvl">Intermedio</span></div>
+                <div class="skill-item"><span>Postman / Newman</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Pixelmatch (Visual)</span><span class="skill-lvl">Avanzado</span></div>
+              </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="skill-col">
+              <h4>Lenguajes</h4>
+              <div class="skill-list">
+                <div class="skill-item"><span>TypeScript</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>JavaScript (ESM)</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Python</span><span class="skill-lvl">Intermedio</span></div>
+                <div class="skill-item"><span>Bash / Shell</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Java (Paper / Core)</span><span class="skill-lvl">Intermedio</span></div>
+                <div class="skill-item"><span>SQL / SQLite</span><span class="skill-lvl">Intermedio</span></div>
+              </div>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="skill-col">
+              <h4>CI/CD &amp; DevOps</h4>
+              <div class="skill-list">
+                <div class="skill-item"><span>GitHub Actions</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Docker &amp; Containers</span><span class="skill-lvl">Intermedio</span></div>
+                <div class="skill-item"><span>Cloudflare Workers</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Arch / Debian Linux</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Git Worktrees &amp; CI</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>NSSM Windows Svc</span><span class="skill-lvl">Intermedio</span></div>
+              </div>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="skill-col">
+              <h4>Arquitectura &amp; QA</h4>
+              <div class="skill-list">
+                <div class="skill-item"><span>Page Object Model</span><span class="skill-lvl">Experto</span></div>
+                <div class="skill-item"><span>Ajv / JSON Schema</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Contract Testing</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>BDD / Cucumber</span><span class="skill-lvl">Intermedio</span></div>
+                <div class="skill-item"><span>Trace &amp; Video Capture</span><span class="skill-lvl">Avanzado</span></div>
+                <div class="skill-item"><span>Network Mocking</span><span class="skill-lvl">Avanzado</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+      <!-- 6. Section 05: Big Contact CTA -->
+      <section class="band section" id="contact">
+        <div class="wrap">
+          <div class="cta-cell">
+            <div class="cta-avatar-box">
+              <div class="cta-avatar-ring">
+                <img src="/avatar.png" alt="Juan Carlos Gutiérrez Pesquero" class="cta-avatar-img" width="116" height="116" loading="eager" />
+                <span class="cta-status-badge" title="Disponible para contratación"></span>
+              </div>
+              <div class="cta-author-meta">
+                <span class="cta-author-name">Juan Carlos Gutiérrez</span>
+                <span class="cta-author-role">QA Automation &amp; SDET · <span class="shine">Open to Work</span></span>
+              </div>
+            </div>
+
+            <p class="mono-cap" style="color: var(--accent2); margin-bottom: 12px;">DISPONIBILIDAD &amp; CONTACTO DIRECTO</p>
+            <h2>Diseño y optimizo tu<br />infraestructura de testing.</h2>
+
+
+            <div class="cta-buttons">
+              <a class="btn primary lg" href="mailto:jcmdfk@gmail.com">
+                <span>Enviar correo directo</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </a>
+
+              <a class="btn lg" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
+                <span>Perfil de GitHub</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+    <!-- 7. Technical Footer -->
+    <footer class="band foot">
+      <div class="wrap">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <a class="brand" href="#top">
+              <span class="brand-icon">JC</span>
+              <span class="brand-name">Juan Carlos Gutiérrez Pesquero</span>
+              <span class="brand-sep">/</span>
+              <span class="brand-tool">QA</span>
+            </a>
+            <p>
+              QA Automation Engineer &amp; SDET. Especialista en Playwright, WebdriverIO y arquitecturas de prueba sin falsos positivos.
+            </p>
+          </div>
+
+          <nav class="foot-col" aria-label="Navegación del sitio">
+            <p class="mono-cap">Secciones</p>
+            <a href="#projects">Proyectos destacados</a>
+            <a href="#how">Metodología</a>
+            <a href="#experience">Experiencia &amp; Trayectoria</a>
+            <a href="#stack">Stack de tecnologías</a>
+            <a href="#contact">Contacto</a>
+          </nav>
+
+          <nav class="foot-col" aria-label="Redes y enlaces">
+            <p class="mono-cap">Conectar</p>
+            <a href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">GitHub (@JuanCarlosGP)</a>
+            <a href="https://www.linkedin.com/in/juancarlosgutierrezpesquero/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:jcmdfk@gmail.com">jcmdfk@gmail.com</a>
+          </nav>
+        </div>
+
+        <div class="foot-bottom">
+          <span>© 2026 Juan Carlos Gutiérrez Pesquero · Todos los derechos reservados</span>
+          <span>Madrid (Fuenlabrada), España · Horario CET</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+    <script src="/swarm.js"></script>
+  </body>
+</html>
