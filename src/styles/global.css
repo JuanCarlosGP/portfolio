@@ -2233,16 +2233,43 @@ h2 {
 .skill-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-bottom: 8px;
   font-size: 13.5px;
+  color: var(--ink);
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.skill-lvl {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--mute);
+.skill-item:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.skill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--accent2);
+  transition: color 0.2s ease;
+}
+
+.skill-item:hover .skill-icon {
+  color: var(--accent);
+}
+
+.skill-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.skill-name {
+  font-weight: 400;
+  color: var(--ink);
 }
 
 /* Big Technical CTA Cell */

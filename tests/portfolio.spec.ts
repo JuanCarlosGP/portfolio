@@ -85,6 +85,9 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     await expect(page.locator('#how .step')).toHaveCount(3);
     await expect(page.locator('#experience .pair-card')).toHaveCount(2);
     await expect(page.locator('#stack .skill-col')).toHaveCount(4);
+    await expect(page.locator('#stack .skill-item')).toHaveCount(24);
+    await expect(page.locator('#stack .skill-icon svg')).toHaveCount(24);
     await expect(page.locator('#contact .cta-cell')).toBeVisible();
   });
 });
+

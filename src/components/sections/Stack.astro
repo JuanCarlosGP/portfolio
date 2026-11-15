@@ -1,5 +1,6 @@
 ---
 import { stackCategories } from '@data/stack';
+import TechIcon from '@components/common/TechIcon.astro';
 ---
 
 <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
@@ -26,8 +27,8 @@ import { stackCategories } from '@data/stack';
           <div class="skill-list">
             {category.skills.map((skill) => (
               <div class="skill-item">
-                <span>{skill.name}</span>
-                <span class="skill-lvl">{skill.detail}</span>
+                <TechIcon name={skill.name} />
+                <span class="skill-name">{skill.name}</span>
               </div>
             ))}
           </div>
