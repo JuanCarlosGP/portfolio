@@ -2731,6 +2731,152 @@ h2 {
   display: flex;
 }
 
+/* Experience logo marquee — width follows .wrap (max 1200px) */
+.logo-rail {
+  position: relative;
+  height: 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo-rail-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  animation: logo-rail 32s linear infinite;
+}
+
+.logo-rail:hover .logo-rail-track,
+.logo-rail:focus-within .logo-rail-track {
+  animation-play-state: paused;
+}
+
+.logo-rail-set {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.logo-rail-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  padding: 0 42px;
+  color: var(--ink2);
+}
+
+.logo-mark {
+  display: flex;
+  align-items: center;
+}
+
+.logo-mark[data-logo="izertis"] { color: #ff6a62; }
+.logo-mark[data-logo="laboral"] { color: #8ad63b; }
+.logo-mark[data-logo="iteggo"] { color: #8ee7ff; }
+.logo-mark[data-logo="dia"] { color: #ff2a2a; }
+.logo-mark[data-logo="iberia"] { color: #ff3b3b; }
+.logo-mark[data-logo="gorilast"] { color: #4c92ff; }
+.logo-mark[data-logo="accenture"] { color: #c24bff; }
+
+.logo-mark svg {
+  display: block;
+  height: 28px;
+  width: auto;
+  fill: currentColor;
+}
+
+.logo-mark text {
+  fill: currentColor;
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.logo-mark .logo-heavy {
+  font-weight: 700;
+  fill: #1aa3ff;
+}
+
+.logo-mark .logo-st {
+  fill: #2ec4e6;
+}
+
+.logo-mark .logo-chevron {
+  fill: #a100ff;
+}
+
+.logo-mark .logo-iberia-gold {
+  fill: #ffd000;
+}
+
+.logo-mark .logo-iberia-red {
+  fill: #e10600;
+}
+
+.logo-mark .logo-dia {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.logo-mark .logo-iberia {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.logo-rail::before,
+.logo-rail::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-rail::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg), transparent);
+}
+
+.logo-rail::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg), transparent);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes logo-rail {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-rail-track {
+    animation: none;
+  }
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   :root {

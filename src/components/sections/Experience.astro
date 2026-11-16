@@ -1,5 +1,6 @@
 ---
 import { experience, secondaryExperience, proHighlights } from '@data/experience';
+import LogoRail from '@components/sections/LogoRail.astro';
 
 const izertis = experience.find((e) => e.id === 'izertis') || experience[0];
 const iteggo = experience.find((e) => e.id === 'iteggo') || experience[1];
@@ -23,6 +24,8 @@ const accenture = secondaryExperience.find((e) => e.id === 'accenture') || secon
         </p>
       </div>
     </div>
+
+    <LogoRail />
 
     <!-- Primary Enterprise Trajectory Grid (Izertis & itegGO) -->
     <div class="pair exp-primary-pair">

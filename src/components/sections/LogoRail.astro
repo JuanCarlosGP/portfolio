@@ -1,0 +1,70 @@
+---
+const logos = [
+  { id: 'izertis', name: 'Izertis' },
+  { id: 'laboral', name: 'Laboral Kutxa' },
+  { id: 'iteggo', name: 'itegGO' },
+  { id: 'dia', name: 'Grupo Dia' },
+  { id: 'iberia', name: 'Iberia' },
+  { id: 'gorilast', name: 'Gorilast' },
+  { id: 'accenture', name: 'Accenture' }
+];
+---
+
+<div
+  class="logo-rail"
+  role="region"
+  data-i18n-attr="aria-label:experience.logoRail"
+  aria-label="Companies and clients"
+>
+  <div class="logo-rail-track">
+    {[0, 1].map((copy) => (
+      <ul class="logo-rail-set" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {logos.map((logo) => (
+          <li class="logo-rail-item">
+            <span class="logo-mark" data-logo={logo.id}>
+              {logo.id === 'izertis' && (
+                <svg viewBox="0 0 112 32" aria-hidden="true">
+                  <text x="0" y="23">izertis</text>
+                </svg>
+              )}
+              {logo.id === 'laboral' && (
+                <svg viewBox="0 0 180 32" aria-hidden="true">
+                  <text x="0" y="23">laboral kutxa</text>
+                </svg>
+              )}
+              {logo.id === 'iteggo' && (
+                <svg viewBox="0 0 118 32" aria-hidden="true">
+                  <text x="0" y="23">iteg<tspan class="logo-heavy">GO</tspan></text>
+                </svg>
+              )}
+              {logo.id === 'dia' && (
+                <svg viewBox="0 0 72 32" aria-hidden="true">
+                  <text class="logo-dia" x="0" y="25">Dia</text>
+                </svg>
+              )}
+              {logo.id === 'iberia' && (
+                <svg viewBox="0 0 156 32" aria-hidden="true">
+                  <rect class="logo-iberia-gold" x="0" y="8" width="5" height="16" />
+                  <rect class="logo-iberia-red" x="7" y="8" width="5" height="16" />
+                  <text class="logo-iberia" x="20" y="23">IBERIA</text>
+                </svg>
+              )}
+              {logo.id === 'gorilast' && (
+                <svg viewBox="0 0 128 32" aria-hidden="true">
+                  <text x="0" y="23">Gorila<tspan class="logo-st">ST</tspan></text>
+                </svg>
+              )}
+              {logo.id === 'accenture' && (
+                <svg viewBox="0 0 176 32" aria-hidden="true">
+                  <path class="logo-chevron" d="M1 6l14 10L1 26l4.2 0L19.6 16 5.2 6z" />
+                  <text x="28" y="23">accenture</text>
+                </svg>
+              )}
+            </span>
+            <span class="sr-only">{logo.name}</span>
+          </li>
+        ))}
+      </ul>
+    ))}
+  </div>
+</div>

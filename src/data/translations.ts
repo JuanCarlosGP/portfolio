@@ -69,6 +69,7 @@ export interface Translations {
     kicker: string;
     title: string;
     sub: string;
+    logoRail: string;
     izertisRole: string;
     izertisPeriod: string;
     izertisClient: string;
@@ -258,6 +259,7 @@ export const translations: Record<Lang, Translations> = {
       kicker: 'Professional Experience',
       title: 'Proven track record in<br />software quality.',
       sub: 'Delivering technical rigor, scalable automation frameworks, and enterprise testing standards across banking, retail, and aviation sectors.',
+      logoRail: 'Companies and clients',
       izertisRole: 'Web & Mobile Test Automation Engineer (SDET)',
       izertisPeriod: 'JAN 2026 – PRESENT · MADRID (REMOTE)',
       izertisClient: 'Laboral Kutxa · Regulated Banking & FinTech',
@@ -459,6 +461,7 @@ export const translations: Record<Lang, Translations> = {
       kicker: 'Experiencia profesional',
       title: 'Trayectoria probada en<br />calidad de software.',
       sub: 'Aportando rigor técnico, frameworks de automatización escalables y estándares de calidad corporativos en banca, retail y aviación.',
+      logoRail: 'Empresas y clientes',
       izertisRole: 'Web & Mobile Test Automation Engineer (SDET)',
       izertisPeriod: 'ENE 2026 – ACTUAL · MADRID (EN REMOTO)',
       izertisClient: 'Laboral Kutxa · Sector Bancario y FinTech Regulado',
