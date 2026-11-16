@@ -208,11 +208,29 @@
     "-webkit-mask-image", "-webkit-mask-size", "-webkit-mask-position", "-webkit-mask-repeat",
   ];
 
+  function scalePx(v, z) {
+    if (!v || z === 1 || v === "normal" || v === "auto" || v === "none") return v;
+    return v.replace(/(-?\d*\.?\d+)px\b/g, (_, n) => `${Math.round(parseFloat(n) * z * 100) / 100}px`);
+  }
+
+  const ZOOMED_TEXT = new Set([
+    "font-size", "line-height", "letter-spacing", "word-spacing",
+    "text-indent", "text-decoration-thickness", "text-underline-offset",
+    "-webkit-text-stroke-width",
+  ]);
+  // Single-line controls (pills, buttons) are shrink-wrapped. Scaling their
+  // font to match page zoom makes the label wider than the captured box, so
+  // it wraps and the hidden overflow clips it. Skip that scale for those.
+  let textZoom = true;
+
   function styleString(cs, props) {
+    const z = textZoom ? rootZoom() : 1;
     let s = "";
     for (const p of props) {
-      const v = cs.getPropertyValue(p);
-      if (v !== "") s += `${p}:${v};`;
+      let v = cs.getPropertyValue(p);
+      if (v === "") continue;
+      if (z !== 1 && ZOOMED_TEXT.has(p)) v = scalePx(v, z);
+      s += `${p}:${v};`;
     }
     return s;
   }
@@ -662,7 +680,8 @@
     }
 
     function textItem(base, root, tb, cs, layer, extra) {
-      const fs = parseFloat(cs.fontSize) || 16;
+      const z = textZoom ? rootZoom() : 1;
+      const fs = (parseFloat(cs.fontSize) || 16) * z;
       const text = root.textContent.replace(/\s+/g, " ").trim();
       return add({
         kind: "text",
@@ -670,7 +689,7 @@
         tb,
         full: root,
         fs,
-        lh: lhPx(cs),
+        lh: lhPx(cs) * z,
         align: cs.textAlign,
         text,
         sig: text,
@@ -679,15 +698,35 @@
     }
 
     function emitLeaf(el, cs, r, ctx, key) {
+      const rg = document.createRange();
+      rg.selectNodeContents(el);
+      const tr = rg.getBoundingClientRect();
+      // A label that already fits on one line inside a clipping box (the
+      // scenario pills, other buttons). Keep the measured type size and
+      // center it, instead of growing it with the page zoom until it clips.
+      const tight =
+        tr.height > 0 &&
+        tr.height < lhPx(cs) * 1.6 &&
+        (cs.overflowX !== "visible" || cs.overflowY !== "visible" || el.localName === "button");
+      const prevZoom = textZoom;
+      if (tight) textZoom = false;
       const root = document.createElement("div");
       root.setAttribute("style", rootStyle(cs, false));
+      if (tight) {
+        root.style.display = "flex";
+        root.style.flexWrap = "nowrap";
+        root.style.alignItems = "center";
+        root.style.whiteSpace = "nowrap";
+        if (!/flex/.test(cs.display)) {
+          const ta = cs.textAlign;
+          root.style.justifyContent =
+            ta === "center" ? "center" : ta === "right" || ta === "end" ? "flex-end" : "flex-start";
+        }
+      }
       const clone = inert().importNode(el, true);
       cloneDescendantsStyled(el, clone);
       while (clone.firstChild) root.appendChild(clone.firstChild);
       addPseudos(el, root);
-      const rg = document.createRange();
-      rg.selectNodeContents(el);
-      const tr = rg.getBoundingClientRect();
       // table cells center their content vertically; reproduce the offset
       if (cs.display === "table-cell" && tr.height) root.style.paddingTop = Math.max(0, tr.top - r.top) + "px";
       // floats outside the leaf (figures, infoboxes) shape its line boxes: add invisible shims
@@ -718,6 +757,7 @@
         cs,
         ctx.layer,
       );
+      textZoom = prevZoom;
     }
 
     function emitRun(el, cs, run, ctx) {
@@ -1730,6 +1770,13 @@
 
   // ------------------------------------------------------------------- view
 
+  // The page zoom scales this overlay too, so captured screen coordinates get
+  // applied twice and the rebuild sits to the right. Cancel the root zoom here.
+  function rootZoom() {
+    const z = parseFloat(getComputedStyle(document.documentElement).zoom);
+    return z > 0 ? z : 1;
+  }
+
   class View {
     constructor(env) {
       this.env = env;
@@ -1846,6 +1893,8 @@
     }
 
     measure() {
+      const z = rootZoom();
+      this.host.style.setProperty("zoom", z === 1 ? "normal" : String(1 / z), "important");
       this.W = innerWidth;
       this.H = innerHeight;
       this.g = this.env.geom();
