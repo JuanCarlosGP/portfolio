@@ -65,6 +65,13 @@ body {
   position: relative;
 }
 
+/* Above 1080p only. 1920×1080 stays at the original size. */
+@media (min-width: 2000px) {
+  html {
+    zoom: clamp(1.08, 100vw / 2100px, 1.22);
+  }
+}
+
 button {
   font: inherit;
   color: inherit;
