@@ -1,4 +1,24 @@
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const LOCAL_ARTIFACTS_DIR = '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b';
+
+function getScreenshotPath(filename: string, testInfo?: { outputPath: (name: string) => string }): string {
+  let targetPath: string;
+  if (fs.existsSync(LOCAL_ARTIFACTS_DIR)) {
+    targetPath = path.join(LOCAL_ARTIFACTS_DIR, filename);
+  } else if (testInfo) {
+    targetPath = testInfo.outputPath(filename);
+  } else {
+    targetPath = path.join(process.cwd(), 'test-results', 'screenshots', filename);
+  }
+  const dir = path.dirname(targetPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  return targetPath;
+}
 
 test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
   test.beforeEach(async ({ page }) => {
@@ -160,7 +180,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     await expect(cards.first()).toContainText('PSP Hardware Diagnostic Tool & Tear-Down Mod');
   });
 
-  test('Gallery items and Lightbox interaction, Experience, Stack, and Contact sections exist', async ({ page }) => {
+  test('Gallery items and Lightbox interaction, Experience, Stack, and Contact sections exist', async ({ page }, testInfo) => {
     const items = page.locator('#gallery .gallery-item');
     await expect(items).toHaveCount(7);
 
@@ -172,7 +192,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
 
     if (page.viewportSize()?.width === 1440) {
       await page.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/gallery_lightbox_desktop.png'
+        path: getScreenshotPath('gallery_lightbox_desktop.png', testInfo)
       });
     }
 
@@ -238,7 +258,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
   test('Visual capture of language toggle states', async ({ page }, testInfo) => {
     if (testInfo.project.name === 'Desktop-1440') {
       await page.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/desktop_english.png',
+        path: getScreenshotPath('desktop_english.png', testInfo),
         clip: { x: 0, y: 0, width: 1440, height: 550 }
       });
 
@@ -249,7 +269,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
       await page.waitForTimeout(300);
 
       await page.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/desktop_spanish.png',
+        path: getScreenshotPath('desktop_spanish.png', testInfo),
         clip: { x: 0, y: 0, width: 1440, height: 550 }
       });
 
@@ -263,21 +283,21 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
       await projectsSec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
       await projectsSec.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/single_project_desktop.png'
+        path: getScreenshotPath('single_project_desktop.png', testInfo)
       });
 
       const expSec = page.locator('#experience');
       await expSec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
       await expSec.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/experience_desktop.png'
+        path: getScreenshotPath('experience_desktop.png', testInfo)
       });
 
       const gallerySec = page.locator('#gallery');
       await gallerySec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
       await gallerySec.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/gallery_desktop.png'
+        path: getScreenshotPath('gallery_desktop.png', testInfo)
       });
 
       await page.evaluate(() => {
@@ -286,7 +306,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
       });
     } else if (testInfo.project.name === 'Mobile-360') {
       await page.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/mobile_360_header.png',
+        path: getScreenshotPath('mobile_360_header.png', testInfo),
         clip: { x: 0, y: 0, width: 360, height: 350 }
       });
 
@@ -299,14 +319,14 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
       await expSec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
       await expSec.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/experience_mobile.png'
+        path: getScreenshotPath('experience_mobile.png', testInfo)
       });
 
       const gallerySec = page.locator('#gallery');
       await gallerySec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
       await gallerySec.screenshot({
-        path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/gallery_mobile.png'
+        path: getScreenshotPath('gallery_mobile.png', testInfo)
       });
 
       await page.evaluate(() => {
