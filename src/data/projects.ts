@@ -17,7 +17,7 @@ export const projects: Project[] = [
     ],
     repoUrl: 'https://github.com/JuanCarlosGP/panel-psp',
     description:
-      'Herramienta de diagnóstico nativa en C para PSP-3004 (ARK-5) diseñada para acelerar la verificación manual de controles físicos: aserción continua de pulsación de 14 botones (hold de 5s para descartar falsos contactos), análisis trigonométrico de deriva y jitter del stick analógico, y telemetría de batería. Proyecto complementado con desmontaje integral y ensamblado de chasis transparente y batería de 3600mAh.'
+      'Bare-metal C diagnostic tool for PSP-3004 (ARK-5) engineered to accelerate manual hardware validation: continuous assertion for 14 physical buttons (5s hold logic to rule out false contacts), trigonometric analog stick drift and jitter analysis, and battery telemetry. Accompanied by full console tear-down, transparent shell assembly, and 3600mAh battery mod.'
   },
   {
     id: 'banking',
@@ -35,7 +35,7 @@ export const projects: Project[] = [
       '[AzDO-Reporter] 82 test results synced to Test Plan #67607 ✔'
     ],
     description:
-      'Arquitectura integral de testing automatizado para banca electrónica web y app móvil nativa. Cobertura de flujos críticos de autenticación biométrica, transferencias y estados contables. Integración bidireccional con Azure DevOps Test Plans mediante extensión personalizada y optimización de flujos Maestro mediante runner compuesto.'
+      'Comprehensive automated testing architecture for electronic web banking and native mobile apps. Covers critical biometric authentication, wire transfers, and account ledger states. Bi-directional sync with Azure DevOps Test Plans via custom extension and Maestro test runners.'
   },
   {
     id: 'ecommerce',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
       'Visual diff: 0 mismatches across 12 viewports'
     ],
     description:
-      'Suite de pruebas con matriz completa de dispositivos (móvil, tablet, escritorio), aserciones de regresión visual con tolerancia calibrada y fixtures de prueba para carritos y checkout.'
+      'Multi-viewport regression test suite (mobile, tablet, desktop) with calibrated pixelmatch visual assertions and deterministic fixtures for carts and checkout flows.'
   },
   {
     id: 'contracts',
@@ -72,8 +72,12 @@ export const projects: Project[] = [
       'Verifier receipt: contractCompatibility OK (100%)'
     ],
     description:
-      'Arnés de verificación en entorno POSIX con validación estricta de esquemas JSON (Draft 2020-12), aserción de contratos de herramientas MCP, fixtures de modelo en bucle local y digests criptográficos de evidencias.'
-  },
+      'POSIX-native verification harness with strict JSON Schema (Draft 2020-12) validation, MCP tool contract assertion, local loopback model fixtures, and cryptographic evidence digests.'
+  }
+];
+
+// Additional projects reserved for future documentation and expansion
+export const pendingProjects: Project[] = [
   {
     id: 'webhooks',
     num: '05',
@@ -90,7 +94,7 @@ export const projects: Project[] = [
       '✓ Zero dropped transactions under spike load'
     ],
     description:
-      'Infraestructura de pruebas para eventos distribuidos, simulación de transacciones con Stripe, validación de cumplimiento de entregabilidad de correo y pruebas de carga con K6.'
+      'Testing infrastructure for distributed events, Stripe transaction simulations, transactional email deliverability assertions, and high-concurrency K6 load testing.'
   },
   {
     id: 'opensource',
@@ -100,7 +104,7 @@ export const projects: Project[] = [
     statusCategory: 'GITHUB REPOSITORIES',
     statusIndicatorColor: 'var(--accent2)',
     repoUrl: 'https://github.com/JuanCarlosGP',
-    clientLabel: 'Perfil ↗',
+    clientLabel: 'Repo ↗',
     tags: ['Android A11y', 'Kotlin', 'React Native', 'Hardware Modding'],
     terminalCommand: '$ gh repo list JuanCarlosGP --public',
     terminalLines: [
@@ -110,6 +114,6 @@ export const projects: Project[] = [
       'Continuous releases, mobile apps & tooling'
     ],
     description:
-      'Repositorios open source y aplicaciones móviles que incluyen herramientas de accesibilidad en Android con retroalimentación lumínica (glyphTyping para Nothing Phone) y aplicaciones móviles en React Native / Expo SDK 54 (NLC).'
+      'Open-source repositories and mobile apps including Android accessibility utilities with glyph light telemetry (glyphTyping for Nothing Phone) and React Native / Expo SDK 54 mobile apps (NLC).'
   }
 ];

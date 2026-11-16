@@ -1,0 +1,260 @@
+---
+import { galleryItems } from '@data/gallery';
+---
+
+<div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
+
+<!-- Section 03: Personal Archive & Beyond the Code Gallery -->
+<section class="band section" id="gallery">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-title">
+        <p class="kicker"><b>03</b><span class="shine" data-i18n="gallery.kicker">Personal Archive</span></p>
+        <h2 data-i18n-html="gallery.title">Beyond the code.</h2>
+      </div>
+      <div class="sec-aside">
+        <p class="sub" data-i18n="gallery.sub">
+          Captures, outdoor runs, downtime, and the pets that keep the focus balanced.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bento CAD Grid -->
+    <div class="gallery-bento" role="region" aria-label="Galería visual de fotos y vídeos">
+      {galleryItems.map((item, idx) => (
+        <article
+          class={`gallery-item item-${item.id} ratio-${item.ratio}`}
+          data-gallery-idx={idx}
+          tabindex="0"
+          role="button"
+          aria-label={`${item.title} - Click to inspect`}
+        >
+          <!-- Corner CAD Crosshairs -->
+          <span class="cad-cross top-left" aria-hidden="true">+</span>
+          <span class="cad-cross top-right" aria-hidden="true">+</span>
+          <span class="cad-cross btm-left" aria-hidden="true">+</span>
+          <span class="cad-cross btm-right" aria-hidden="true">+</span>
+
+          <!-- Top HUD -->
+          <div class="item-hud-top">
+            <span class="item-tag">● {item.tag}</span>
+            <span class="item-type-badge">
+              {item.type === 'video' ? 'VIDEO · 60FPS' : 'PHOTO · HI-RES'}
+            </span>
+          </div>
+
+          <!-- Media Element -->
+          <div class="item-media-wrap">
+            {item.type === 'video' ? (
+              <video
+                src={item.src}
+                poster={item.poster}
+                muted
+                loop
+                playsinline
+                preload="none"
+                class="gallery-media-elem"
+              />
+            ) : (
+              <img
+                src={item.poster}
+                data-full={item.src}
+                alt={item.title}
+                loading="lazy"
+                class="gallery-media-elem"
+              />
+            )}
+            {item.type === 'video' && (
+              <div class="video-play-indicator" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+            )}
+          </div>
+
+          <!-- Bottom HUD Overlay -->
+          <div class="item-hud-btm">
+            <div class="item-info">
+              <span class="item-index">0{idx + 1}</span>
+              <h3 class="item-title" data-i18n={`gallery.items.${item.id}.title`}>{item.title}</h3>
+            </div>
+            <div class="item-meta">
+              <span class="item-meta-txt">{item.meta}</span>
+              <span class="item-inspect-cta">⤢</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="gallery-lightbox" class="gallery-lightbox" role="dialog" aria-modal="true" aria-hidden="true" style="display: none;">
+  <div class="lightbox-backdrop"></div>
+  <div class="lightbox-dialog">
+    <div class="lightbox-header">
+      <div class="lightbox-meta-top">
+        <span class="lightbox-counter" id="lb-counter">01 / 07</span>
+        <span class="lightbox-sep">/</span>
+        <span class="lightbox-tag" id="lb-tag">PET · CHINCHILLA</span>
+      </div>
+      <button class="lightbox-close-btn" id="lb-close" aria-label="Close Lightbox" title="Close (Esc)">
+        <span class="lb-close-txt">ESC</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="lightbox-stage">
+      <button class="lightbox-nav-btn prev" id="lb-prev" aria-label="Previous Item" title="Previous (←)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="lightbox-media-container" id="lb-media-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <button class="lightbox-nav-btn next" id="lb-next" aria-label="Next Item" title="Next (→)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="lightbox-footer">
+      <div class="lightbox-footer-main">
+        <h3 id="lb-title" class="lightbox-title">Title</h3>
+      </div>
+      <div class="lightbox-footer-side">
+        <span id="lb-meta" class="lightbox-meta-badge">METADATA</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { galleryItems } from '@data/gallery';
+  import { translations } from '@data/translations';
+
+  let currentIndex = 0;
+  const total = galleryItems.length;
+
+  const lightbox = document.getElementById('gallery-lightbox') as HTMLElement | null;
+  const mediaContainer = document.getElementById('lb-media-container') as HTMLElement | null;
+  const counterEl = document.getElementById('lb-counter') as HTMLElement | null;
+  const tagEl = document.getElementById('lb-tag') as HTMLElement | null;
+  const titleEl = document.getElementById('lb-title') as HTMLElement | null;
+  const metaEl = document.getElementById('lb-meta') as HTMLElement | null;
+  const closeBtn = document.getElementById('lb-close') as HTMLButtonElement | null;
+  const prevBtn = document.getElementById('lb-prev') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('lb-next') as HTMLButtonElement | null;
+
+  function getCurrentLang(): 'en' | 'es' {
+    const htmlLang = document.documentElement.lang;
+    return htmlLang === 'es' ? 'es' : 'en';
+  }
+
+  function renderLightbox(idx: number) {
+    if (!lightbox || !mediaContainer) return;
+    currentIndex = (idx + total) % total;
+    const item = galleryItems[currentIndex];
+    const lang = getCurrentLang();
+    const tItem = (translations[lang] as any)?.gallery?.items?.[item.id];
+
+    if (counterEl) counterEl.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    if (tagEl) tagEl.textContent = item.tag;
+    if (titleEl) titleEl.textContent = tItem?.title || item.title;
+    if (metaEl) metaEl.textContent = item.meta;
+
+    mediaContainer.innerHTML = '';
+    if (item.type === 'video') {
+      const video = document.createElement('video');
+      video.src = item.src;
+      video.poster = item.poster;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.className = 'lightbox-active-media';
+      mediaContainer.appendChild(video);
+    } else {
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = tItem?.title || item.title;
+      img.className = 'lightbox-active-media';
+      mediaContainer.appendChild(img);
+    }
+  }
+
+  function openLightbox(idx: number) {
+    if (!lightbox) return;
+    lightbox.style.display = 'flex';
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    renderLightbox(idx);
+  }
+
+  function closeLightbox() {
+    if (!lightbox || !mediaContainer) return;
+    lightbox.style.display = 'none';
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    // Stop video if any
+    const video = mediaContainer.querySelector('video');
+    if (video) {
+      video.pause();
+      video.src = '';
+    }
+    mediaContainer.innerHTML = '';
+  }
+
+  // Card click & hover events
+  const cards = document.querySelectorAll('.gallery-item');
+  cards.forEach((card) => {
+    const idxAttr = card.getAttribute('data-gallery-idx');
+    const idx = idxAttr ? parseInt(idxAttr, 10) : 0;
+    const video = card.querySelector('video') as HTMLVideoElement | null;
+
+    // Click to open
+    card.addEventListener('click', () => openLightbox(idx));
+    card.addEventListener('keydown', (e) => {
+      const keyEv = e as KeyboardEvent;
+      if (keyEv.key === 'Enter' || keyEv.key === ' ') {
+        keyEv.preventDefault();
+        openLightbox(idx);
+      }
+    });
+
+    // Hover video preview (desktop only)
+    if (video) {
+      card.addEventListener('mouseenter', () => {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+  });
+
+  // Lightbox controls
+  closeBtn?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', () => renderLightbox(currentIndex - 1));
+  nextBtn?.addEventListener('click', () => renderLightbox(currentIndex + 1));
+
+  const backdrop = lightbox?.querySelector('.lightbox-backdrop');
+  backdrop?.addEventListener('click', closeLightbox);
+
+  window.addEventListener('keydown', (e) => {
+    if (!lightbox || lightbox.style.display === 'none') return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') renderLightbox(currentIndex - 1);
+    else if (e.key === 'ArrowRight') renderLightbox(currentIndex + 1);
+  });
+</script>

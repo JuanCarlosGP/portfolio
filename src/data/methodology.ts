@@ -3,35 +3,35 @@ import type { MethodologyStep } from '@portfolio-types/portfolio';
 export const methodologySteps: MethodologyStep[] = [
   {
     step: '01',
-    title: 'Localizadores Resilientes',
+    title: 'Resilient Locators',
     description:
-      'Alineados con el árbol de accesibilidad (roles ARIA, etiquetas semánticas y contratos de prueba) en lugar de selectores CSS frágiles o jerarquías XPath que se rompen con cualquier cambio de diseño.',
+      'Aligned with the accessibility tree (ARIA roles, semantic labels, and test contracts) instead of fragile CSS selectors or XPath hierarchies that break with any design tweak.',
     bullets: [
-      'Alineación semántica con ARIA',
-      'Selectores desacoplados del CSS',
-      'Contratos de accesibilidad WCAG'
+      'Semantic alignment with ARIA',
+      'Selectors decoupled from CSS styling',
+      'WCAG accessibility test contracts'
     ]
   },
   {
     step: '02',
-    title: 'Fixtures y Aislamiento',
+    title: 'Fixtures & Isolation',
     description:
-      'Cero dependencias compartidas entre pruebas. Inyección de datos sintéticos, control del reloj del navegador y mockeo selectivo de APIs de terceros para ejecuciones altamente reproducibles y deterministas.',
+      'Zero shared state between tests. Synthetic data seeding, browser clock virtualization, and targeted 3rd-party API mocking for highly reproducible, deterministic runs.',
     bullets: [
-      'Entornos y contextos 100% aislados',
-      'Inyección determinista de datos',
-      'Mockeo selectivo de dependencias'
+      '100% isolated environments & browser contexts',
+      'Deterministic test data seeding',
+      'Targeted dependency network mocking'
     ]
   },
   {
     step: '03',
     title: 'CI/CD Sharding & Gating',
     description:
-      'Paralelización masiva distribuida en runners de GitHub Actions y Azure DevOps, recopilación automática de trazas de ejecución en fallos y bloqueo automático de despliegues cuando no se cumplen los umbrales de calidad.',
+      'Massive distributed sharding on GitHub Actions and Azure DevOps runners, automatic trace capture on failure, and automated quality gates blocking broken releases.',
     bullets: [
-      'Pipelines en GitHub & Azure DevOps',
-      'Captura de trazas y vídeos en fallo',
-      'Quality Gates infranqueables'
+      'Parallel pipelines in GitHub & Azure DevOps',
+      'Failure artifact & trace capture',
+      'Strict unpassable quality gates'
     ]
   }
 ];

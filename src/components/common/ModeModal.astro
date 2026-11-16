@@ -11,48 +11,63 @@ import CadCross from './CadCross.astro';
     <CadCross position="bottom-right" />
 
     <div class="mode-select-header">
-      <div class="mode-select-chip">
-        <span class="pulse-dot"></span>
-        <span class="mono-cap">// MODO DE INICIO</span>
+      <div class="mode-select-header-left">
+        <div class="mode-select-chip">
+          <span class="pulse-dot"></span>
+          <span class="mono-cap" data-i18n="modal.chip">// LAUNCH MODE</span>
+        </div>
+        <h2 id="mode-select-title" class="mode-select-heading" data-i18n="modal.title">Choose how to view portfolio</h2>
       </div>
-      <h2 id="mode-select-title" class="mode-select-heading">Elige cómo ver el portafolio</h2>
+
+      <button class="btn lang-toggle-btn" id="modal-lang-toggle-btn" title="Switch language (EN / ES)" aria-label="Toggle language between English and Spanish" data-i18n-attr="title:nav.langToggleTitle,aria-label:nav.langToggleAria">
+        <svg class="icon-lang" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span class="lang-switch-text">
+          <span class="lang-opt active" data-lang-opt="en">EN</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-opt" data-lang-opt="es">ES</span>
+        </span>
+      </button>
     </div>
 
     <div class="mode-select-grid">
       <!-- Option 1: Agentes -->
       <div class="mode-option-card mode-option-agent" id="mode-agent-card">
         <div class="mode-badge-row">
-          <span class="tag tag-spec">🔊 CON SONIDO</span>
+          <span class="tag tag-spec" data-i18n="modal.agentTag">🔊 WITH SOUND</span>
         </div>
         <div class="mode-option-body">
           <h3 class="mode-option-title">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg>Con Agentes
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg><span data-i18n="modal.agentTitle">With Agents</span>
           </h3>
-          <p class="mode-option-copy">Reconstrucción en vivo con enjambre de cursores y sonido.</p>
+          <p class="mode-option-copy" data-i18n="modal.agentCopy">Live rebuild with cursor swarm and audio.</p>
         </div>
         <button class="btn primary mode-btn" id="btn-mode-agent">
-          <span>Iniciar [1]</span>
+          <span data-i18n="modal.agentBtn">Start [1]</span>
         </button>
       </div>
 
       <!-- Option 2: Vista Normal -->
       <div class="mode-option-card mode-option-normal" id="mode-normal-card">
         <div class="mode-badge-row">
-          <span class="tag">DIRECTO</span>
+          <span class="tag" data-i18n="modal.normalTag">DIRECT</span>
         </div>
         <div class="mode-option-body">
-          <h3 class="mode-option-title">📄 Vista Normal</h3>
-          <p class="mode-option-copy">Acceso directo al portafolio sin animaciones de espera.</p>
+          <h3 class="mode-option-title" data-i18n="modal.normalTitle">📄 Standard View</h3>
+          <p class="mode-option-copy" data-i18n="modal.normalCopy">Direct portfolio access without waiting animations.</p>
         </div>
         <button class="btn mode-btn" id="btn-mode-normal">
-          <span>Entrar [2]</span>
+          <span data-i18n="modal.normalBtn">Enter [2]</span>
         </button>
       </div>
     </div>
 
     <div class="mode-select-footer">
       <span class="mono-cap">Juan Carlos · SDET</span>
-      <span class="mono-cap">[ 1 ] Agentes · [ 2 ] Normal</span>
+      <span class="mono-cap" data-i18n="modal.footer">[ 1 ] Agents · [ 2 ] Normal</span>
     </div>
   </div>
 </div>

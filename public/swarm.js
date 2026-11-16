@@ -1749,7 +1749,6 @@
   <button data-a="tour" title="Auto-scroll while the swarm builds">Tour</button>
   <button data-a="speed" title="Build speed">1×</button>
   <button data-a="sound" class="snd" title="Sound (M)"></button>
-  <button data-a="hide" title="Hide controls for recording (H)">Hide</button>
   <button data-a="live" class="pri" hidden title="Fade back to the real page">Go live</button>
   <button data-a="replay" hidden title="Wipe and rebuild again">Replay</button>
   <button data-a="close" class="x" title="Exit (Esc)">✕</button>

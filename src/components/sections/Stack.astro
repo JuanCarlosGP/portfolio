@@ -10,20 +10,23 @@ import TechIcon from '@components/common/TechIcon.astro';
   <div class="wrap">
     <div class="sec-top">
       <div class="sec-title">
-        <p class="kicker"><b>04</b><span class="shine">Herramientas y tecnologías</span></p>
-        <h2>Stack técnico<br />y especialización.</h2>
+        <p class="kicker"><b>04</b><span class="shine" data-i18n="stack.kicker">Tools & Technologies</span></p>
+        <h2 data-i18n-html="stack.title">Technical Stack &<br />specialization.</h2>
       </div>
       <div class="sec-aside">
-        <p class="sub">
-          Conjunto de tecnologías y lenguajes dominados para construir infraestructuras de testing modernas, mantenibles y de alto rendimiento.
+        <p class="sub" data-i18n="stack.sub">
+          Mastered suite of technologies and languages to engineer modern, maintainable, high-performance testing infrastructures.
         </p>
       </div>
     </div>
 
     <div class="skills-grid">
-      {stackCategories.map((category) => (
-        <div class="skill-col">
-          <h4>{category.title}</h4>
+      {stackCategories.map((category, idx) => {
+        const catKeys = ['testing', 'languages', 'cicd', 'architecture'] as const;
+        const catKey = catKeys[idx];
+        return (
+          <div class="skill-col">
+            <h4 data-i18n={`stack.categories.${catKey}`}>{category.title}</h4>
           <div class="skill-list">
             {category.skills.map((skill) => (
               <div class="skill-item">
@@ -33,7 +36,7 @@ import TechIcon from '@components/common/TechIcon.astro';
             ))}
           </div>
         </div>
-      ))}
+      );})}
     </div>
   </div>
 </section>

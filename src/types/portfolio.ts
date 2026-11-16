@@ -15,11 +15,24 @@ export interface Project {
 }
 
 export interface ExperienceItem {
+  id: string;
+  period: string;
+  company: string;
+  client?: string;
+  role: string;
+  badge: string;
+  bullets: string[];
+  skills?: string[];
+}
+
+export interface SecondaryExperienceItem {
+  id: string;
   period: string;
   company: string;
   role: string;
   badge: string;
-  bullets: string[];
+  detail: string;
+  skills: string[];
 }
 
 export interface StackCategory {
@@ -37,6 +50,20 @@ export interface MethodologyStep {
   title: string;
   description: string;
   bullets: string[];
+}
+
+export interface GalleryItem {
+  id: string;
+  type: 'image' | 'video';
+  src: string;
+  poster: string;
+  ratio: 'vertical' | 'landscape' | 'square';
+  tag: string;
+  title: string;
+  titleEs: string;
+  desc?: string;
+  descEs?: string;
+  meta: string;
 }
 
 export interface FaqItem {

@@ -14,7 +14,7 @@ export const stackCategories: StackCategory[] = [
     ]
   },
   {
-    title: 'Lenguajes',
+    title: 'Languages',
     badge: 'STRICT TYPING',
     skills: [
       { name: 'TypeScript', tags: ['Strict', 'Interfaces'], detail: 'Avanzado' },
@@ -38,7 +38,7 @@ export const stackCategories: StackCategory[] = [
     ]
   },
   {
-    title: 'Arquitectura & QA',
+    title: 'Architecture & QA',
     badge: 'ENTERPRISE PATTERNS',
     skills: [
       { name: 'Page Object Model', tags: ['Decoupled', 'Fixtures'], detail: 'Experto' },

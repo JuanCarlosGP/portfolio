@@ -11,12 +11,12 @@ import ProjectCard from './ProjectCard.astro';
   <div class="wrap">
     <div class="sec-top">
       <div class="sec-title">
-        <p class="kicker"><b>01</b><span class="shine">Proyectos destacados</span></p>
-        <h2>Arquitecturas E2E<br />y frameworks de prueba.</h2>
+        <p class="kicker"><b>01</b><span class="shine" data-i18n="projects.kicker">Featured Projects</span></p>
+        <h2 data-i18n-html="projects.title">E2E Architectures &<br />test frameworks.</h2>
       </div>
       <div class="sec-aside">
-        <p class="sub">
-          Sistemas de prueba automáticos diseñados para soportar altos volúmenes de transacciones, validaciones cross-platform y compuertas automáticas de entrega continua.
+        <p class="sub" data-i18n="projects.sub">
+          Automated test systems engineered for high transaction volumes, cross-platform validation, and continuous delivery gates.
         </p>
       </div>
     </div>
@@ -31,8 +31,8 @@ import ProjectCard from './ProjectCard.astro';
       ))}
     </div>
 
-    <p class="note-row">
-      Todos los proyectos incluyen arquitectura Page Object Model (POM), aislamiento de fixtures y trazabilidad total con capturas de vídeo y logs estructurados.
+    <p class="note-row" data-i18n="projects.note">
+      All projects feature Page Object Model (POM) architecture, isolated fixtures, and full observability with video captures and structured logs.
     </p>
   </div>
 </section>

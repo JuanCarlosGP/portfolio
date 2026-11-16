@@ -36,7 +36,7 @@ const { project } = Astro.props;
   </div>
   <div class="cmp-meta">
     <span class="cmp-n">{project.num}</span>
-    <h3>{project.title}</h3>
+    <h3 data-i18n={`projects.items.${project.id}.title`}>{project.title}</h3>
     {project.repoUrl ? (
       <a class="cmp-try" href={project.repoUrl} target="_blank" rel="noopener">
         {project.clientLabel || 'Repo ↗'}
@@ -45,5 +45,5 @@ const { project } = Astro.props;
       <span class="cmp-try">{project.clientLabel}</span>
     )}
   </div>
-  <p>{project.description}</p>
+  <p data-i18n={`projects.items.${project.id}.desc`}>{project.description}</p>
 </article>

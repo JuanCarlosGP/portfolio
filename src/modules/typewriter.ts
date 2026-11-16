@@ -1,10 +1,21 @@
-export const phrases = [
-  'suites de test robustas.',
-  'ejecuciones E2E en segundos.',
-  'arquitecturas de QA limpias.',
-  'fixtures deterministas.',
-  'compuertas de CI/CD fiables.'
-];
+export const phrasesByLang: Record<'en' | 'es', string[]> = {
+  en: [
+    'robust test suites.',
+    'fast E2E runs.',
+    'clean QA architectures.',
+    'deterministic fixtures.',
+    'reliable CI/CD gates.'
+  ],
+  es: [
+    'suites de test robustas.',
+    'ejecuciones E2E.',
+    'arquitecturas de QA limpias.',
+    'fixtures deterministas.',
+    'compuertas de CI/CD fiables.'
+  ]
+};
+
+export let phrases = phrasesByLang.en;
 
 let phraseIndex = 0;
 let charIndex = phrases[0].length;
@@ -24,6 +35,14 @@ function setTypedContent(text: string) {
       el.textContent = text;
     });
   }
+}
+
+export function updateTypewriterPhrases(lang: 'en' | 'es') {
+  phrases = phrasesByLang[lang] || phrasesByLang.en;
+  phraseIndex = 0;
+  charIndex = phrases[0].length;
+  isDeleting = true;
+  setTypedContent(phrases[0]);
 }
 
 export function resetTypewriter() {

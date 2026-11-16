@@ -1,88 +1,166 @@
 ---
-import { experience, proHighlights } from '@data/experience';
+import { experience, secondaryExperience, proHighlights } from '@data/experience';
 
-const izertis = experience[0];
+const izertis = experience.find((e) => e.id === 'izertis') || experience[0];
+const iteggo = experience.find((e) => e.id === 'iteggo') || experience[1];
+const gorilast = secondaryExperience.find((e) => e.id === 'gorilast') || secondaryExperience[0];
+const accenture = secondaryExperience.find((e) => e.id === 'accenture') || secondaryExperience[1];
 ---
 
 <div class="band gap" aria-hidden="true"><div class="wrap"></div></div>
 
-<!-- 4. Section 03: Career & Experience -->
+<!-- Section 02: Career & Experience -->
 <section class="band section" id="experience">
   <div class="wrap">
     <div class="sec-top">
       <div class="sec-title">
-        <p class="kicker"><b>03</b><span class="shine">Experiencia profesional</span></p>
-        <h2>Trayectoria probada en<br />calidad de software.</h2>
+        <p class="kicker"><b>02</b><span class="shine" data-i18n="experience.kicker">Professional Experience</span></p>
+        <h2 data-i18n-html="experience.title">Proven track record in<br />software quality.</h2>
       </div>
       <div class="sec-aside">
-        <p class="sub">
-          Aportando rigor técnico, automatización escalable y metodologías ágiles en entornos de consultoría tecnológica y desarrollo corporativo.
+        <p class="sub" data-i18n="experience.sub">
+          Delivering technical rigor, scalable automation frameworks, and enterprise testing standards across banking, retail, and aviation sectors.
         </p>
       </div>
     </div>
 
-    <div class="pair">
-      <!-- Left Card: IZERTIS, S.A. -->
-      <div class="pair-card">
-        <p class="mono-cap" style="color: var(--accent2);">{izertis.role}</p>
-        <h3>{izertis.company}</h3>
-        <p style="color: var(--mute); font-family: var(--mono); font-size: 11px; margin-bottom: 20px;">
-          {izertis.period}
-        </p>
+    <!-- Primary Enterprise Trajectory Grid (Izertis & itegGO) -->
+    <div class="pair exp-primary-pair">
+      <!-- Card 1: IZERTIS, S.A. (Consultoría Tecnológica / Laboral Kutxa) -->
+      <div class="pair-card exp-card exp-card-izertis">
+        <div class="exp-card-header">
+          <div class="exp-badge-row">
+            <span class="exp-status-badge live">● <span data-i18n="experience.izertisBadge">{izertis.badge}</span></span>
+          </div>
+          <p class="exp-client-tag" data-i18n="experience.izertisClient">{izertis.client}</p>
+          <p class="mono-cap" style="color: var(--accent2);" data-i18n="experience.izertisRole">{izertis.role}</p>
+          <h3>{izertis.company}</h3>
+          <p class="exp-period" data-i18n="experience.izertisPeriod">{izertis.period}</p>
+        </div>
 
         <ul class="ticks">
-          {izertis.bullets.map((bullet) => (
-            <li set:html={bullet.replace('Playwright', '<strong>Playwright</strong>').replace('Maestro', '<strong>Maestro</strong>').replace('Azure DevOps', '<strong>Azure DevOps</strong>').replace('Axe-core', '<strong>Axe-core</strong>')} />
+          {izertis.bullets.map((bullet, idx) => (
+            <li data-i18n-html={`experience.izertisBullets.${idx}`} set:html={bullet} />
           ))}
         </ul>
 
-        <a class="btn" href="#contact">
-          <span>Contactar para referencias</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14m-6-6 6 6-6 6" />
-          </svg>
-        </a>
+        {izertis.skills && (
+          <div class="exp-skills-row" aria-label="Tecnologías principales">
+            {izertis.skills.map((skill) => (
+              <span class="exp-skill-chip">{skill}</span>
+            ))}
+          </div>
+        )}
       </div>
 
-      <!-- Right Card: Pro Card (Devault rotating glow card) -->
-      <div class="pair-card pro-card">
-        <div class="pro-in">
-          <span class="pro-badge">
-            <i aria-hidden="true"></i>
-            <span class="shine">MÉTRICAS DE RENDIMIENTO</span>
-          </span>
-
-          <h3>Excelencia en <em>Automatización</em></h3>
-
-          <div class="pro-stats">
-            <div>
-              <dt>&lt; 0.5%</dt>
-              <dd>Flaky Rate</dd>
-            </div>
-            <div>
-              <dt>&lt; 3min</dt>
-              <dd>E2E Feedback</dd>
-            </div>
-            <div>
-              <dt>100%</dt>
-              <dd>POM Pattern</dd>
-            </div>
+      <!-- Card 2: itegGO CONSULTING (Consultoría Tecnológica / Retail Dia & Aviación Iberia) -->
+      <div class="pair-card exp-card exp-card-iteggo">
+        <div class="exp-card-header">
+          <div class="exp-badge-row">
+            <span class="exp-status-badge">● <span data-i18n="experience.iteggoBadge">{iteggo.badge}</span></span>
           </div>
+          <p class="exp-client-tag" data-i18n="experience.iteggoClient">{iteggo.client}</p>
+          <p class="mono-cap" style="color: var(--accent2);" data-i18n="experience.iteggoRole">{iteggo.role}</p>
+          <h3>{iteggo.company}</h3>
+          <p class="exp-period" data-i18n="experience.iteggoPeriod">{iteggo.period}</p>
+        </div>
 
-          <ul class="ticks" style="margin-bottom: 24px;">
-            {proHighlights.map((item) => (
-              <li>
-                <strong>{item.company}:</strong> {item.detail}
-              </li>
+        <ul class="ticks">
+          {iteggo.bullets.map((bullet, idx) => (
+            <li data-i18n-html={`experience.iteggoBullets.${idx}`} set:html={bullet} />
+          ))}
+        </ul>
+
+        {iteggo.skills && (
+          <div class="exp-skills-row" aria-label="Tecnologías principales">
+            {iteggo.skills.map((skill) => (
+              <span class="exp-skill-chip">{skill}</span>
             ))}
-          </ul>
+          </div>
+        )}
+      </div>
+    </div>
 
-          <a class="btn primary" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
-            <span>Explorar repositorios en GitHub</span>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17 17 7M8 7h9v9" />
-            </svg>
-          </a>
+    <!-- Secondary Trajectory & Performance Metrics Grid -->
+    <div class="exp-secondary-band">
+      <div class="exp-secondary-header">
+        <p class="kicker"><b>02.1</b><span class="shine" data-i18n="experience.secondaryKicker">Complementary Background & Prior Roles</span></p>
+        <h4 data-i18n="experience.secondaryTitle">Previous engineering & security experience.</h4>
+      </div>
+
+      <div class="exp-secondary-grid">
+        <!-- Column 1: Compact Secondary Roles (Gorilast & Accenture) -->
+        <div class="exp-secondary-roles-col">
+          <!-- Gorilast Compact Card -->
+          <article class="exp-compact-card">
+            <div class="exp-compact-top">
+              <span class="exp-compact-badge" data-i18n="experience.gorilastBadge">{gorilast.badge}</span>
+              <span class="exp-compact-period" data-i18n="experience.gorilastPeriod">{gorilast.period}</span>
+            </div>
+            <div class="exp-compact-body">
+              <h4 class="exp-compact-company">{gorilast.company}</h4>
+              <p class="exp-compact-role" data-i18n="experience.gorilastRole">{gorilast.role}</p>
+              <p class="exp-compact-desc" data-i18n="experience.gorilastDesc">{gorilast.detail}</p>
+            </div>
+            <div class="exp-skills-row">
+              {gorilast.skills.map((skill) => (
+                <span class="exp-skill-chip">{skill}</span>
+              ))}
+            </div>
+          </article>
+
+          <!-- Accenture Spain Compact Card -->
+          <article class="exp-compact-card">
+            <div class="exp-compact-top">
+              <span class="exp-compact-badge" data-i18n="experience.accentureBadge">{accenture.badge}</span>
+              <span class="exp-compact-period" data-i18n="experience.accenturePeriod">{accenture.period}</span>
+            </div>
+            <div class="exp-compact-body">
+              <h4 class="exp-compact-company">{accenture.company}</h4>
+              <p class="exp-compact-role" data-i18n="experience.accentureRole">{accenture.role}</p>
+              <p class="exp-compact-desc" data-i18n="experience.accentureDesc">{accenture.detail}</p>
+            </div>
+            <div class="exp-skills-row">
+              {accenture.skills.map((skill) => (
+                <span class="exp-skill-chip">{skill}</span>
+              ))}
+            </div>
+          </article>
+        </div>
+
+        <!-- Column 2: Devault Pro-Card (Agentic QA Architecture & Human-in-the-Loop) -->
+        <div class="pro-card exp-pro-card">
+          <div class="pro-in">
+            <span class="pro-badge">
+              <i aria-hidden="true"></i>
+              <span class="shine" data-i18n="experience.proBadge">AI-ASSISTED QA ARCHITECTURE</span>
+            </span>
+
+            <h3 data-i18n-html="experience.proHeading">Agentic Testing &amp; <em>Human-in-the-Loop</em></h3>
+
+            <div class="pro-stats">
+              <div>
+                <dt data-i18n="experience.statStep1">01 · SCOUT</dt>
+                <dd data-i18n="experience.statStep1Desc">Flow & Ticket Map</dd>
+              </div>
+              <div>
+                <dt data-i18n="experience.statStep2">02 · AUTHOR</dt>
+                <dd data-i18n="experience.statStep2Desc">Gherkin & Modular POM</dd>
+              </div>
+              <div>
+                <dt data-i18n="experience.statStep3">03 · SANITY</dt>
+                <dd data-i18n="experience.statStep3Desc">Sandbox & Human Gate</dd>
+              </div>
+            </div>
+
+            <ul class="ticks" style="margin-bottom: 0;">
+              {proHighlights.map((item, idx) => (
+                <li data-i18n-html={`experience.proHighlights.${idx}`}>
+                  <strong>{item.company}:</strong> {item.detail}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

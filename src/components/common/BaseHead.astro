@@ -7,12 +7,23 @@ interface Props {
 
 const {
   title = "Juan Carlos Gutiérrez Pesquero — QA Automation Engineer & SDET",
-  description = "QA Automation Engineer / SDET especializado en Playwright, WebdriverIO, TypeScript, arquitecturas de prueba sin falsos positivos y pipelines CI/CD de alta velocidad.",
+  description = "QA Automation Engineer / SDET specializing in Playwright, Maestro, TypeScript, zero-flakiness test architectures, and high-velocity CI/CD pipelines.",
   image = `${import.meta.env.BASE_URL}avatar.png`
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://juancarlosgp.github.io');
 ---
+
+<script is:inline>
+  try {
+    if (localStorage.getItem('portfolio-font') === 'pixel') {
+      document.documentElement.setAttribute('data-font', 'pixel');
+    }
+    var savedLang = localStorage.getItem('portfolio-lang') || 'en';
+    document.documentElement.setAttribute('data-lang', savedLang);
+    document.documentElement.lang = savedLang;
+  } catch (e) {}
+</script>
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
