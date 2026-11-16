@@ -1619,6 +1619,7 @@
 .hud .dots i{display:flex;align-items:center;justify-content:center;width:24px;height:24px;margin-left:-6px;border-radius:50%;border:2px solid #18181c;font:700 11px/1 Inter,system-ui,sans-serif;font-style:normal;text-align:center;color:#fff;transition:background .3s;box-shadow:0 2px 5px rgba(0,0,0,.3)}
 .hud .txt,.hud .status{display:flex;align-items:center;gap:9px;color:#cfcfcf;font-size:14px;font-variant-numeric:tabular-nums}
 .hud .txt b{color:#fff;font-weight:600}
+.hud .hint{display:inline-flex;align-items:center;gap:9px}
 .hud .sep{width:1px;height:18px;background:rgba(255,255,255,.18);margin:0 2px}
 .hud .bar{width:90px;height:5px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
 .hud .bar i{display:block;height:100%;width:0;background:#0D99FF;transition:width .35s ease}
@@ -1638,6 +1639,25 @@
 .hud-unhide{all:unset;position:absolute;left:50%;bottom:22px;transform:translate(-50%,14px);opacity:0;pointer-events:none;padding:9px 16px;background:rgba(24,24,28,.95);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#cfcfcf;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.1);font:500 13px/1 Inter,system-ui,-apple-system,sans-serif;cursor:pointer;transition:opacity .3s ease,transform .3s ease,background .15s,color .15s;z-index:6;user-select:none;box-sizing:border-box}
 .hud-unhide:hover{background:#3b3c44;color:#fff}
 .hud-unhide.visible{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.hud-main{display:flex;align-items:center;gap:12px;min-width:0}
+.hud-actions{display:flex;align-items:center;gap:8px;flex:none}
+
+@media (max-width: 700px){
+  .hud{left:10px;right:10px;bottom:max(12px, env(safe-area-inset-bottom));width:auto;transform:translateY(18px);flex-direction:column;align-items:stretch;gap:8px;padding:10px;white-space:normal;box-sizing:border-box}
+  .hud.on{transform:translateY(0)}
+  .hud.hidden{transform:translateY(24px) !important}
+  .hud-main{flex-wrap:wrap;justify-content:center;gap:8px 10px;width:100%}
+  .hud .dots{display:none}
+  .hud .txt{flex:1 1 100%;min-width:0;justify-content:center}
+  .hud .status{flex-wrap:wrap;justify-content:center;row-gap:4px;width:100%;font-size:12.5px;text-align:center}
+  .hud .hint{flex:1 1 100%;justify-content:center}
+  .hud .hint .sep{display:none}
+  .hud .bar{flex:1 1 100%;width:100%}
+  .hud-actions{width:100%;justify-content:center;flex-wrap:wrap;gap:6px}
+  .hud button{padding:8px 11px;font-size:12.5px}
+  .hud-unhide{left:10px;right:10px;width:auto;bottom:max(12px, env(safe-area-inset-bottom));transform:translateY(14px);text-align:center;box-sizing:border-box}
+  .hud-unhide.visible{transform:translateY(0)}
+}
 
 `;
 
@@ -1743,15 +1763,19 @@
 <div class="cursors"></div>
 <div class="rulers"></div>
 <div class="hud">
-  <div class="dots"></div>
-  <div class="txt"><span class="status">Scanning page…</span></div>
-  <div class="bar"><i></i></div>
-  <button data-a="tour" title="Auto-scroll while the swarm builds">Tour</button>
-  <button data-a="speed" title="Build speed">1×</button>
-  <button data-a="sound" class="snd" title="Sound (M)"></button>
-  <button data-a="live" class="pri" hidden title="Fade back to the real page">Go live</button>
-  <button data-a="replay" hidden title="Wipe and rebuild again">Replay</button>
-  <button data-a="close" class="x" title="Exit (Esc)">✕</button>
+  <div class="hud-main">
+    <div class="dots"></div>
+    <div class="txt"><span class="status">Scanning page…</span></div>
+    <div class="bar"><i></i></div>
+  </div>
+  <div class="hud-actions">
+    <button data-a="tour" title="Auto-scroll while the swarm builds">Tour</button>
+    <button data-a="speed" title="Build speed">1×</button>
+    <button data-a="sound" class="snd" title="Sound (M)"></button>
+    <button data-a="live" class="pri" hidden title="Fade back to the real page">Go live</button>
+    <button data-a="replay" hidden title="Wipe and rebuild again">Replay</button>
+    <button data-a="close" class="x" title="Exit (Esc)">✕</button>
+  </div>
 </div>
 <button class="hud-unhide" title="Show controls (H)">Show controls</button>`;
       const $ = (s) => root.querySelector(s);
@@ -3856,7 +3880,7 @@
         const below = E.tasks.some((t) => t.state === "wait" && t.layer === "world" && t.gate > E.frontier);
         v.status.innerHTML =
           `<b>${workers}</b> agents<span class="sep"></span><b>${done.toLocaleString()}</b> / ${total.toLocaleString()} layers` +
-          (below && pend && !this.tour && E.backlog() === 0 ? `<span class="sep"></span>scroll to keep building` : "");
+          (below && pend && !this.tour && E.backlog() === 0 ? `<span class="hint"><span class="sep"></span>scroll to keep building</span>` : "");
       }
       v.barFill.style.width = total ? `${(done / total) * 100}%` : "0%";
       const busy = E.cursors.filter((c) => c.task).slice(-5);
