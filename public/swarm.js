@@ -1642,22 +1642,20 @@
 .hud-main{display:flex;align-items:center;gap:12px;min-width:0}
 .hud-actions{display:flex;align-items:center;gap:8px;flex:none}
 
-@media (max-width: 700px){
-  .hud{left:10px;right:10px;bottom:max(12px, env(safe-area-inset-bottom));width:auto;transform:translateY(18px);flex-direction:column;align-items:stretch;gap:8px;padding:10px;white-space:normal;box-sizing:border-box}
-  .hud.on{transform:translateY(0)}
-  .hud.hidden{transform:translateY(24px) !important}
-  .hud-main{flex-wrap:wrap;justify-content:center;gap:8px 10px;width:100%}
-  .hud .dots{display:none}
-  .hud .txt{flex:1 1 100%;min-width:0;justify-content:center}
-  .hud .status{flex-wrap:wrap;justify-content:center;row-gap:4px;width:100%;font-size:12.5px;text-align:center}
-  .hud .hint{flex:1 1 100%;justify-content:center}
-  .hud .hint .sep{display:none}
-  .hud .bar{flex:1 1 100%;width:100%}
-  .hud-actions{width:100%;justify-content:center;flex-wrap:wrap;gap:6px}
-  .hud button{padding:8px 11px;font-size:12.5px}
-  .hud-unhide{left:10px;right:10px;width:auto;bottom:max(12px, env(safe-area-inset-bottom));transform:translateY(14px);text-align:center;box-sizing:border-box}
-  .hud-unhide.visible{transform:translateY(0)}
-}
+.hud.is-narrow{left:10px;right:10px;bottom:max(12px, env(safe-area-inset-bottom));width:auto;transform:translateY(18px);flex-direction:column;align-items:stretch;gap:8px;padding:10px;white-space:normal;box-sizing:border-box}
+.hud.is-narrow.on{transform:translateY(0)}
+.hud.is-narrow.hidden{transform:translateY(24px) !important}
+.hud.is-narrow .hud-main{flex-wrap:wrap;justify-content:center;gap:8px 10px;width:100%}
+.hud.is-narrow .dots{display:none}
+.hud.is-narrow .txt{flex:1 1 100%;min-width:0;justify-content:center}
+.hud.is-narrow .status{flex-wrap:wrap;justify-content:center;row-gap:4px;width:100%;font-size:12.5px;text-align:center}
+.hud.is-narrow .hint{flex:1 1 100%;justify-content:center}
+.hud.is-narrow .hint .sep{display:none}
+.hud.is-narrow .bar{flex:1 1 100%;width:100%}
+.hud.is-narrow .hud-actions{width:100%;justify-content:center;flex-wrap:wrap;gap:6px}
+.hud.is-narrow button{padding:8px 11px;font-size:12.5px}
+.hud-unhide.is-narrow{left:10px;right:10px;width:auto;bottom:max(12px, env(safe-area-inset-bottom));transform:translateY(14px);text-align:center;box-sizing:border-box}
+.hud-unhide.is-narrow.visible{transform:translateY(0)}
 
 `;
 
@@ -1791,6 +1789,17 @@
       this.rulers = $(".rulers");
       this.hud = $(".hud");
       this.unhideBtn = $(".hud-unhide");
+      // Mobile Safari does not apply @media rules inside this shadow root, so the
+      // compact layout is toggled from the page viewport instead.
+      const narrowMq = window.matchMedia("(max-width: 1024px)");
+      const applyNarrow = () => {
+        const narrow = narrowMq.matches;
+        this.hud.classList.toggle("is-narrow", narrow);
+        this.unhideBtn.classList.toggle("is-narrow", narrow);
+      };
+      applyNarrow();
+      narrowMq.addEventListener("change", applyNarrow);
+      window.addEventListener("resize", applyNarrow);
       this.status = $(".status");
       this.barFill = $(".bar i");
       this.dots = $(".dots");
