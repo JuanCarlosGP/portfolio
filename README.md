@@ -136,7 +136,7 @@ Madrid (Fuenlabrada), España
 
 - 💼 **LinkedIn**: [juancarlosgutierrezpesquero](https://www.linkedin.com/in/juancarlosgutierrezpesquero/)  
 - 🐙 **GitHub**: [@JuanCarlosGP](https://github.com/JuanCarlosGP)  
-- ✉️ **Email**: [jcmdfk@gmail.com](mailto:jcmdfk@gmail.com)  
+- ✉️ **Email**: [juancarlosgp212@gmail.com](mailto:juancarlosgp212@gmail.com)  
 
 ---
 

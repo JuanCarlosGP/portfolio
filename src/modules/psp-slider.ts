@@ -13,6 +13,28 @@ export function initProjectSliders() {
 
     let currentIndex = 0;
     const totalSlides = slides.length;
+    let inView = false;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const viewport = slider.querySelector('.slider-viewport') ?? slider;
+
+    function syncVideos() {
+      slides.forEach((slide, idx) => {
+        const vid = slide.querySelector('video');
+        if (!vid) return;
+        const shouldPlay = idx === currentIndex && inView && !reducedMotion.matches;
+        if (shouldPlay) vid.play().catch(() => {});
+        else vid.pause();
+      });
+    }
+
+    const visibility = new IntersectionObserver(
+      (entries) => {
+        inView = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.45);
+        syncVideos();
+      },
+      { threshold: [0, 0.45, 0.75] }
+    );
+    visibility.observe(viewport);
 
     function goToSlide(index: number) {
       if (index < 0) {
@@ -43,17 +65,7 @@ export function initProjectSliders() {
         dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
 
-      // Manage video playback if slides contain videos
-      slides.forEach((slide, idx) => {
-        const vid = slide.querySelector('video');
-        if (vid) {
-          if (idx === currentIndex) {
-            vid.play().catch(() => {});
-          } else {
-            vid.pause();
-          }
-        }
-      });
+      syncVideos();
 
       // Sound button visibility
       if (soundBtn) {

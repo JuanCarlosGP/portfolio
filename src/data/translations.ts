@@ -24,6 +24,8 @@ export interface Translations {
     lede: string;
     cta: string;
     ctaAria: string;
+    cv: string;
+    cvAria: string;
     facts: [string, string, string];
   };
   studio: {
@@ -33,6 +35,14 @@ export interface Translations {
     offeredIn: string;
     footerLocation: string;
     footerSettings: string;
+  };
+  clicker: {
+    kicker: string;
+    title: string;
+    btn: string;
+    globalLabel: string;
+    yourMarks: string;
+    syncedText: string;
   };
   projects: {
     kicker: string;
@@ -116,11 +126,13 @@ export interface Translations {
     role: string;
     heading: string;
     emailBtn: string;
+    cvBtn: string;
     githubBtn: string;
   };
   footer: {
     bio: string;
     sectionsTitle: string;
+    cv: string;
     connectTitle: string;
     rights: string;
     tz: string;
@@ -171,6 +183,8 @@ export const translations: Record<Lang, Translations> = {
       lede: 'Hi! I\'m <strong>Juan Carlos</strong>. I design and build <strong>automated testing architectures</strong> in any environment that eliminate flakiness and accelerate production deployments. My focus is on CI/CD pipeline reliability, <strong>deterministic testing</strong>, and building tools that solve real software quality challenges.',
       cta: "Let's connect?",
       ctaAria: 'Connect with Juan Carlos on LinkedIn',
+      cv: 'Download CV',
+      cvAria: 'Download the CV of Juan Carlos Gutiérrez as a PDF',
       facts: [
         'Deterministic Testing',
         'Playwright & Maestro',
@@ -184,6 +198,14 @@ export const translations: Record<Lang, Translations> = {
       offeredIn: 'Google offered in:',
       footerLocation: 'Spain · From your IP address',
       footerSettings: 'Dark theme · Privacy'
+    },
+    clicker: {
+      kicker: '00 // VISITOR LOG',
+      title: 'Leave your mark on this portfolio',
+      btn: 'Stamp visit',
+      globalLabel: 'Global Marks',
+      yourMarks: 'Your marks',
+      syncedText: 'Live Redis Sync'
     },
     projects: {
       kicker: 'Featured Projects',
@@ -320,11 +342,13 @@ export const translations: Record<Lang, Translations> = {
       role: 'QA Automation & SDET · <span class="shine">Open to Work</span>',
       heading: 'I design and optimize your<br />testing infrastructure.',
       emailBtn: 'Send Direct Email',
+      cvBtn: 'Download CV',
       githubBtn: 'GitHub Profile'
     },
     footer: {
       bio: 'QA Automation Engineer & SDET. Specialist in Playwright, Maestro, CI/CD, and test architectures.',
       sectionsTitle: 'Sections',
+      cv: 'Download CV (PDF)',
       connectTitle: 'Connect',
       rights: '© 2026 Juan Carlos Gutiérrez Pesquero · All rights reserved',
       tz: 'Madrid (Fuenlabrada), Spain · CET Timezone'
@@ -373,6 +397,8 @@ export const translations: Record<Lang, Translations> = {
       lede: '¡Hola! Soy <strong>Juan Carlos</strong>. Me dedico a diseñar y construir <strong>arquitecturas de testing automatizadas</strong> en cualquier entorno que eliminan falsos positivos y aceleran los despliegues a producción. Mi foco está en la fiabilidad de los pipelines CI/CD, el <strong>testing determinista</strong> y en crear herramientas que resuelvan problemas reales de calidad.',
       cta: '¿Conectamos?',
       ctaAria: 'Conectar con Juan Carlos en LinkedIn',
+      cv: 'Descargar CV',
+      cvAria: 'Descargar el CV de Juan Carlos Gutiérrez en PDF',
       facts: [
         'Testing Determinista',
         'Playwright & Maestro',
@@ -386,6 +412,14 @@ export const translations: Record<Lang, Translations> = {
       offeredIn: 'Ofrecido por Google en:',
       footerLocation: 'España · De tu dirección IP',
       footerSettings: 'Modo Oscuro · Confidencialidad'
+    },
+    clicker: {
+      kicker: '00 // REGISTRO DE VISITAS',
+      title: 'Deja tu huella en este portafolio',
+      btn: 'Sellar visita',
+      globalLabel: 'Marcas Globales',
+      yourMarks: 'Tus firmas',
+      syncedText: 'Sync en Vivo'
     },
     projects: {
       kicker: 'Proyectos destacados',
@@ -522,11 +556,13 @@ export const translations: Record<Lang, Translations> = {
       role: 'QA Automation & SDET · <span class="shine">Open to Work</span>',
       heading: 'Diseño y optimizo tu<br />infraestructura de testing.',
       emailBtn: 'Enviar correo directo',
+      cvBtn: 'Descargar CV',
       githubBtn: 'Perfil de GitHub'
     },
     footer: {
       bio: 'QA Automation Engineer & SDET. Especialista en Playwright, Maestro, CI/CD y arquitecturas de prueba.',
       sectionsTitle: 'Secciones',
+      cv: 'Descargar CV (PDF)',
       connectTitle: 'Conectar',
       rights: '© 2026 Juan Carlos Gutiérrez Pesquero · Todos los derechos reservados',
       tz: 'Madrid (Fuenlabrada), España · Horario CET'

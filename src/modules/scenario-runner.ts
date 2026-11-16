@@ -25,11 +25,11 @@ export const scenarios: Record<string, ScenarioDefinition> = {
       { name: "page.keyboard.press('Enter') → Results loaded", time: '31ms', delay: 880 },
       { name: "expect(page.locator('#search .g')).toHaveCount(10)", time: '18ms', delay: 360 }
     ],
-    ascii: `   ____   _    ____ ____  _____ ____  
-  |  _ \\ / \\  / ___/ ___|| ____|  _ \\ 
-  | |_) / _ \\ \\___ \\___ \\|  _| | | | |
-  |  __/ ___ \\ ___) |__) | |___| |_| |
-  |_| /_/   \\_\\____/____/|_____|____/ 
+    ascii: `  ____   _    ____ ____  _____ ____  
+ |  _ \\ / \\  / ___/ ___|| ____|  _ \\ 
+ | |_) / _ \\ \\___ \\___ \\|  _| | | | |
+ |  __/ ___ \\ ___) |__) | |___| |_| |
+ |_| /_/   \\_\\____/____/|_____|____/ 
   ─────────────────────────────────────────────
   ✔ Target App: https://www.google.com
   ✔ 6/6 E2E specs executed with zero flakiness
@@ -46,11 +46,11 @@ export const scenarios: Record<string, ScenarioDefinition> = {
       { name: "Payload: Expect suggestions[0] === 'Juan Carlos Gutierrez'", time: '8ms', delay: 460 },
       { name: "Performance: p99 latency < 45ms across 100 iterations", time: '12ms', delay: 840 }
     ],
-    ascii: `    _    ____ ___ 
-   / \\  |  _ \\_ _|
-  / _ \\ | |_) | | 
- / ___ \\|  __/| | 
-/_/   \\_\\_|  |___|
+    ascii: `     _    ____ ___ 
+    / \\  |  _ \\_ _|
+   / _ \\ | |_) | | 
+  / ___ \\|  __/| | 
+ /_/   \\_\\_|  |___|
   ─────────────────────────────────────────────────────
   ✔ Google Autocomplete API Contract verified
   ✔ Strict payload type validation (zero drift)
@@ -66,11 +66,11 @@ export const scenarios: Record<string, ScenarioDefinition> = {
       { name: "Keyboard Focus: Tab order navigable & focus visible ring", time: '24ms', delay: 650 },
       { name: "Screen Reader Audit: Explicit labels on search & mic buttons", time: '16ms', delay: 380 }
     ],
-    ascii: `    _     _   _  __   __
-   / \\   / | / | \\ \\ / /
-  / _ \\  | | | |  \\ V / 
- / ___ \\ | | | |   | |  
-/_/   \\_\\_|_|_|_|  |_|  
+    ascii: `     _    _ ___   __
+    / \\  / / \\ \\ / /
+   / _ \\ | | |\\ V / 
+  / ___ \\| | | | |  
+ /_/   \\_\\_|_| |_|  
   ────────────────────────────────────────────────────────
   ✔ Engine: @axe-core/playwright v4.10
   ✔ Target: WCAG 2.2 Level AA / AAA Compliant
@@ -86,11 +86,11 @@ export const scenarios: Record<string, ScenarioDefinition> = {
       { name: 'Cross-Browser: Chromium, Firefox & WebKit headless', time: '1m 14s', delay: 920 },
       { name: 'Quality Gate: Automatic green light for deploy', time: '2s', delay: 380 }
     ],
-    ascii: `    ____ _____ ____  _____ _     ___ _   _ _____ 
-   |  _ \\_   _|  _ \\| ____| |   |_ _| \\ | | ____|
-   | |_) || | | |_) |  _| | |    | ||  \\| |  _|  
-   |  __/ | | |  __/| |___| |___ | || |\\  | |___ 
-   |_|    |_| |_|   |_____|_____|___|_| \\_|_____|
+    ascii: `  ____ ___ ____  _____ _     ___ _   _ _____ 
+ |  _ \\_ _|  _ \\| ____| |   |_ _| \\ | | ____|
+ | |_) | || |_) |  _| | |    | ||  \\| |  _|  
+ |  __/| ||  __/| |___| |___ | || |\\  | |___ 
+ |_|  |___|_|   |_____|_____|___|_| \\_|_____|
   ───────────────────────────────────────────────
   ✔ Automated PR Gating: Passed
   ✔ Parallel matrix: Sharded on 4 Linux workers

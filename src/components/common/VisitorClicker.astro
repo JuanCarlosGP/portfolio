@@ -1,0 +1,45 @@
+---
+// src/components/common/VisitorClicker.astro
+---
+
+<aside class="band clicker-band" id="visitor-mark-band" aria-label="Visitor Marks Telemetry">
+  <div class="wrap clicker-wrap">
+    <div class="clicker-left">
+      <div class="clicker-telemetry">
+        <span class="clicker-led" aria-hidden="true"></span>
+        <span class="clicker-kicker" data-i18n="clicker.kicker">00 // VISITOR LOG</span>
+        <span class="clicker-pill-live" data-i18n="clicker.syncedText">Live Redis Sync</span>
+      </div>
+      <p class="clicker-title" data-i18n="clicker.title">
+        Leave your mark on this portfolio
+      </p>
+    </div>
+
+    <div class="clicker-right">
+      <div class="clicker-odometer" id="clicker-odometer" aria-live="polite" title="Total global marks">
+        <span class="odometer-digit" data-idx="0">0</span>
+        <span class="odometer-digit" data-idx="1">0</span>
+        <span class="odometer-digit" data-idx="2">0</span>
+        <span class="odometer-sep">,</span>
+        <span class="odometer-digit" data-idx="3">0</span>
+        <span class="odometer-digit" data-idx="4">0</span>
+        <span class="odometer-digit" data-idx="5">0</span>
+      </div>
+
+      <div class="clicker-action-wrap">
+        <button
+          type="button"
+          class="btn clicker-btn"
+          id="clicker-stamp-btn"
+          aria-label="Stamp visit / Leave your visitor mark"
+        >
+          <span class="clicker-btn-text" data-i18n="clicker.btn">Stamp visit</span>
+        </button>
+
+        <span class="clicker-user-marks" id="clicker-user-marks">
+          <span data-i18n="clicker.yourMarks">Your marks</span>: <strong id="clicker-user-count">0</strong>
+        </span>
+      </div>
+    </div>
+  </div>
+</aside>

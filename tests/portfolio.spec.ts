@@ -47,6 +47,33 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     expect(isOverflowing).toBe(false);
   });
 
+  test('Custom Agent vector cursor is active and rotates colors on click', async ({ page }) => {
+    const getBodyCursor = () =>
+      page.evaluate(() => document.documentElement.style.getPropertyValue('--cursor-default') || getComputedStyle(document.body).cursor);
+
+    const initialCursor = await getBodyCursor();
+    expect(initialCursor).toContain('data:image/svg+xml');
+
+    // Click to cycle to 2nd color
+    await page.mouse.click(200, 200);
+    const secondCursor = await getBodyCursor();
+    expect(secondCursor).toContain('data:image/svg+xml');
+    expect(secondCursor).not.toBe(initialCursor);
+
+    // Click again to cycle to 3rd color
+    await page.mouse.click(200, 200);
+    const thirdCursor = await getBodyCursor();
+    expect(thirdCursor).toContain('data:image/svg+xml');
+    expect(thirdCursor).not.toBe(secondCursor);
+    expect(thirdCursor).not.toBe(initialCursor);
+
+    const btnCursor = await page.evaluate(() => {
+      const btn = document.querySelector('.btn') || document.querySelector('button');
+      return btn ? getComputedStyle(btn).cursor : '';
+    });
+    expect(btnCursor).toContain('data:image/svg+xml');
+  });
+
   test('Hero section renders profile, bio, and LinkedIn link in default English', async ({ page }) => {
     const heroName = page.locator('.hero-profile-name');
     await expect(heroName).toHaveText('Juan Carlos Gutiérrez');
@@ -54,7 +81,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     const heroLede = page.locator('.hero-left .lede');
     await expect(heroLede).toContainText('automated testing architectures in any environment');
 
-    const linkedinBtn = page.locator('.hero-cta a.btn');
+    const linkedinBtn = page.locator('.hero-cta a.btn[href*="linkedin.com"]');
     await expect(linkedinBtn).toHaveAttribute(
       'href',
       'https://www.linkedin.com/in/juancarlosgutierrezpesquero/'
@@ -76,7 +103,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
 
     const heroLede = page.locator('.hero-left .lede');
     await expect(heroLede).toContainText('automated testing architectures');
-    const linkedinBtn = page.locator('.hero-cta a.btn');
+    const linkedinBtn = page.locator('.hero-cta a.btn[href*="linkedin.com"]');
     await expect(linkedinBtn).toContainText("Let's connect?");
 
     // Toggle to Spanish
@@ -255,6 +282,34 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     expect(navTop).toBe(0);
   });
 
+  test('DevTools Elements QA Easter egg is present in HTML comments and syncs with language', async ({ page }) => {
+    const getComments = () =>
+      page.evaluate(() => {
+        const comments: string[] = [];
+        for (const node of document.documentElement.childNodes) {
+          if (node.nodeType === Node.COMMENT_NODE && node.textContent) {
+            comments.push(node.textContent.trim());
+          }
+        }
+        return comments;
+      });
+
+    let comments = await getComments();
+    expect(comments.length).toBeGreaterThan(0);
+    expect(comments.some((c) => c.includes('QA AUTOMATION ENGINEER // SDET'))).toBe(true);
+    expect(comments.some((c) => c.includes('Juan-Carlos-Gutierrez-CV.pdf'))).toBe(true);
+    expect(comments.some((c) => c.includes('Inspecting the DOM?'))).toBe(true);
+
+    // Switch language to Spanish
+    const langBtn = page.locator('#lang-toggle-btn');
+    await langBtn.click();
+    await page.waitForTimeout(100);
+
+    comments = await getComments();
+    expect(comments.some((c) => c.includes('¿Inspeccionando el DOM?'))).toBe(true);
+    expect(comments.some((c) => c.includes('Juan-Carlos-Gutierrez-CV.pdf'))).toBe(true);
+  });
+
   test('Visual capture of language toggle states', async ({ page }, testInfo) => {
     if (testInfo.project.name === 'Desktop-1440') {
       await page.screenshot({
@@ -293,6 +348,13 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
         path: getScreenshotPath('experience_desktop.png', testInfo)
       });
 
+      const clickerSec = page.locator('#visitor-mark-band');
+      await clickerSec.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(200);
+      await clickerSec.screenshot({
+        path: getScreenshotPath('clicker_desktop.png', testInfo)
+      });
+
       const gallerySec = page.locator('#gallery');
       await gallerySec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
@@ -305,6 +367,13 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
         if (nav) nav.style.display = '';
       });
     } else if (testInfo.project.name === 'Mobile-360') {
+      const clickerSec = page.locator('#visitor-mark-band');
+      await clickerSec.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(200);
+      await clickerSec.screenshot({
+        path: getScreenshotPath('clicker_mobile.png', testInfo)
+      });
+
       await page.screenshot({
         path: getScreenshotPath('mobile_360_header.png', testInfo),
         clip: { x: 0, y: 0, width: 360, height: 350 }
@@ -334,6 +403,30 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
         if (nav) nav.style.display = '';
       });
     }
+  });
+
+  test('Visitor Clicker widget renders below Hero, displays counter, and increments count on click', async ({ page }) => {
+    const clickerBand = page.locator('#visitor-mark-band');
+    await expect(clickerBand).toBeVisible();
+
+    const title = page.locator('.clicker-title');
+    await expect(title).toBeVisible();
+
+    const btn = page.locator('#clicker-stamp-btn');
+    await expect(btn).toBeVisible();
+
+    const userCount = page.locator('#clicker-user-count');
+    await expect(userCount).toHaveText('0');
+
+    // Click button to stamp visit
+    await btn.click();
+    const particle = page.locator('.clicker-particle');
+    await expect(particle).toBeAttached();
+    await expect(userCount).toHaveText('1');
+
+    // Verify localStorage persistence
+    const stored = await page.evaluate(() => localStorage.getItem('portfolio_visitor_marks'));
+    expect(stored).toBe('1');
   });
 });
 

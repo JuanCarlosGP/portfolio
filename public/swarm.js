@@ -1608,7 +1608,8 @@
   // ------------------------------------------------------------------ styles
 
   const STYLE = `
-:host{all:initial}
+:host{all:initial;cursor:var(--cursor-default, auto)}
+button,.hud button,.hud-unhide{cursor:var(--cursor-pointer, pointer) !important}
 *{box-sizing:border-box}
 .bg{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
 .bg.on{opacity:1}

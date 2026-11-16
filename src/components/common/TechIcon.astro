@@ -4,9 +4,44 @@ interface Props {
 }
 
 const { name } = Astro.props;
+
+const skillSlug: Record<string, string> = {
+  Playwright: "playwright",
+  "Maestro (Mobile)": "maestro",
+  WebdriverIO: "maestro",
+  "Jest / Vitest": "vitest",
+  "K6 / Load Testing": "k6",
+  "Postman / Newman": "postman",
+  "Axe-core (A11y)": "axe",
+  "Pixelmatch (Visual)": "axe",
+  TypeScript: "typescript",
+  "JavaScript (Node.js)": "node",
+  "JavaScript (ESM)": "node",
+  Python: "python",
+  "Bash / Shell": "bash",
+  "Java (Core / JVM)": "java",
+  "Java (Paper / Core)": "java",
+  "SQL / SQLite": "sqlite",
+  "GitHub Actions": "github",
+  "Azure DevOps": "azure",
+  "NSSM Windows Svc": "azure",
+  "Docker & Containers": "docker",
+  "Cloudflare Workers": "cloudflare",
+  "Linux / POSIX Env": "linux",
+  "Arch / Debian Linux": "linux",
+  "Git Workflows": "git",
+  "Git Worktrees & CI": "git",
+  "Page Object Model": "pom",
+  "Contract Testing": "pact",
+  "Ajv / JSON Schema": "json",
+  "BDD / Cucumber": "cucumber",
+  "Allure Reporting": "allure",
+  "Trace & Video Capture": "allure",
+  "Network Mocking": "network",
+};
 ---
 
-<span class="skill-icon" aria-hidden="true">
+<span class="skill-icon" data-skill={skillSlug[name] ?? "generic"} aria-hidden="true">
   {name === 'Playwright' && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect width="20" height="15" x="2" y="3" rx="2" />
@@ -68,10 +103,10 @@ const { name } = Astro.props;
   )}
   {name === 'Python' && (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 2c-3 0-5 1.5-5 3.5V8h5v1H5.5C3.5 9 2 10.8 2 13s1.5 4 3.5 4H7v-2.5c0-1.8 1.5-3.5 3.5-3.5h5V9h-3.5V5.5C12 3.5 14 2 12 2z" />
-      <path d="M12 22c3 0 5-1.5 5-3.5V16h-5v-1h6.5c2 0 3.5-1.8 3.5-4s-1.5-4-3.5-4H17v2.5c0 1.8-1.5 3.5-3.5 3.5h-5V15h3.5v3.5c0 2-2 3.5 0 3.5z" />
-      <circle cx="9" cy="5" r=".8" fill="currentColor" />
-      <circle cx="15" cy="19" r=".8" fill="currentColor" />
+      <path class="py-top" d="M12 2c-3 0-5 1.5-5 3.5V8h5v1H5.5C3.5 9 2 10.8 2 13s1.5 4 3.5 4H7v-2.5c0-1.8 1.5-3.5 3.5-3.5h5V9h-3.5V5.5C12 3.5 14 2 12 2z" />
+      <path class="py-bot" d="M12 22c3 0 5-1.5 5-3.5V16h-5v-1h6.5c2 0 3.5-1.8 3.5-4s-1.5-4-3.5-4H17v2.5c0 1.8-1.5 3.5-3.5 3.5h-5V15h3.5v3.5c0 2-2 3.5 0 3.5z" />
+      <circle class="py-top" cx="9" cy="5" r=".8" fill="currentColor" />
+      <circle class="py-bot" cx="15" cy="19" r=".8" fill="currentColor" />
     </svg>
   )}
   {name === 'Bash / Shell' && (

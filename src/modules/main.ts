@@ -4,6 +4,10 @@ import { initProjectSliders } from './psp-slider';
 import { initModeModal } from './mode-modal';
 import { initFontToggle } from './font-toggle';
 import { initLangToggle } from './lang-toggle';
+import { initLogoRail } from './logo-rail';
+import { initDevtoolsHello } from './devtools-hello';
+import { initCursorPalette } from './cursor-palette';
+import { initVisitorClicker } from './visitor-clicker';
 
 export function initApp() {
   document.documentElement.removeAttribute('data-theme');
@@ -15,6 +19,10 @@ export function initApp() {
   initProjectSliders();
   initModeModal();
   initFontToggle();
+  initLogoRail();
+  initDevtoolsHello();
+  initCursorPalette();
+  initVisitorClicker();
 }
 
 if (typeof document !== 'undefined') {
