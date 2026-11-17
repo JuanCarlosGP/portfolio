@@ -436,6 +436,13 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
         path: getScreenshotPath('gallery_mobile.png', testInfo)
       });
 
+      const stackSec = page.locator('#stack');
+      await stackSec.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(300);
+      await stackSec.screenshot({
+        path: getScreenshotPath('stack_mobile_new.png', testInfo)
+      });
+
       await page.evaluate(() => {
         const nav = document.querySelector('header.nav') as HTMLElement | null;
         if (nav) nav.style.display = '';
