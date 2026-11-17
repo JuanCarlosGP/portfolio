@@ -200,7 +200,11 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
   test('PSP Hardware Tooling project slider cycles slides correctly', async ({ page }) => {
     const nextBtn = page.locator('#psp-slide-next');
     const counter = page.locator('#psp-slider-counter');
+    const video = page.locator('#psp-demo-video');
+    const playOverlay = page.locator('#psp-play-overlay');
 
+    await expect(video).toBeAttached();
+    await expect(playOverlay).toBeAttached();
     await expect(counter).toContainText('01 / 03');
     await nextBtn.click();
     await expect(counter).toContainText('02 / 03');

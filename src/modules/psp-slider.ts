@@ -14,25 +14,42 @@ export function initProjectSliders() {
     let currentIndex = 0;
     const totalSlides = slides.length;
     let inView = false;
+    let userPaused = false;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const viewport = slider.querySelector('.slider-viewport') ?? slider;
+    const playOverlay = slider.querySelector('.slider-play-overlay') as HTMLElement | null;
 
     function syncVideos() {
       slides.forEach((slide, idx) => {
         const vid = slide.querySelector('video');
         if (!vid) return;
-        const shouldPlay = idx === currentIndex && inView && !reducedMotion.matches;
-        if (shouldPlay) vid.play().catch(() => {});
-        else vid.pause();
+        const isCurrent = idx === currentIndex;
+        const shouldPlay = isCurrent && inView && !reducedMotion.matches && !userPaused;
+
+        if (shouldPlay) {
+          vid.muted = true;
+          vid.defaultMuted = true;
+          const p = vid.play();
+          if (p !== undefined) {
+            p.then(() => {
+              if (playOverlay) playOverlay.classList.add('is-hidden');
+            }).catch(() => {
+              // Autoplay blocked by browser policy (e.g. Low Power Mode) -> reveal play button
+              if (playOverlay && isCurrent) playOverlay.classList.remove('is-hidden');
+            });
+          }
+        } else if (!isCurrent || !inView) {
+          vid.pause();
+        }
       });
     }
 
     const visibility = new IntersectionObserver(
       (entries) => {
-        inView = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.45);
+        inView = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.15);
         syncVideos();
       },
-      { threshold: [0, 0.45, 0.75] }
+      { threshold: [0, 0.15, 0.5] }
     );
     visibility.observe(viewport);
 
@@ -92,6 +109,44 @@ export function initProjectSliders() {
         }
       });
     }
+
+    // Video click-to-play & playOverlay toggle
+    slides.forEach((slide) => {
+      const vid = slide.querySelector('video');
+      if (!vid) return;
+
+      const togglePlay = () => {
+        if (vid.paused) {
+          userPaused = false;
+          vid.muted = true;
+          vid.defaultMuted = true;
+          vid.play().then(() => {
+            if (playOverlay) playOverlay.classList.add('is-hidden');
+          }).catch(() => {});
+        } else {
+          userPaused = true;
+          vid.pause();
+          if (playOverlay) playOverlay.classList.remove('is-hidden');
+        }
+      };
+
+      vid.addEventListener('click', togglePlay);
+      if (playOverlay) {
+        playOverlay.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePlay();
+        });
+      }
+
+      vid.addEventListener('play', () => {
+        if (playOverlay) playOverlay.classList.add('is-hidden');
+      });
+      vid.addEventListener('pause', () => {
+        if (userPaused && playOverlay && slides[currentIndex]?.contains(vid)) {
+          playOverlay.classList.remove('is-hidden');
+        }
+      });
+    });
 
     if (prevBtn) {
       prevBtn.addEventListener('click', (e) => {
