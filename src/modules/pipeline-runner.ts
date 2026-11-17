@@ -49,7 +49,6 @@ export function initPipelineRunner() {
   const triggerBtn = document.getElementById('pipeline-trigger-btn');
   const overlay = document.getElementById('pipeline-modal-overlay');
   const closeBtn = document.getElementById('pipeline-modal-close');
-  const dotClose = document.getElementById('pipeline-dot-close');
   const backdrop = document.getElementById('pipeline-modal-backdrop');
   const output = document.getElementById('pipeline-terminal-output');
 
@@ -285,7 +284,6 @@ export function initPipelineRunner() {
   triggerBtn.addEventListener('click', openModal);
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (dotClose) dotClose.addEventListener('click', closeModal);
   if (backdrop) backdrop.addEventListener('click', closeModal);
 
   // Keyboard accessibility

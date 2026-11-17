@@ -13,13 +13,13 @@ import CadCross from './CadCross.astro';
 
     <!-- Terminal Window Top Bar -->
     <div class="pipeline-terminal-bar">
-      <div class="pipeline-window-controls" aria-hidden="true">
-        <span class="win-dot dot-red" id="pipeline-dot-close" title="Close"></span>
-        <span class="win-dot dot-yellow"></span>
-        <span class="win-dot dot-green"></span>
-      </div>
-
       <div class="pipeline-terminal-title" id="pipeline-modal-title">
+        <span class="term-prompt-icon" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+        </span>
         <span class="term-prompt-user notranslate" translate="no">juan-carlos@ci-runner</span>
         <span class="term-prompt-sep">:</span>
         <span class="term-prompt-dir notranslate" translate="no">~/portfolio</span>
