@@ -83,11 +83,13 @@ export function initContactForm() {
         })
       });
 
-      if (response.ok) {
+      const data = await response.json().catch(() => null);
+
+      if (response.ok && data && (data.success === 'true' || data.success === true || (typeof data.message === 'string' && data.message.toLowerCase().includes('activat')))) {
         form.classList.add('is-hidden');
         if (successBanner) successBanner.classList.remove('is-hidden');
       } else {
-        throw new Error('Form submission failed');
+        throw new Error(data?.message || 'Form submission failed');
       }
     } catch (_) {
       if (errorBanner) errorBanner.classList.remove('is-hidden');
