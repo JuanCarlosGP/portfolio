@@ -172,6 +172,7 @@ export interface Translations {
     connectTitle: string;
     rights: string;
     tz: string;
+    backTop: string;
   };
   modal: {
     chip: string;
@@ -423,7 +424,8 @@ export const translations: Record<Lang, Translations> = {
       cv: 'Download CV (PDF)',
       connectTitle: 'Connect',
       rights: '© 2026 Juan Carlos Gutiérrez Pesquero · All rights reserved',
-      tz: 'Madrid (Fuenlabrada), Spain · CET Timezone'
+      tz: 'Madrid (Fuenlabrada), Spain · CET Timezone',
+      backTop: 'Top'
     },
     modal: {
       chip: '// LAUNCH MODE',
@@ -673,7 +675,8 @@ export const translations: Record<Lang, Translations> = {
       cv: 'Descargar CV (PDF)',
       connectTitle: 'Conectar',
       rights: '© 2026 Juan Carlos Gutiérrez Pesquero · Todos los derechos reservados',
-      tz: 'Madrid (Fuenlabrada), España · Horario CET'
+      tz: 'Madrid (Fuenlabrada), España · Horario CET',
+      backTop: 'Arriba'
     },
     modal: {
       chip: '// MODO DE INICIO',

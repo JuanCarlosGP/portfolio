@@ -8,18 +8,26 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a class="brand" href="#top">
-          <span class="brand-icon">JC</span>
-          <span class="brand-name">Juan Carlos Gutiérrez Pesquero</span>
-          <span class="brand-sep">/</span>
-          <span class="brand-tool">QA</span>
-        </a>
+        <div class="foot-brand-top">
+          <a class="brand" href="#top" aria-label="Juan Carlos Gutiérrez Pesquero - Inicio">
+            <span class="brand-icon">JC</span>
+            <span class="brand-name">Juan Carlos Gutiérrez Pesquero</span>
+            <span class="brand-sep">/</span>
+            <span class="brand-tool">QA</span>
+          </a>
+          <a href="#top" class="foot-back-top" aria-label="Volver arriba">
+            <span data-i18n="footer.backTop">Top</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 15l-6-6-6 6"/>
+            </svg>
+          </a>
+        </div>
         <p data-i18n="footer.bio">
           QA Automation Engineer &amp; SDET. Specialist in Playwright, Maestro, CI/CD, and test architectures.
         </p>
       </div>
 
-      <nav class="foot-col" aria-label="Navegación del sitio">
+      <nav class="foot-col foot-col-sections" aria-label="Navegación del sitio">
         <p class="mono-cap" data-i18n="footer.sectionsTitle">Sections</p>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
         <a href="#experience" data-i18n="nav.experience">Experience</a>
@@ -28,18 +36,33 @@
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
 
-      <nav class="foot-col" aria-label="Redes y enlaces">
+      <nav class="foot-col foot-col-connect" aria-label="Redes y enlaces">
         <p class="mono-cap" data-i18n="footer.connectTitle">Connect</p>
-        <a href={`${import.meta.env.BASE_URL}Juan-Carlos-Gutierrez-CV.pdf`} download="Juan-Carlos-Gutierrez-CV.pdf" data-i18n="footer.cv">Download CV (PDF)</a>
-        <a href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">GitHub (@JuanCarlosGP)</a>
-        <a href="https://www.linkedin.com/in/juancarlosgutierrezpesquero/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:juancarlosgp212@gmail.com">juancarlosgp212@gmail.com</a>
+        <a href={`${import.meta.env.BASE_URL}Juan-Carlos-Gutierrez-CV.pdf`} download="Juan-Carlos-Gutierrez-CV.pdf">
+          <span data-i18n="footer.cv">Download CV (PDF)</span>
+          <svg class="foot-link-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+        </a>
+        <a href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
+          <span>GitHub</span>
+          <svg class="foot-link-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/juancarlosgutierrezpesquero/" target="_blank" rel="noopener">
+          <span>LinkedIn</span>
+          <svg class="foot-link-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a href="mailto:juancarlosgp212@gmail.com" class="foot-email-link" title="juancarlosgp212@gmail.com">
+          <span>Email</span>
+          <svg class="foot-link-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
       </nav>
     </div>
 
     <div class="foot-bottom">
       <span data-i18n="footer.rights">© 2026 Juan Carlos Gutiérrez Pesquero · All rights reserved</span>
-      <span data-i18n="footer.tz">Madrid (Fuenlabrada), Spain · CET Timezone</span>
+      <span class="foot-tz-wrap">
+        <span class="foot-tz-dot" aria-hidden="true"></span>
+        <span data-i18n="footer.tz">Madrid (Fuenlabrada), Spain · CET Timezone</span>
+      </span>
     </div>
   </div>
 </footer>

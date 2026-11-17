@@ -43,10 +43,22 @@ export function applyCursorColor(index: number) {
   const ptrCursor = `${buildCursorSvg(color, 1)}, pointer`;
   const actCursor = `${buildCursorSvg(color, 0.88)}, pointer`;
 
+  let styleEl = document.getElementById('cursor-palette-vars') as HTMLStyleElement | null;
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'cursor-palette-vars';
+    document.head.appendChild(styleEl);
+  }
+  styleEl.textContent = `:root { --cursor-default: ${defCursor}; --cursor-pointer: ${ptrCursor}; --cursor-active: ${actCursor}; }`;
+
+  // Clean up any inline style attribute on <html> to keep the DOM tree clean for DevTools QA Easter egg
   const root = document.documentElement;
-  root.style.setProperty('--cursor-default', defCursor);
-  root.style.setProperty('--cursor-pointer', ptrCursor);
-  root.style.setProperty('--cursor-active', actCursor);
+  root.style.removeProperty('--cursor-default');
+  root.style.removeProperty('--cursor-pointer');
+  root.style.removeProperty('--cursor-active');
+  if (!root.getAttribute('style')) {
+    root.removeAttribute('style');
+  }
 
   try {
     sessionStorage.setItem('portfolio-cursor-idx', String(currentIndex));
