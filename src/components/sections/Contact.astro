@@ -19,30 +19,147 @@
 
       <h2 data-i18n-html="contact.heading">I design and optimize your<br />testing infrastructure.</h2>
 
-      <div class="cta-buttons">
-        <a class="btn primary lg" href="mailto:juancarlosgp212@gmail.com">
-          <span data-i18n="contact.emailBtn">Send Direct Email</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <polyline points="22,6 12,13 2,6" />
-          </svg>
-        </a>
+      <!-- Contact Form Wrapper -->
+      <div class="contact-form-wrap">
+        <!-- Success State Banner (hidden by default) -->
+        <div id="contact-success-banner" class="contact-status-banner contact-success-card is-hidden">
+          <div class="contact-status-icon success-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <div class="contact-status-body">
+            <h3 class="contact-status-title" data-i18n="contact.successTitle">Message sent successfully!</h3>
+            <p class="contact-status-desc" data-i18n="contact.successMsg">Thank you for reaching out. I will get back to your email as soon as possible.</p>
+          </div>
+          <button type="button" id="contact-reset-btn" class="btn contact-reset-btn">
+            <span data-i18n="contact.sendAnotherBtn">Send another message</span>
+          </button>
+        </div>
 
-        <a class="btn lg" href={`${import.meta.env.BASE_URL}Juan-Carlos-Gutierrez-CV.pdf`} download="Juan-Carlos-Gutierrez-CV.pdf" aria-label="Download the CV of Juan Carlos Gutiérrez as a PDF" data-i18n-attr="aria-label:hero.cvAria">
-          <span data-i18n="contact.cvBtn">Download CV</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3v12" />
-            <path d="m7 11 5 5 5-5" />
-            <path d="M5 21h14" />
-          </svg>
-        </a>
+        <!-- Error State Banner (hidden by default) -->
+        <div id="contact-error-banner" class="contact-status-banner contact-error-card is-hidden">
+          <div class="contact-status-icon error-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+          </div>
+          <div class="contact-status-body">
+            <p class="contact-error-desc" data-i18n="contact.errorMsg">Could not send message. Please email directly to juancarlosgp212@gmail.com</p>
+          </div>
+        </div>
 
-        <a class="btn lg" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
-          <span data-i18n="contact.githubBtn">GitHub Profile</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 17 17 7M8 7h9v9" />
-          </svg>
-        </a>
+        <!-- Web Contact Form -->
+        <form id="contact-form" class="contact-form">
+          <div class="contact-form-grid">
+            <div class="contact-field">
+              <label for="contact-name" class="contact-label" data-i18n="contact.nameLabel">Your Name</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                class="contact-input"
+                required
+                autocomplete="name"
+                placeholder="e.g. Alex Morgan"
+                data-i18n-attr="placeholder:contact.namePlaceholder"
+              />
+            </div>
+
+            <div class="contact-field">
+              <label for="contact-email" class="contact-label" data-i18n="contact.emailLabel">Email Address</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                class="contact-input"
+                required
+                autocomplete="email"
+                placeholder="alex@company.com"
+                data-i18n-attr="placeholder:contact.emailPlaceholder"
+              />
+            </div>
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-subject" class="contact-label" data-i18n="contact.subjectLabel">Subject / Company</label>
+            <input
+              type="text"
+              id="contact-subject"
+              name="subject"
+              class="contact-input"
+              autocomplete="organization"
+              placeholder="QA Opportunity / Project Inquiry"
+              data-i18n-attr="placeholder:contact.subjectPlaceholder"
+            />
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-message" class="contact-label" data-i18n="contact.messageLabel">Message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              class="contact-textarea"
+              rows="4"
+              required
+              placeholder="Hi Juan Carlos, we are looking for an SDET to build our test architecture..."
+              data-i18n-attr="placeholder:contact.messagePlaceholder"
+            ></textarea>
+          </div>
+
+          <div class="contact-form-actions">
+            <button type="submit" id="contact-submit-btn" class="btn primary lg contact-submit-btn">
+              <svg class="submit-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13" />
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+              </svg>
+              <span id="contact-submit-text" data-i18n="contact.sendBtn">Send Message</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Direct Email Fallback & Alternative Links -->
+        <div class="contact-direct-wrap">
+          <div class="contact-direct-line">
+            <span class="contact-direct-label" data-i18n="contact.directLabel">Or reach out directly:</span>
+            <div class="contact-copy-box">
+              <a href="mailto:juancarlosgp212@gmail.com" class="contact-direct-link" title="Send email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>juancarlosgp212@gmail.com</span>
+              </a>
+              <button type="button" id="contact-copy-email-btn" class="btn-copy-email" aria-label="Copy email address" title="Copy to clipboard">
+                <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <span id="contact-copy-text" data-i18n="contact.copyBtn">Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="cta-buttons contact-alt-buttons">
+            <a class="btn lg" href={`${import.meta.env.BASE_URL}Juan-Carlos-Gutierrez-CV.pdf`} download="Juan-Carlos-Gutierrez-CV.pdf" aria-label="Download the CV of Juan Carlos Gutiérrez as a PDF" data-i18n-attr="aria-label:hero.cvAria">
+              <span data-i18n="contact.cvBtn">Download CV</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v12" />
+                <path d="m7 11 5 5 5-5" />
+                <path d="M5 21h14" />
+              </svg>
+            </a>
+
+            <a class="btn lg" href="https://github.com/JuanCarlosGP" target="_blank" rel="noopener">
+              <span data-i18n="contact.githubBtn">GitHub Profile</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

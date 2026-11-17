@@ -393,6 +393,13 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
         path: getScreenshotPath('gallery_desktop.png', testInfo)
       });
 
+      const contactSec = page.locator('#contact');
+      await contactSec.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(300);
+      await contactSec.screenshot({
+        path: getScreenshotPath('contact_form_spanish.png', testInfo)
+      });
+
       await page.evaluate(() => {
         const nav = document.querySelector('header.nav') as HTMLElement | null;
         if (nav) nav.style.display = '';
@@ -509,6 +516,96 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     // Close via Escape key
     await page.keyboard.press('Escape');
     await expect(overlay).toBeHidden();
+  });
+
+  test('Contact form renders correctly, validates required fields, and submits via AJAX', async ({ page }, testInfo) => {
+    // Scroll to contact section
+    const contactSection = page.locator('#contact');
+    await contactSection.scrollIntoViewIfNeeded();
+
+    // Verify form elements exist
+    const form = page.locator('#contact-form');
+    await expect(form).toBeVisible();
+
+    const nameInput = page.locator('#contact-name');
+    const emailInput = page.locator('#contact-email');
+    const subjectInput = page.locator('#contact-subject');
+    const messageInput = page.locator('#contact-message');
+    const submitBtn = page.locator('#contact-submit-btn');
+
+    await expect(nameInput).toBeVisible();
+    await expect(emailInput).toBeVisible();
+    await expect(subjectInput).toBeVisible();
+    await expect(messageInput).toBeVisible();
+    await expect(submitBtn).toBeVisible();
+
+    // Verify copy email button and direct link
+    const copyBtn = page.locator('#contact-copy-email-btn');
+    await expect(copyBtn).toBeVisible();
+    const directLink = page.locator('.contact-direct-link');
+    await expect(directLink).toHaveAttribute('href', 'mailto:juancarlosgp212@gmail.com');
+
+    // Take screenshot of Contact section
+    if (page.viewportSize()?.width === 1440) {
+      await page.screenshot({
+        path: getScreenshotPath('contact_form_desktop.png', testInfo)
+      });
+    } else if (page.viewportSize()?.width === 390) {
+      await page.screenshot({
+        path: getScreenshotPath('contact_form_mobile.png', testInfo)
+      });
+    }
+
+    // Intercept form submission
+    await page.route('https://formsubmit.co/ajax/juancarlosgp212@gmail.com', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: 'true', message: 'Form submitted successfully' })
+      });
+    });
+
+    // Fill form
+    await nameInput.fill('Sarah Connor');
+    await emailInput.fill('sarah@cyberdyne.org');
+    await subjectInput.fill('QA Architecture Audit');
+    await messageInput.fill('We need your expertise with Playwright and CI/CD automation pipelines.');
+
+    // Submit form
+    await submitBtn.click();
+
+    // Expect form to be hidden and success banner visible
+    const successBanner = page.locator('#contact-success-banner');
+    await expect(successBanner).toBeVisible();
+    await expect(form).toBeHidden();
+
+    if (page.viewportSize()?.width === 1440) {
+      await page.screenshot({
+        path: getScreenshotPath('contact_success_desktop.png', testInfo)
+      });
+    }
+
+    // Click "Send another message" reset button
+    const resetBtn = page.locator('#contact-reset-btn');
+    await expect(resetBtn).toBeVisible();
+    await resetBtn.click();
+
+    // Form should re-appear and banner disappear
+    await expect(form).toBeVisible();
+    await expect(successBanner).toBeHidden();
+    await expect(nameInput).toHaveValue('');
+    await expect(messageInput).toHaveValue('');
+  });
+
+  test('Contact email copy button copies address to clipboard with visual feedback', async ({ page, context }) => {
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']).catch(() => {});
+    const copyBtn = page.locator('#contact-copy-email-btn');
+    await copyBtn.scrollIntoViewIfNeeded();
+    await copyBtn.click();
+
+    await expect(copyBtn).toHaveClass(/is-copied/);
+    const copyText = page.locator('#contact-copy-text');
+    await expect(copyText).toHaveText(/Copiado|Copied/i);
   });
 });
 

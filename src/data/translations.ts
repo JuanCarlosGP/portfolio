@@ -145,9 +145,25 @@ export interface Translations {
   contact: {
     role: string;
     heading: string;
-    emailBtn: string;
     cvBtn: string;
     githubBtn: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    subjectLabel: string;
+    subjectPlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    sendBtn: string;
+    sendingBtn: string;
+    directLabel: string;
+    copyBtn: string;
+    copiedTooltip: string;
+    successTitle: string;
+    successMsg: string;
+    sendAnotherBtn: string;
+    errorMsg: string;
   };
   footer: {
     bio: string;
@@ -381,9 +397,25 @@ export const translations: Record<Lang, Translations> = {
     contact: {
       role: 'QA Automation & SDET · <span class="shine">Open to Work</span>',
       heading: 'I design and optimize your<br />testing infrastructure.',
-      emailBtn: 'Send Direct Email',
       cvBtn: 'Download CV',
-      githubBtn: 'GitHub Profile'
+      githubBtn: 'GitHub Profile',
+      nameLabel: 'Your Name',
+      namePlaceholder: 'e.g. Alex Morgan',
+      emailLabel: 'Email Address',
+      emailPlaceholder: 'alex@company.com',
+      subjectLabel: 'Subject / Company',
+      subjectPlaceholder: 'QA Opportunity / Project Inquiry',
+      messageLabel: 'Message',
+      messagePlaceholder: 'Hi Juan Carlos, we are looking for an SDET to build our test architecture...',
+      sendBtn: 'Send Message',
+      sendingBtn: 'Sending...',
+      directLabel: 'Or reach out directly:',
+      copyBtn: 'Copy',
+      copiedTooltip: 'Copied!',
+      successTitle: 'Message sent successfully!',
+      successMsg: 'Thank you for reaching out. I will get back to your email as soon as possible.',
+      sendAnotherBtn: 'Send another message',
+      errorMsg: 'Could not send message. Please email directly to juancarlosgp212@gmail.com'
     },
     footer: {
       bio: 'QA Automation Engineer & SDET. Specialist in Playwright, Maestro, CI/CD, and test architectures.',
@@ -615,9 +647,25 @@ export const translations: Record<Lang, Translations> = {
     contact: {
       role: 'QA Automation & SDET · <span class="shine">Open to Work</span>',
       heading: 'Diseño y optimizo tu<br />infraestructura de testing.',
-      emailBtn: 'Enviar correo directo',
       cvBtn: 'Descargar CV',
-      githubBtn: 'Perfil de GitHub'
+      githubBtn: 'Perfil de GitHub',
+      nameLabel: 'Tu Nombre',
+      namePlaceholder: 'ej. Alejandro Morales',
+      emailLabel: 'Correo Electrónico',
+      emailPlaceholder: 'alejandro@empresa.com',
+      subjectLabel: 'Asunto / Empresa',
+      subjectPlaceholder: 'Oportunidad QA / Consulta de proyecto',
+      messageLabel: 'Mensaje',
+      messagePlaceholder: 'Hola Juan Carlos, estamos buscando un SDET para nuestra arquitectura de pruebas...',
+      sendBtn: 'Enviar mensaje',
+      sendingBtn: 'Enviando...',
+      directLabel: 'O escribe directamente a:',
+      copyBtn: 'Copiar',
+      copiedTooltip: '¡Copiado!',
+      successTitle: '¡Mensaje enviado con éxito!',
+      successMsg: 'Gracias por ponerte en contacto. Te responderé lo antes posible a tu correo.',
+      sendAnotherBtn: 'Enviar otro mensaje',
+      errorMsg: 'No se pudo enviar el mensaje. Puedes escribir directamente a juancarlosgp212@gmail.com'
     },
     footer: {
       bio: 'QA Automation Engineer & SDET. Especialista en Playwright, Maestro, CI/CD y arquitecturas de prueba.',

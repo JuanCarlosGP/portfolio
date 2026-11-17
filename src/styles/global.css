@@ -2805,6 +2805,314 @@ h2 {
   gap: 10px;
 }
 
+/* Contact Form & Direct Email Card */
+.contact-form-wrap {
+  max-width: 640px;
+  width: 100%;
+  margin: 36px auto 0;
+  text-align: left;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(16, 16, 22, 0.85);
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+  padding: 28px 30px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: opacity 0.3s ease;
+}
+
+.contact-form.is-hidden {
+  display: none !important;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.contact-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+  font-weight: 500;
+}
+
+.contact-input,
+.contact-textarea {
+  width: 100%;
+  background: rgba(7, 7, 10, 0.75);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: rgba(128, 128, 140, 0.55);
+  font-size: 13.5px;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(138, 129, 242, 0.18);
+  background: rgba(13, 13, 18, 0.95);
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 108px;
+  max-height: 240px;
+  line-height: 1.5;
+}
+
+.contact-form-actions {
+  display: flex;
+  margin-top: 4px;
+}
+
+.contact-submit-btn {
+  width: 100%;
+  justify-content: center;
+  height: 48px;
+  font-size: 14.5px;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.contact-submit-btn .submit-icon {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.contact-submit-btn:hover .submit-icon {
+  transform: translateX(2px) translateY(-2px);
+}
+
+.contact-submit-btn.is-loading {
+  opacity: 0.75;
+  pointer-events: none;
+  cursor: wait;
+}
+
+/* Status Banners (Success & Error) */
+.contact-status-banner {
+  border-radius: 12px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.contact-status-banner.is-hidden {
+  display: none !important;
+}
+
+.contact-success-card {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.32);
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 12px 32px rgba(34, 197, 94, 0.08);
+}
+
+.contact-status-icon.success-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: var(--emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-status-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.contact-status-desc {
+  font-size: 14px;
+  color: var(--ink2);
+  margin: 0;
+  max-width: 440px;
+  line-height: 1.5;
+}
+
+.contact-reset-btn {
+  margin-top: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.contact-error-card {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fca5a5;
+  font-size: 13.5px;
+}
+
+.contact-status-icon.error-icon {
+  flex-shrink: 0;
+  color: #ef4444;
+  display: flex;
+}
+
+.contact-error-desc {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Direct Email Fallback & Alternative Actions */
+.contact-direct-wrap {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-direct-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-direct-label {
+  font-size: 12.5px;
+  color: var(--mute);
+  font-family: var(--mono);
+}
+
+.contact-copy-box {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 6px 4px 12px;
+  gap: 10px;
+  transition: border-color 0.2s;
+}
+
+.contact-copy-box:hover {
+  border-color: var(--line2);
+}
+
+.contact-direct-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-direct-link:hover {
+  color: var(--accent2);
+}
+
+.contact-direct-link svg {
+  color: var(--mute);
+}
+
+.btn-copy-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--ink2);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  padding: 5px 9px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-email:hover {
+  background: rgba(138, 129, 242, 0.2);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-copy-email.is-copied {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+
+.contact-alt-buttons {
+  margin-top: 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .contact-form {
+    padding: 20px 16px;
+    gap: 14px;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .contact-copy-box {
+    width: 100%;
+    justify-content: space-between;
+    padding: 8px 10px;
+  }
+
+  .contact-direct-link {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+
 /* Footer (Devault 3-column technical layout) */
 .foot-grid {
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);

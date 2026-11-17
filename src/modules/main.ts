@@ -9,6 +9,7 @@ import { initDevtoolsHello } from './devtools-hello';
 import { initCursorPalette } from './cursor-palette';
 import { initVisitorClicker } from './visitor-clicker';
 import { initPipelineRunner } from './pipeline-runner';
+import { initContactForm } from './contact-form';
 
 export function initApp() {
   document.documentElement.removeAttribute('data-theme');
@@ -25,6 +26,7 @@ export function initApp() {
   initCursorPalette();
   initVisitorClicker();
   initPipelineRunner();
+  initContactForm();
 }
 
 if (typeof document !== 'undefined') {
