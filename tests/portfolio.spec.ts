@@ -373,6 +373,19 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
         path: getScreenshotPath('pipeline_banner_desktop.png', testInfo)
       });
 
+      const pBox = await pipelineSec.boundingBox();
+      if (pBox) {
+        await page.screenshot({
+          path: getScreenshotPath('projects_pipeline_transition.png', testInfo),
+          clip: {
+            x: 0,
+            y: Math.max(0, pBox.y - 280),
+            width: 1440,
+            height: 480
+          }
+        });
+      }
+
       const gallerySec = page.locator('#gallery');
       await gallerySec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
