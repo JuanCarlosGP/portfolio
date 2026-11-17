@@ -37,6 +37,13 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
       'content',
       /QA Automation Engineer \/ SDET/
     );
+
+    const metaNoTranslate = page.locator('meta[name="google"]');
+    await expect(metaNoTranslate).toHaveAttribute('content', 'notranslate');
+
+    const htmlEl = page.locator('html');
+    await expect(htmlEl).toHaveAttribute('translate', 'no');
+    await expect(htmlEl).toHaveClass(/notranslate/);
   });
 
   test('Zero horizontal scrollbar overflow (strict CAD boundary)', async ({ page }) => {

@@ -14,7 +14,7 @@ const { project } = Astro.props;
       <span style={`color: ${project.statusIndicatorColor};`}>● {project.statusText}</span>
       <span>{project.statusCategory}</span>
     </div>
-    <div class="preview-terminal">
+    <div class="preview-terminal notranslate" translate="no">
       {project.terminalCommand && (
         <>
           {project.terminalCommand}
@@ -31,7 +31,7 @@ const { project } = Astro.props;
   </div>
   <div class="preview-tags">
     {project.tags.map((tag) => (
-      <span class="tag-badge">{tag}</span>
+      <span class="tag-badge notranslate" translate="no">{tag}</span>
     ))}
   </div>
   <div class="cmp-meta">

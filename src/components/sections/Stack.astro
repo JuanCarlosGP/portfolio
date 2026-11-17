@@ -31,7 +31,7 @@ import TechIcon from '@components/common/TechIcon.astro';
             {category.skills.map((skill) => (
               <div class="skill-item">
                 <TechIcon name={skill.name} />
-                <span class="skill-name">{skill.name}</span>
+                <span class="skill-name notranslate" translate="no">{skill.name}</span>
               </div>
             ))}
           </div>

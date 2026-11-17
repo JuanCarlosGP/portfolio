@@ -31,6 +31,8 @@ export function setLanguage(lang: Lang) {
 
   document.documentElement.lang = lang;
   document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('translate', 'no');
+  document.documentElement.classList.add('notranslate');
 
   const t = translations[lang] || translations.en;
 
