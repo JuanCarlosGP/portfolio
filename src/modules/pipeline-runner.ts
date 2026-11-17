@@ -164,7 +164,7 @@ export function initPipelineRunner() {
 
     if (statusBadge) {
       statusBadge.className = 'pipeline-status-badge is-running';
-      if (statusText) statusText.textContent = 'RUNNING SUITE...';
+      if (statusText) statusText.textContent = 'RUNNING...';
     }
   }
 
@@ -258,7 +258,7 @@ export function initPipelineRunner() {
 
     if (statusBadge) {
       statusBadge.className = 'pipeline-status-badge is-passed';
-      if (statusText) statusText.textContent = 'ALL QUALITY GATES PASSED (Exit Code: 0)';
+      if (statusText) statusText.textContent = 'PASSED (Exit 0)';
     }
 
     if (rerunBtn) rerunBtn.classList.remove('is-hidden');

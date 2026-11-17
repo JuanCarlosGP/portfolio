@@ -69,7 +69,6 @@ export interface Translations {
     kicker: string;
     title: string;
     sub: string;
-    note: string;
     items: {
       psp: { title: string; desc: string };
       banking: { title: string; desc: string };
@@ -231,16 +230,16 @@ export const translations: Record<Lang, Translations> = {
     pipeline: {
       kicker: '01.5 // CI/CD QUALITY GATE',
       pill: 'Live E2E Runner',
-      title: 'Live CI/CD Test Pipeline · Run E2E suites on this site',
-      sub: 'Trigger Playwright automated tests on this web application with real-time streaming console logs and GitHub Actions status.',
+      title: 'Live CI/CD Pipeline',
+      sub: 'Run automated Playwright E2E tests with live console streaming.',
       btn: 'Run E2E Pipeline',
       latestRun: 'GitHub Actions: Passing',
-      modalTitle: 'CI/CD Pipeline Terminal · Playwright E2E Runner',
+      modalTitle: 'CI/CD Pipeline Terminal',
       step1: 'Build & Lint',
       step2: 'Playwright E2E Suite',
       step3: 'Quality Gate & Deploy',
-      runningText: 'RUNNING SUITE...',
-      passedText: 'ALL QUALITY GATES PASSED (Exit Code: 0)',
+      runningText: 'RUNNING...',
+      passedText: 'PASSED (Exit 0)',
       pauseBtn: 'Pause',
       resumeBtn: 'Resume',
       speedBtn: '2x Speed',
@@ -252,8 +251,7 @@ export const translations: Record<Lang, Translations> = {
     projects: {
       kicker: 'Featured Projects',
       title: 'E2E Architectures &<br />test frameworks.',
-      sub: 'Automated test systems engineered for high transaction volumes, cross-platform validation, and continuous delivery gates.',
-      note: 'All projects feature Page Object Model (POM) architecture, isolated fixtures, and full observability with video captures and structured logs.',
+      sub: 'Automated test systems, cross-platform validation, and CI/CD delivery gates.',
       items: {
         psp: {
           title: 'PSP Hardware Diagnostic Tool & Tear-Down Mod',
@@ -466,16 +464,16 @@ export const translations: Record<Lang, Translations> = {
     pipeline: {
       kicker: '01.5 // CI/CD QUALITY GATE',
       pill: 'Runner E2E en Vivo',
-      title: 'Pipeline CI/CD en Vivo · Ejecuta la suite E2E sobre esta web',
-      sub: 'Lanza las pruebas automatizadas de Playwright sobre este portafolio con streaming de consola en tiempo real y estado de GitHub Actions.',
+      title: 'Pipeline CI/CD en Vivo',
+      sub: 'Ejecuta los tests E2E de Playwright con consola en streaming.',
       btn: 'Ejecutar Pipeline E2E',
       latestRun: 'GitHub Actions: En verde',
-      modalTitle: 'Terminal de Pipeline CI/CD · Playwright E2E Runner',
+      modalTitle: 'Terminal de Pipeline CI/CD',
       step1: 'Build y Lint',
       step2: 'Suite E2E Playwright',
       step3: 'Quality Gate y Deploy',
-      runningText: 'EJECUTANDO SUITE...',
-      passedText: 'TODAS LAS COMPUERTAS APROBADAS (Exit Code: 0)',
+      runningText: 'EJECUTANDO...',
+      passedText: 'PASSED (Exit 0)',
       pauseBtn: 'Pausar',
       resumeBtn: 'Reanudar',
       speedBtn: 'Velocidad 2x',
@@ -487,8 +485,7 @@ export const translations: Record<Lang, Translations> = {
     projects: {
       kicker: 'Proyectos destacados',
       title: 'Arquitecturas E2E<br />y frameworks de prueba.',
-      sub: 'Sistemas de prueba automáticos diseñados para soportar altos volúmenes de transacciones, validaciones cross-platform y compuertas automáticas de entrega continua.',
-      note: 'Todos los proyectos incluyen arquitectura Page Object Model (POM), aislamiento de fixtures y trazabilidad total con capturas de vídeo y logs estructurados.',
+      sub: 'Sistemas de prueba automáticos, validación cross-platform y compuertas CI/CD.',
       items: {
         psp: {
           title: 'PSP Hardware Diagnostic Tool & Tear-Down Mod',
