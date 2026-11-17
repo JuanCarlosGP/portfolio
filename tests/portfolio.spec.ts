@@ -23,11 +23,6 @@ function getScreenshotPath(filename: string, testInfo?: { outputPath: (name: str
 test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    const btnModeNormal = page.locator('#btn-mode-normal');
-    if (await btnModeNormal.isVisible({ timeout: 1500 }).catch(() => false)) {
-      await btnModeNormal.click();
-      await page.waitForSelector('#mode-select-overlay', { state: 'detached', timeout: 3000 }).catch(() => {});
-    }
   });
 
   test('Metadata and Document Title integrity', async ({ page }) => {
@@ -142,36 +137,22 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     expect(storedLangBack).toBe('en');
   });
 
-  test('Mode selection modal language switcher is synchronized with portfolio language', async ({ page }) => {
+  test('Initial load defaults directly to normal mode without blocking modal', async ({ page }) => {
     await page.evaluate(() => localStorage.removeItem('portfolio-lang'));
     await page.reload();
 
+    // Verify modal overlay is not present
     const modal = page.locator('#mode-select-overlay');
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveCount(0);
 
-    const modalLangBtn = page.locator('#modal-lang-toggle-btn');
-    await expect(modalLangBtn).toBeVisible();
+    // Verify header and interactive components are immediately available
+    const heroLede = page.locator('.hero-left .lede');
+    await expect(heroLede).toBeVisible();
+    await expect(page.locator('#demo-stage')).toBeVisible();
 
-    const modalEnOpt = modalLangBtn.locator('[data-lang-opt="en"]');
-    const modalEsOpt = modalLangBtn.locator('[data-lang-opt="es"]');
-    const headerLangBtn = page.locator('#lang-toggle-btn');
-    const headerEsOpt = headerLangBtn.locator('[data-lang-opt="es"]');
-
-    await expect(modalEnOpt).toHaveClass(/active/);
-    await expect(page.locator('#mode-select-title')).toContainText('Choose how to view portfolio');
-
-    // Click modal language button to switch to Spanish
-    await modalLangBtn.click();
-
-    await expect(modalEsOpt).toHaveClass(/active/);
-    await expect(headerEsOpt).toHaveClass(/active/);
-    await expect(page.locator('#mode-select-title')).toContainText('Elige cómo ver el portafolio');
-    await expect(page.locator('#btn-mode-normal')).toContainText('Entrar [2]');
-
-    // Enter normal mode and verify that the page is in Spanish
-    await page.locator('#btn-mode-normal').click();
-    await expect(modal).toBeHidden();
-    await expect(page.locator('.hero-left .lede')).toContainText('arquitecturas de testing automatizadas');
+    // Verify Agents button is available in header to trigger swarm on demand
+    const replayBtn = page.locator('#replay-swarm-btn');
+    await expect(replayBtn).toBeVisible();
   });
 
   test('Interactive Test Studio comparison slider keyboard accessibility', async ({ page }) => {

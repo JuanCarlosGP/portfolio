@@ -4764,7 +4764,7 @@ h2 {
   border-bottom: 1px solid var(--line);
   background: var(--bg);
   position: relative;
-  z-index: 2;
+  z-index: 20;
 }
 
 .clicker-wrap {
@@ -4890,12 +4890,12 @@ h2 {
   color: var(--bg) !important;
   border: 1px solid var(--ink) !important;
   border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   position: relative;
   overflow: visible !important;
   isolation: auto !important;
   cursor: var(--cursor-pointer);
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background 0.2s ease;
   user-select: none;
 }
 
@@ -4906,17 +4906,28 @@ h2 {
 .clicker-btn:hover {
   transform: translateY(-1.5px);
   background: #ffffff !important;
-  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25), 0 2px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .clicker-btn:active,
 .clicker-btn.btn-stamped {
-  transform: translateY(1px) scale(0.96) !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(0.5px) scale(0.97) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.clicker-btn-icon {
+  color: #10b981;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.clicker-btn:hover .clicker-btn-icon {
+  transform: scale(1.15);
 }
 
 .clicker-btn-text {
   color: var(--bg) !important;
+  font-weight: 600;
 }
 
 .clicker-user-marks {
@@ -4933,26 +4944,34 @@ h2 {
 .clicker-particle {
   position: absolute;
   font-family: var(--mono);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
   pointer-events: none;
   user-select: none;
-  z-index: 999;
-  animation: float-stamp-particle 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 99999;
+  animation: float-stamp-particle 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes float-stamp-particle {
   0% {
     opacity: 0;
-    transform: translate(-50%, 0) scale(0.6);
+    transform: translate(-50%, 0) scale(0.65);
   }
-  20% {
+  15% {
     opacity: 1;
-    transform: translate(-50%, -16px) scale(1.3);
+    transform: translate(-50%, -24px) scale(1.3);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translate(-50%, -75px) scale(1.15);
+  }
+  85% {
+    opacity: 0.6;
+    transform: translate(-50%, -105px) scale(1.0);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -48px) scale(0.85);
+    transform: translate(-50%, -130px) scale(0.85);
   }
 }
 

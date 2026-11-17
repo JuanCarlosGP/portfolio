@@ -238,7 +238,7 @@ export const translations: Record<Lang, Translations> = {
     clicker: {
       kicker: '00 // VISITOR LOG',
       title: 'Leave your mark on this portfolio',
-      btn: 'Stamp visit',
+      btn: 'Clock in',
       globalLabel: 'Global Marks',
       yourMarks: 'Your marks',
       syncedText: 'Live Redis Sync'
@@ -488,7 +488,7 @@ export const translations: Record<Lang, Translations> = {
     clicker: {
       kicker: '00 // REGISTRO DE VISITAS',
       title: 'Deja tu huella en este portafolio',
-      btn: 'Sellar visita',
+      btn: 'Fichar',
       globalLabel: 'Marcas Globales',
       yourMarks: 'Tus firmas',
       syncedText: 'Sync en Vivo'

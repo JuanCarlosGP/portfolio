@@ -60,7 +60,6 @@ function setUserMarks(count: number) {
 }
 
 function spawnParticle(btn: HTMLElement) {
-  const rect = btn.getBoundingClientRect();
   const particle = document.createElement('span');
   particle.className = 'clicker-particle';
   particle.textContent = '+1';
@@ -69,18 +68,18 @@ function spawnParticle(btn: HTMLElement) {
   const colorIndex = typeof getCursorColorIndex === 'function' ? getCursorColorIndex() : 0;
   const color = AGENT_COLORS[colorIndex] || '#10b981';
   particle.style.color = color;
-  particle.style.textShadow = `0 0 14px ${color}, 0 0 6px ${color}, 0 2px 4px rgba(0,0,0,0.8)`;
+  particle.style.textShadow = `0 0 16px ${color}, 0 0 8px ${color}, 0 2px 4px rgba(0,0,0,0.9)`;
 
   // Random horizontal variance around button center
-  const randomX = (Math.random() - 0.5) * 44;
-  particle.style.left = `${rect.width / 2 + randomX}px`;
-  particle.style.top = `-10px`;
+  const randomX = (Math.random() - 0.5) * 24;
+  particle.style.left = `calc(50% + ${randomX}px)`;
+  particle.style.top = `-8px`;
 
   btn.appendChild(particle);
 
   setTimeout(() => {
     particle.remove();
-  }, 950);
+  }, 1000);
 }
 
 async function fetchInitialCount() {

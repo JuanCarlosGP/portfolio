@@ -54,6 +54,11 @@ export function initModeModal() {
     startTypewriter(1800);
   }
 
+  // If no initial mode overlay exists in DOM, launch normal mode directly by default!
+  if (!modeOverlay) {
+    launchNormalMode();
+  }
+
   if (btnModeAgent) {
     btnModeAgent.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -93,7 +98,11 @@ export function initModeModal() {
     replayBtn.addEventListener('click', () => {
       resetTypewriter();
       if ((window as any).__swarmRebuild) {
-        (window as any).__swarmRebuild.restart();
+        if ((window as any).__swarmRebuild.app) {
+          (window as any).__swarmRebuild.restart();
+        } else {
+          (window as any).__swarmRebuild.start();
+        }
       }
       setTimeout(() => {
         startTypewriter(1500);
