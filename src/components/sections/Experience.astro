@@ -58,14 +58,40 @@ const accenture = secondaryExperience.find((e) => e.id === 'accenture') || secon
 
       <!-- Card 2: itegGO CONSULTING (Consultoría Tecnológica / Retail Dia & Aviación Iberia) -->
       <div class="pair-card exp-card exp-card-iteggo">
-        <div class="exp-card-header">
-          <div class="exp-badge-row">
-            <span class="exp-status-badge">● <span data-i18n="experience.iteggoBadge">{iteggo.badge}</span></span>
+        <div class="exp-card-header exp-card-header--with-media">
+          <div class="exp-header-text">
+            <div class="exp-badge-row">
+              <span class="exp-status-badge">● <span data-i18n="experience.iteggoBadge">{iteggo.badge}</span></span>
+            </div>
+            <p class="exp-client-tag" data-i18n="experience.iteggoClient">{iteggo.client}</p>
+            <p class="mono-cap" style="color: var(--accent2);" data-i18n="experience.iteggoRole">{iteggo.role}</p>
+            <h3>{iteggo.company}</h3>
+            <p class="exp-period" data-i18n="experience.iteggoPeriod">{iteggo.period}</p>
           </div>
-          <p class="exp-client-tag" data-i18n="experience.iteggoClient">{iteggo.client}</p>
-          <p class="mono-cap" style="color: var(--accent2);" data-i18n="experience.iteggoRole">{iteggo.role}</p>
-          <h3>{iteggo.company}</h3>
-          <p class="exp-period" data-i18n="experience.iteggoPeriod">{iteggo.period}</p>
+
+          <button
+            type="button"
+            class="exp-media-thumb"
+            id="iteggo-gallery-trigger"
+            aria-label="Ver fotos de oficina Grupo Dia y sede itegGO"
+            title="Ver fotos de sede y oficina Grupo Dia (04 fotos)"
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}experience/dia/dia-building.jpg`}
+              alt="Sede Central Grupo Dia (Las Rozas, Madrid)"
+              class="exp-thumb-img"
+              loading="lazy"
+              width="82"
+              height="82"
+            />
+            <span class="exp-thumb-badge">
+              <span class="exp-thumb-count">04</span>
+              <span class="exp-thumb-icon">📷</span>
+            </span>
+            <span class="exp-thumb-overlay" aria-hidden="true">
+              <span class="exp-thumb-zoom">⤢</span>
+            </span>
+          </button>
         </div>
 
         <ul class="ticks">
@@ -169,3 +195,172 @@ const accenture = secondaryExperience.find((e) => e.id === 'accenture') || secon
     </div>
   </div>
 </section>
+
+<!-- itegGO / Grupo Dia Photo Carousel Modal Dialog -->
+<div id="iteggo-dialog" class="iteggo-dialog" role="dialog" aria-modal="true" aria-hidden="true" style="display: none;">
+  <div class="iteggo-dialog-backdrop" id="iteggo-dialog-backdrop"></div>
+  <div class="iteggo-dialog-window">
+    <!-- Header -->
+    <div class="iteggo-dialog-header">
+      <div class="iteggo-dialog-meta">
+        <span class="iteggo-dialog-tag" id="iteggo-slide-tag">GRUPO DIA · SEDE</span>
+        <span class="iteggo-dialog-sep">/</span>
+        <span class="iteggo-dialog-counter" id="iteggo-counter">01 / 04</span>
+      </div>
+      <button type="button" class="iteggo-dialog-close" id="iteggo-close-btn" aria-label="Cerrar modal (Esc)" title="Cerrar (Esc)">
+        <span class="close-label">ESC</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Carousel Viewport & Controls -->
+    <div class="iteggo-dialog-stage">
+      <button type="button" class="iteggo-dialog-nav prev" id="iteggo-prev-btn" aria-label="Foto anterior" title="Anterior (←)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="iteggo-dialog-media" id="iteggo-media-container">
+        <img id="iteggo-active-img" src={`${import.meta.env.BASE_URL}experience/dia/dia-building.jpg`} alt="Sede Central Grupo Dia" class="iteggo-slide-img" />
+      </div>
+
+      <button type="button" class="iteggo-dialog-nav next" id="iteggo-next-btn" aria-label="Siguiente foto" title="Siguiente (→)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Footer Caption & Indicators -->
+    <div class="iteggo-dialog-footer">
+      <div class="iteggo-dialog-caption">
+        <h4 id="iteggo-slide-title" class="iteggo-slide-title">Sede Central Grupo Dia</h4>
+      </div>
+      <div class="iteggo-dialog-dots" id="iteggo-dots" aria-hidden="true">
+        <span class="iteggo-dot active" data-idx="0"></span>
+        <span class="iteggo-dot" data-idx="1"></span>
+        <span class="iteggo-dot" data-idx="2"></span>
+        <span class="iteggo-dot" data-idx="3"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const diaSlides = [
+    {
+      id: 'building',
+      src: `${import.meta.env.BASE_URL}experience/dia/dia-building.jpg`,
+      tagEn: 'GRUPO DIA · HQ',
+      tagEs: 'GRUPO DIA · SEDE',
+      titleEn: 'Grupo Dia Corporate Headquarters',
+      titleEs: 'Sede Central Grupo Dia'
+    },
+    {
+      id: 'office',
+      src: `${import.meta.env.BASE_URL}experience/dia/dia-office.jpg`,
+      tagEn: 'QA AUTOMATION · OPEN OFFICE',
+      tagEs: 'QA AUTOMATION · OPEN OFFICE',
+      titleEn: 'Engineering & QA Automation Desks',
+      titleEs: 'Puestos de Ingeniería y QA Automation'
+    },
+    {
+      id: 'lounge',
+      src: `${import.meta.env.BASE_URL}experience/dia/dia-lounge.jpg`,
+      tagEn: 'TEAM & COLLABORATION',
+      tagEs: 'EQUIPO & COLABORACIÓN',
+      titleEn: 'Lounge Area & Breakout Space',
+      titleEs: 'Área Lounge y Zonas Comunes'
+    },
+    {
+      id: 'dining',
+      src: `${import.meta.env.BASE_URL}experience/dia/dia-dining.jpg`,
+      tagEn: 'DAY-TO-DAY · CAMPUS',
+      tagEs: 'DÍA A DÍA · CAMPUS',
+      titleEn: 'Dining Area & Daily Break',
+      titleEs: 'Comedor y Descanso Diario'
+    }
+  ];
+
+  let activeIdx = 0;
+  const dialog = document.getElementById('iteggo-dialog');
+  const trigger = document.getElementById('iteggo-gallery-trigger');
+  const backdrop = document.getElementById('iteggo-dialog-backdrop');
+  const closeBtn = document.getElementById('iteggo-close-btn');
+  const prevBtn = document.getElementById('iteggo-prev-btn');
+  const nextBtn = document.getElementById('iteggo-next-btn');
+  const activeImg = document.getElementById('iteggo-active-img') as HTMLImageElement | null;
+  const tagEl = document.getElementById('iteggo-slide-tag');
+  const counterEl = document.getElementById('iteggo-counter');
+  const titleEl = document.getElementById('iteggo-slide-title');
+  const dots = document.querySelectorAll('.iteggo-dot');
+
+  function getLang(): 'en' | 'es' {
+    return document.documentElement.lang === 'es' ? 'es' : 'en';
+  }
+
+  function updateSlide(idx: number) {
+    activeIdx = (idx + diaSlides.length) % diaSlides.length;
+    const slide = diaSlides[activeIdx];
+    const lang = getLang();
+
+    if (activeImg) {
+      activeImg.src = slide.src;
+      activeImg.alt = lang === 'es' ? slide.titleEs : slide.titleEn;
+    }
+    if (tagEl) {
+      tagEl.textContent = lang === 'es' ? slide.tagEs : slide.tagEn;
+    }
+    if (counterEl) {
+      counterEl.textContent = `0${activeIdx + 1} / 0${diaSlides.length}`;
+    }
+    if (titleEl) {
+      titleEl.textContent = lang === 'es' ? slide.titleEs : slide.titleEn;
+    }
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === activeIdx);
+    });
+  }
+
+  function openDialog() {
+    if (!dialog) return;
+    dialog.style.display = 'flex';
+    dialog.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    updateSlide(0);
+    closeBtn?.focus();
+  }
+
+  function closeDialog() {
+    if (!dialog) return;
+    dialog.style.display = 'none';
+    dialog.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    trigger?.focus();
+  }
+
+  trigger?.addEventListener('click', openDialog);
+  closeBtn?.addEventListener('click', closeDialog);
+  backdrop?.addEventListener('click', closeDialog);
+
+  prevBtn?.addEventListener('click', () => updateSlide(activeIdx - 1));
+  nextBtn?.addEventListener('click', () => updateSlide(activeIdx + 1));
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', (e) => {
+      const idx = Number((e.currentTarget as HTMLElement).getAttribute('data-idx'));
+      updateSlide(idx);
+    });
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (!dialog || dialog.style.display === 'none') return;
+    if (e.key === 'Escape') closeDialog();
+    if (e.key === 'ArrowLeft') updateSlide(activeIdx - 1);
+    if (e.key === 'ArrowRight') updateSlide(activeIdx + 1);
+  });
+</script>

@@ -133,6 +133,14 @@ export interface Translations {
     statStep3: string;
     statStep3Desc: string;
     proHighlights: string[];
+    diaGalleryTitle?: string;
+    diaGalleryBtn?: string;
+    diaGallery?: {
+      building: { title: string; desc?: string; tag?: string; meta?: string };
+      office: { title: string; desc?: string; tag?: string; meta?: string };
+      lounge: { title: string; desc?: string; tag?: string; meta?: string };
+      dining: { title: string; desc?: string; tag?: string; meta?: string };
+    };
   };
   stack: {
     kicker: string;
@@ -397,7 +405,31 @@ export const translations: Record<Lang, Translations> = {
         '<strong>Zero Hallucinations &amp; Control:</strong> AI accelerates test authoring without sacrificing predictability or Page Object Model robustness.',
         '<strong>Modular E2E Templates:</strong> Context-guided generation for Playwright (web) and Maestro (mobile).',
         '<strong>Automated Regression Maintenance:</strong> Assisted repair of broken steps and outdated selectors following new frontend deployments.'
-      ]
+      ],
+      diaGalleryTitle: 'Grupo Dia Headquarters · itegGO Consulting',
+      diaGalleryBtn: '04 Photos',
+      diaGallery: {
+        building: {
+          title: 'Grupo Dia Corporate Headquarters',
+          tag: 'GRUPO DIA · HQ',
+          meta: 'LAS ROZAS · MADRID'
+        },
+        office: {
+          title: 'Engineering & QA Automation Desks',
+          tag: 'QA AUTOMATION · OPEN OFFICE',
+          meta: 'OPEN OFFICE · DIA TECH'
+        },
+        lounge: {
+          title: 'Lounge Area & Breakout Space',
+          tag: 'TEAM & COLLABORATION',
+          meta: 'CAMPUS LOUNGE · DIA'
+        },
+        dining: {
+          title: 'Dining Area & Daily Break',
+          tag: 'DAY-TO-DAY · CAMPUS',
+          meta: 'DINING AREA · DIA'
+        }
+      }
     },
     stack: {
       kicker: 'Tools & Technologies',
@@ -660,7 +692,31 @@ export const translations: Record<Lang, Translations> = {
         '<strong>Cero alucinaciones &amp; Control:</strong> La IA acelera la creación de suites sin perder la predictibilidad ni la robustez del Page Object Model.',
         '<strong>Plantillas modulares E2E:</strong> Generación guiada por contexto funcional para Playwright (web) y Maestro (móvil).',
         '<strong>Mantenimiento automático de regresión:</strong> Reparación asistida de pasos y selectores desfasados tras nuevos despliegues de frontend.'
-      ]
+      ],
+      diaGalleryTitle: 'Sede Central Grupo Dia · itegGO Consulting',
+      diaGalleryBtn: '04 Fotos',
+      diaGallery: {
+        building: {
+          title: 'Sede Central Grupo Dia',
+          tag: 'GRUPO DIA · SEDE',
+          meta: 'LAS ROZAS · MADRID'
+        },
+        office: {
+          title: 'Puestos de Ingeniería y QA Automation',
+          tag: 'QA AUTOMATION · OPEN OFFICE',
+          meta: 'OPEN OFFICE · DIA TECH'
+        },
+        lounge: {
+          title: 'Área Lounge y Zonas Comunes',
+          tag: 'EQUIPO & COLABORACIÓN',
+          meta: 'CAMPUS LOUNGE · DIA'
+        },
+        dining: {
+          title: 'Comedor y Descanso Diario',
+          tag: 'DÍA A DÍA · CAMPUS',
+          meta: 'COMEDOR · DIA'
+        }
+      }
     },
     stack: {
       kicker: 'Herramientas y tecnologías',

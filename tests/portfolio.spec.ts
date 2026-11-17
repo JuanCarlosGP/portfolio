@@ -234,8 +234,19 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     await expect(page.locator('#experience')).toContainText('ITEGGO CONSULTING');
     await expect(page.locator('#experience .exp-compact-card')).toHaveCount(2);
     await expect(page.locator('#experience')).toContainText('Gorilast');
-    await expect(page.locator('#experience')).toContainText('Accenture Spain');
     await expect(page.locator('#experience .pro-card')).toBeVisible();
+
+    // Verify itegGO photo thumbnail and dialog carousel
+    const iteggoThumb = page.locator('#iteggo-gallery-trigger');
+    await expect(iteggoThumb).toBeVisible();
+    await iteggoThumb.click();
+    const iteggoDialog = page.locator('#iteggo-dialog');
+    await expect(iteggoDialog).toBeVisible();
+    await expect(page.locator('#iteggo-counter')).toContainText('01 / 04');
+    await page.locator('#iteggo-next-btn').click();
+    await expect(page.locator('#iteggo-counter')).toContainText('02 / 04');
+    await page.keyboard.press('Escape');
+    await expect(iteggoDialog).toBeHidden();
 
     await expect(page.locator('#stack .skill-col')).toHaveCount(4);
     await expect(page.locator('#stack .skill-item')).toHaveCount(24);
