@@ -8,10 +8,12 @@ interface Props {
 const {
   title = "Juan Carlos Gutiérrez Pesquero — QA Automation Engineer & SDET",
   description = "QA Automation Engineer / SDET specializing in Playwright, Maestro, TypeScript, zero-flakiness test architectures, and high-velocity CI/CD pipelines.",
-  image = `${import.meta.env.BASE_URL}avatar.png`
+  image = `${import.meta.env.BASE_URL}og-image.png`
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://juancarlosgp.github.io');
+const siteURL = Astro.site || 'https://juancarlosgp.github.io';
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const socialImageURL = new URL(image, siteURL);
 ---
 
 <script is:inline>
@@ -33,22 +35,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://juancarl
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d0bcf7'/><text y='70' x='18' font-size='60' font-family='monospace' font-weight='bold' fill='%2307070a'>JC</text></svg>" />
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content="#07070a" />
+<meta name="author" content="Juan Carlos Gutiérrez Pesquero" />
 
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Open Graph / Facebook -->
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content="Juan Carlos Gutiérrez | QA & SDET Portfolio" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={socialImageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Juan Carlos Gutiérrez — QA Automation Engineer & SDET Portfolio preview" />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageURL} />
+<meta name="twitter:image:alt" content="Juan Carlos Gutiérrez — QA Automation Engineer & SDET Portfolio preview" />

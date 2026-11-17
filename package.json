@@ -9,6 +9,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "build:og": "node scripts/generate-og.mjs",
     "test": "playwright test"
   },
   "devDependencies": {
