@@ -1,0 +1,139 @@
+---
+// src/components/common/PipelineModal.astro
+import CadCross from './CadCross.astro';
+---
+
+<div id="pipeline-modal-overlay" class="pipeline-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pipeline-modal-title" style="display: none;">
+  <div class="pipeline-modal-backdrop" id="pipeline-modal-backdrop"></div>
+  <div class="pipeline-modal-card cad-box" id="pipeline-modal-card">
+    <CadCross position="top-left" />
+    <CadCross position="top-right" />
+    <CadCross position="bottom-left" />
+    <CadCross position="bottom-right" />
+
+    <!-- Terminal Window Top Bar -->
+    <div class="pipeline-terminal-bar">
+      <div class="pipeline-window-controls" aria-hidden="true">
+        <span class="win-dot dot-red" id="pipeline-dot-close" title="Close"></span>
+        <span class="win-dot dot-yellow"></span>
+        <span class="win-dot dot-green"></span>
+      </div>
+
+      <div class="pipeline-terminal-title" id="pipeline-modal-title">
+        <span class="term-prompt-user notranslate" translate="no">juan-carlos@ci-runner</span>
+        <span class="term-prompt-sep">:</span>
+        <span class="term-prompt-dir notranslate" translate="no">~/portfolio</span>
+        <span class="term-prompt-cmd notranslate" translate="no">$ npm test -- --reporter=list</span>
+      </div>
+
+      <div class="pipeline-terminal-top-actions">
+        <span id="pipeline-status-badge" class="pipeline-status-badge is-running">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span id="pipeline-status-text" data-i18n="pipeline.runningText">RUNNING SUITE...</span>
+        </span>
+        <button type="button" class="btn pipeline-close-btn" id="pipeline-modal-close" aria-label="Close pipeline terminal modal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span class="mono-esc">ESC</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pipeline Stages Navigation / Progress Tracker -->
+    <div class="pipeline-stages-bar" aria-label="Pipeline Stages">
+      <div class="pipeline-stage-item is-active" id="pipeline-stage-1">
+        <span class="stage-num">01</span>
+        <span class="stage-label" data-i18n="pipeline.step1">Build &amp; Lint</span>
+        <span class="stage-state-icon" id="pipeline-stage-icon-1" aria-hidden="true">✓</span>
+      </div>
+      <div class="pipeline-stage-sep">›</div>
+      <div class="pipeline-stage-item is-active" id="pipeline-stage-2">
+        <span class="stage-num">02</span>
+        <span class="stage-label" data-i18n="pipeline.step2">Playwright E2E Suite</span>
+        <span class="stage-state-icon" id="pipeline-stage-icon-2" aria-hidden="true">⏳</span>
+      </div>
+      <div class="pipeline-stage-sep">›</div>
+      <div class="pipeline-stage-item" id="pipeline-stage-3">
+        <span class="stage-num">03</span>
+        <span class="stage-label" data-i18n="pipeline.step3">Quality Gate &amp; Deploy</span>
+        <span class="stage-state-icon" id="pipeline-stage-icon-3" aria-hidden="true">○</span>
+      </div>
+    </div>
+
+    <!-- Progress & Telemetry Header -->
+    <div class="pipeline-telemetry-header">
+      <div class="pipeline-meta-group">
+        <span class="pipeline-meta-item">
+          <span class="meta-label">WORKERS:</span>
+          <strong class="meta-val notranslate" translate="no">6 threads</strong>
+        </span>
+        <span class="pipeline-meta-item">
+          <span class="meta-label">ENGINES:</span>
+          <strong class="meta-val notranslate" translate="no">Chromium · Firefox · WebKit</strong>
+        </span>
+        <span class="pipeline-meta-item">
+          <span class="meta-label">ELAPSED:</span>
+          <strong class="meta-val notranslate" id="pipeline-elapsed-time" translate="no">00:00.0s</strong>
+        </span>
+      </div>
+
+      <div class="pipeline-progress-wrap">
+        <span class="pipeline-progress-text" id="pipeline-progress-text">0 / 48 passed</span>
+        <div class="pipeline-progress-track">
+          <div class="pipeline-progress-bar" id="pipeline-progress-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal Screen / Log Stream Area -->
+    <div class="pipeline-terminal-screen" id="pipeline-terminal-screen" tabindex="0" role="region" aria-label="Terminal log output">
+      <div class="pipeline-logs-content" id="pipeline-terminal-output" role="log" aria-live="polite">
+        <!-- Log lines injected dynamically -->
+      </div>
+    </div>
+
+    <!-- Terminal Footer & Controls -->
+    <div class="pipeline-terminal-footer">
+      <div class="pipeline-footer-left">
+        <button type="button" class="btn sm pipeline-ctrl-btn" id="pipeline-ctrl-pause" title="Pause or resume log streaming">
+          <span id="pipeline-ctrl-pause-text" data-i18n="pipeline.pauseBtn">Pause</span>
+        </button>
+        <button type="button" class="btn sm pipeline-ctrl-btn" id="pipeline-ctrl-speed" title="Toggle 2x playback speed">
+          <span id="pipeline-ctrl-speed-text" data-i18n="pipeline.speedBtn">2x Speed</span>
+        </button>
+        <button type="button" class="btn sm pipeline-ctrl-btn" id="pipeline-ctrl-skip" title="Instantly complete suite">
+          <span data-i18n="pipeline.skipBtn">Skip to End</span>
+        </button>
+        <button type="button" class="btn sm pipeline-ctrl-btn is-hidden" id="pipeline-ctrl-rerun" title="Run tests again">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+          <span data-i18n="pipeline.rerunBtn">Rerun Tests</span>
+        </button>
+      </div>
+
+      <div class="pipeline-footer-right">
+        <a
+          href="https://github.com/JuanCarlosGP/portfolio/actions"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn sm pipeline-gh-action-link"
+          id="pipeline-gh-action-link"
+          title="Open official GitHub Actions dashboard"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span data-i18n="pipeline.viewGithubBtn">View on GitHub Actions</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17 17 7M8 7h9v9"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

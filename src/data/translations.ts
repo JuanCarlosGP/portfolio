@@ -44,6 +44,27 @@ export interface Translations {
     yourMarks: string;
     syncedText: string;
   };
+  pipeline: {
+    kicker: string;
+    pill: string;
+    title: string;
+    sub: string;
+    btn: string;
+    latestRun: string;
+    modalTitle: string;
+    step1: string;
+    step2: string;
+    step3: string;
+    runningText: string;
+    passedText: string;
+    pauseBtn: string;
+    resumeBtn: string;
+    speedBtn: string;
+    skipBtn: string;
+    rerunBtn: string;
+    viewGithubBtn: string;
+    closeBtn: string;
+  };
   projects: {
     kicker: string;
     title: string;
@@ -206,6 +227,27 @@ export const translations: Record<Lang, Translations> = {
       globalLabel: 'Global Marks',
       yourMarks: 'Your marks',
       syncedText: 'Live Redis Sync'
+    },
+    pipeline: {
+      kicker: '01.5 // CI/CD QUALITY GATE',
+      pill: 'Live E2E Runner',
+      title: 'Live CI/CD Test Pipeline · Run E2E suites on this site',
+      sub: 'Trigger Playwright automated tests on this web application with real-time streaming console logs and GitHub Actions status.',
+      btn: 'Run E2E Pipeline',
+      latestRun: 'GitHub Actions: Passing',
+      modalTitle: 'CI/CD Pipeline Terminal · Playwright E2E Runner',
+      step1: 'Build & Lint',
+      step2: 'Playwright E2E Suite',
+      step3: 'Quality Gate & Deploy',
+      runningText: 'RUNNING SUITE...',
+      passedText: 'ALL QUALITY GATES PASSED (Exit Code: 0)',
+      pauseBtn: 'Pause',
+      resumeBtn: 'Resume',
+      speedBtn: '2x Speed',
+      skipBtn: 'Skip to End',
+      rerunBtn: 'Rerun Tests',
+      viewGithubBtn: 'View on GitHub Actions',
+      closeBtn: 'Close [ESC]'
     },
     projects: {
       kicker: 'Featured Projects',
@@ -420,6 +462,27 @@ export const translations: Record<Lang, Translations> = {
       globalLabel: 'Marcas Globales',
       yourMarks: 'Tus firmas',
       syncedText: 'Sync en Vivo'
+    },
+    pipeline: {
+      kicker: '01.5 // CI/CD QUALITY GATE',
+      pill: 'Runner E2E en Vivo',
+      title: 'Pipeline CI/CD en Vivo · Ejecuta la suite E2E sobre esta web',
+      sub: 'Lanza las pruebas automatizadas de Playwright sobre este portafolio con streaming de consola en tiempo real y estado de GitHub Actions.',
+      btn: 'Ejecutar Pipeline E2E',
+      latestRun: 'GitHub Actions: En verde',
+      modalTitle: 'Terminal de Pipeline CI/CD · Playwright E2E Runner',
+      step1: 'Build y Lint',
+      step2: 'Suite E2E Playwright',
+      step3: 'Quality Gate y Deploy',
+      runningText: 'EJECUTANDO SUITE...',
+      passedText: 'TODAS LAS COMPUERTAS APROBADAS (Exit Code: 0)',
+      pauseBtn: 'Pausar',
+      resumeBtn: 'Reanudar',
+      speedBtn: 'Velocidad 2x',
+      skipBtn: 'Saltar al final',
+      rerunBtn: 'Relanzar pruebas',
+      viewGithubBtn: 'Ver en GitHub Actions',
+      closeBtn: 'Cerrar [ESC]'
     },
     projects: {
       kicker: 'Proyectos destacados',

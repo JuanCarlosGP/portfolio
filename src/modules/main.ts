@@ -8,6 +8,7 @@ import { initLogoRail } from './logo-rail';
 import { initDevtoolsHello } from './devtools-hello';
 import { initCursorPalette } from './cursor-palette';
 import { initVisitorClicker } from './visitor-clicker';
+import { initPipelineRunner } from './pipeline-runner';
 
 export function initApp() {
   document.documentElement.removeAttribute('data-theme');
@@ -23,6 +24,7 @@ export function initApp() {
   initDevtoolsHello();
   initCursorPalette();
   initVisitorClicker();
+  initPipelineRunner();
 }
 
 if (typeof document !== 'undefined') {

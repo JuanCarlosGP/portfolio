@@ -366,6 +366,13 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
         path: getScreenshotPath('clicker_desktop.png', testInfo)
       });
 
+      const pipelineSec = page.locator('#pipeline-gate-band');
+      await pipelineSec.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(200);
+      await pipelineSec.screenshot({
+        path: getScreenshotPath('pipeline_banner_desktop.png', testInfo)
+      });
+
       const gallerySec = page.locator('#gallery');
       await gallerySec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
@@ -383,6 +390,13 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
       await page.waitForTimeout(200);
       await clickerSec.screenshot({
         path: getScreenshotPath('clicker_mobile.png', testInfo)
+      });
+
+      const pipelineSec = page.locator('#pipeline-gate-band');
+      await pipelineSec.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(200);
+      await pipelineSec.screenshot({
+        path: getScreenshotPath('pipeline_banner_mobile.png', testInfo)
       });
 
       await page.screenshot({
@@ -438,6 +452,43 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     // Verify localStorage persistence
     const stored = await page.evaluate(() => localStorage.getItem('portfolio_visitor_marks'));
     expect(stored).toBe('1');
+  });
+
+  test('CI/CD Pipeline Gate banner renders and launches live terminal modal', async ({ page }, testInfo) => {
+    const pipelineBand = page.locator('#pipeline-gate-band');
+    await expect(pipelineBand).toBeVisible();
+    await expect(pipelineBand).toContainText('01.5 // CI/CD QUALITY GATE');
+
+    const triggerBtn = page.locator('#pipeline-trigger-btn');
+    await expect(triggerBtn).toBeVisible();
+
+    // Modal overlay should initially be hidden
+    const overlay = page.locator('#pipeline-modal-overlay');
+    await expect(overlay).toBeHidden();
+
+    // Click to launch E2E Pipeline Runner
+    await triggerBtn.click();
+    await expect(overlay).toBeVisible();
+
+    const output = page.locator('#pipeline-terminal-output');
+    await expect(output).toContainText('$ astro check && astro build');
+
+    // Skip to end to test quick completion
+    const skipBtn = page.locator('#pipeline-ctrl-skip');
+    await skipBtn.click();
+
+    await expect(page.locator('#pipeline-status-badge')).toHaveClass(/is-passed/);
+    await expect(output).toContainText('48 passed (100%)');
+
+    if (page.viewportSize()?.width === 1440) {
+      await page.screenshot({
+        path: getScreenshotPath('pipeline_terminal_desktop.png', testInfo)
+      });
+    }
+
+    // Close via Escape key
+    await page.keyboard.press('Escape');
+    await expect(overlay).toBeHidden();
   });
 });
 

@@ -1,0 +1,53 @@
+---
+// src/components/common/PipelineGate.astro
+---
+
+<aside class="band pipeline-band" id="pipeline-gate-band" aria-label="CI/CD Quality Gate & Live E2E Pipeline Runner">
+  <div class="wrap pipeline-wrap">
+    <div class="pipeline-left">
+      <div class="pipeline-telemetry">
+        <span class="pipeline-led" aria-hidden="true"></span>
+        <span class="pipeline-kicker" data-i18n="pipeline.kicker">01.5 // CI/CD QUALITY GATE</span>
+        <span class="pipeline-pill-live" data-i18n="pipeline.pill">Live E2E Runner</span>
+        <span class="pipeline-gh-tag" id="pipeline-gh-badge" title="Live GitHub Actions Status">
+          <svg class="pipeline-gh-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span id="pipeline-gh-status" data-i18n="pipeline.latestRun">GitHub Actions: Passing</span>
+          <span id="pipeline-gh-commit" class="pipeline-commit-sha">#a1c5a91</span>
+        </span>
+      </div>
+
+      <h3 class="pipeline-title" data-i18n="pipeline.title">
+        Live CI/CD Test Pipeline · Run E2E suites on this site
+      </h3>
+      <p class="pipeline-sub" data-i18n="pipeline.sub">
+        Trigger Playwright automated tests on this web application with real-time streaming console logs and GitHub Actions status.
+      </p>
+    </div>
+
+    <div class="pipeline-right">
+      <div class="pipeline-action-wrap">
+        <button
+          type="button"
+          class="btn primary pipeline-trigger-btn"
+          id="pipeline-trigger-btn"
+          aria-haspopup="dialog"
+          aria-controls="pipeline-modal"
+          aria-label="Run automated E2E tests on this portfolio"
+        >
+          <svg class="pipeline-btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span class="pipeline-btn-text" data-i18n="pipeline.btn">Run E2E Pipeline</span>
+        </button>
+
+        <div class="pipeline-specs-badge" aria-label="Suite specifications">
+          <span class="pipeline-spec-item"><strong>48</strong> tests</span>
+          <span class="pipeline-spec-dot">·</span>
+          <span class="pipeline-spec-item notranslate" translate="no">Chromium · Firefox · WebKit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
