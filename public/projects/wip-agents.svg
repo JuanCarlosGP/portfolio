@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
+  <defs>
+    <!-- Background Grid Pattern -->
+    <pattern id="agents-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.75"/>
+      <circle cx="20" cy="20" r="0.75" fill="rgba(96,165,250,0.2)"/>
+    </pattern>
+    <linearGradient id="agents-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#04060a"/>
+    </linearGradient>
+    <linearGradient id="badge-glow-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(96,165,250,0.12)"/>
+      <stop offset="50%" stop-color="rgba(96,165,250,0.25)"/>
+      <stop offset="100%" stop-color="rgba(96,165,250,0.12)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="360" fill="url(#agents-grad)"/>
+  <rect width="640" height="360" fill="url(#agents-grid)"/>
+
+  <!-- Outer Technical CAD Frame & Corner Crosshairs -->
+  <rect x="14" y="14" width="612" height="332" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <path d="M 14 28 L 14 14 L 28 14 M 612 14 L 626 14 L 626 28 M 14 332 L 14 346 L 28 346 M 612 346 L 626 346 L 626 332" fill="none" stroke="#60a5fa" stroke-width="1.75"/>
+
+  <!-- CAD Coordinate Crosshairs -->
+  <g stroke="rgba(255,255,255,0.2)" stroke-width="0.75">
+    <line x1="45" y1="36" x2="55" y2="36"/><line x1="50" y1="31" x2="50" y2="41"/>
+    <line x1="585" y1="36" x2="595" y2="36"/><line x1="590" y1="31" x2="590" y2="41"/>
+  </g>
+  <text x="65" y="39" fill="rgba(255,255,255,0.35)" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1">SPEC_REF: SDET-AI-03 // AGENT-HARNESS-MCP</text>
+  <text x="575" y="39" fill="rgba(96,165,250,0.7)" font-family="ui-monospace, monospace" font-size="9" text-anchor="end" letter-spacing="1">DETERMINISM: 100% · $0 TOKEN COST</text>
+
+  <!-- Blueprint Schematic: Agent Loop & Tool-Calling Flow -->
+  <g transform="translate(38, 64)">
+    <!-- Stage 1: MCP Tool Router -->
+    <rect x="0" y="16" width="125" height="74" fill="rgba(96,165,250,0.04)" stroke="rgba(96,165,250,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="10" y="32" fill="#60a5fa" font-family="ui-monospace, monospace" font-size="8.5" font-weight="bold">01 // MCP ROUTER</text>
+    <line x1="10" y1="44" x2="115" y2="44" stroke="rgba(255,255,255,0.1)"/>
+    <text x="10" y="58" fill="rgba(255,255,255,0.5)" font-family="ui-monospace, monospace" font-size="8">Model Context Protocol</text>
+    <text x="10" y="72" fill="rgba(255,255,255,0.35)" font-family="ui-monospace, monospace" font-size="7.5">24 Tool Schemas (Ajv)</text>
+    <text x="10" y="83" fill="#60a5fa" font-family="ui-monospace, monospace" font-size="7.5">Draft 2020-12: VALID</text>
+
+    <!-- Connector Arrow 1 -->
+    <path d="M 125 53 L 175 53" fill="none" stroke="rgba(96,165,250,0.4)" stroke-width="1.2" stroke-dasharray="4 2"/>
+    <polygon points="175,50 181,53 175,56" fill="rgba(96,165,250,0.8)"/>
+
+    <!-- Stage 2: VCR Replay & Loop Detection Engine -->
+    <rect x="182" y="8" width="195" height="90" fill="rgba(15,22,35,0.7)" stroke="#60a5fa" stroke-width="1.2"/>
+    <rect x="182" y="8" width="195" height="18" fill="rgba(96,165,250,0.15)"/>
+    <text x="192" y="21" fill="#fff" font-family="ui-monospace, monospace" font-size="9" font-weight="bold">02 // VCR DETERMINISTIC ENGINE</text>
+    <text x="192" y="42" fill="rgba(255,255,255,0.7)" font-family="ui-monospace, monospace" font-size="8">Replay Fixture Cache: 100% HIT</text>
+    <text x="192" y="56" fill="rgba(255,255,255,0.7)" font-family="ui-monospace, monospace" font-size="8">Loop Detection: DEPTH &lt;= 4 (PASS)</text>
+    <text x="192" y="70" fill="rgba(255,255,255,0.4)" font-family="ui-monospace, monospace" font-size="7.5">Execution Latency: 380ms</text>
+    <rect x="192" y="78" width="175" height="12" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" stroke-width="0.75"/>
+    <text x="279" y="87" fill="#60a5fa" font-family="ui-monospace, monospace" font-size="7.5" text-anchor="middle" font-weight="bold">FIXTURE REPLAY: DETERMINISTIC</text>
+
+    <!-- Connector Arrow 2 -->
+    <path d="M 377 53 L 433 53" fill="none" stroke="rgba(96,165,250,0.4)" stroke-width="1.2" stroke-dasharray="4 2"/>
+    <polygon points="433,50 439,53 433,56" fill="rgba(96,165,250,0.8)"/>
+
+    <!-- Stage 3: State Verifier -->
+    <rect x="440" y="16" width="125" height="74" fill="rgba(96,165,250,0.04)" stroke="rgba(96,165,250,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="450" y="32" fill="#60a5fa" font-family="ui-monospace, monospace" font-size="8.5" font-weight="bold">03 // STATE VERIFIER</text>
+    <line x1="450" y1="44" x2="555" y2="44" stroke="rgba(255,255,255,0.1)"/>
+    <text x="450" y="58" fill="rgba(255,255,255,0.5)" font-family="ui-monospace, monospace" font-size="8">Contract Assertion: 100%</text>
+    <text x="450" y="72" fill="rgba(255,255,255,0.35)" font-family="ui-monospace, monospace" font-size="7.5">Evidence Digest: SHA-256</text>
+    <text x="450" y="83" fill="#60a5fa" font-family="ui-monospace, monospace" font-size="7.5">Recursion Trap: CLEAN</text>
+  </g>
+
+  <!-- Prominent Central "WORK IN PROGRESS // BUILDING" Badge Banner -->
+  <g transform="translate(110, 196)">
+    <!-- Backdrop Card -->
+    <rect x="0" y="0" width="420" height="84" fill="#090d14" stroke="#60a5fa" stroke-width="1.5" rx="3"/>
+    <rect x="0" y="0" width="420" height="84" fill="url(#badge-glow-blue)" rx="3"/>
+    
+    <!-- Top Hazard Stripes Accent Bar -->
+    <path d="M 0 0 L 8 8 M 12 0 L 20 8 M 24 0 L 32 8 M 36 0 L 44 8 M 48 0 L 56 8 M 60 0 L 68 8 M 72 0 L 80 8 M 84 0 L 92 8 M 96 0 L 104 8 M 108 0 L 116 8 M 120 0 L 128 8 M 132 0 L 140 8 M 144 0 L 152 8 M 156 0 L 164 8 M 168 0 L 176 8 M 180 0 L 188 8 M 192 0 L 200 8 M 204 0 L 212 8 M 216 0 L 224 8 M 228 0 L 236 8 M 240 0 L 248 8 M 252 0 L 260 8 M 264 0 L 272 8 M 276 0 L 284 8 M 288 0 L 296 8 M 300 0 L 308 8 M 312 0 L 320 8 M 324 0 L 332 8 M 336 0 L 344 8 M 348 0 L 356 8 M 360 0 L 368 8 M 372 0 L 380 8 M 384 0 L 392 8 M 396 0 L 404 8 M 408 0 L 416 8" stroke="rgba(96,165,250,0.3)" stroke-width="1.2"/>
+    <line x1="0" y1="8" x2="420" y2="8" stroke="rgba(96,165,250,0.4)" stroke-width="0.75"/>
+
+    <!-- Status Dot -->
+    <circle cx="24" cy="32" r="4" fill="#60a5fa"/>
+
+    <!-- Main WIP Header -->
+    <text x="40" y="36" fill="#ffffff" font-family="ui-monospace, monospace" font-size="14" font-weight="900" letter-spacing="1.5">BUILDING // WORK IN PROGRESS</text>
+    
+    <text x="40" y="54" fill="rgba(255,255,255,0.7)" font-family="ui-monospace, monospace" font-size="9.5" letter-spacing="0.5">Deterministic Test Harness &amp; VCR Replay for Multi-Step Agents</text>
+
+    <!-- Sub-labels / Telemetry pills -->
+    <g transform="translate(40, 62)">
+      <rect x="0" y="0" width="86" height="15" fill="rgba(96,165,250,0.1)" stroke="rgba(96,165,250,0.3)" stroke-width="0.75"/>
+      <text x="43" y="11" fill="#60a5fa" font-family="ui-monospace, monospace" font-size="7.5" text-anchor="middle" font-weight="bold">MCP PROTOCOL</text>
+
+      <rect x="94" y="0" width="88" height="15" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="0.75"/>
+      <text x="138" y="11" fill="rgba(255,255,255,0.7)" font-family="ui-monospace, monospace" font-size="7.5" text-anchor="middle">VCR CACHE ENGINE</text>
+
+      <rect x="190" y="0" width="86" height="15" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="0.75"/>
+      <text x="233" y="11" fill="rgba(255,255,255,0.7)" font-family="ui-monospace, monospace" font-size="7.5" text-anchor="middle">LOOP DETECTOR</text>
+
+      <rect x="284" y="0" width="84" height="15" fill="rgba(96,165,250,0.15)" stroke="rgba(96,165,250,0.4)" stroke-width="0.75"/>
+      <text x="326" y="11" fill="#60a5fa" font-family="ui-monospace, monospace" font-size="7.5" text-anchor="middle" font-weight="bold">Q2 2026 RELEASE</text>
+    </g>
+  </g>
+
+  <!-- Bottom Blueprint Footer Info -->
+  <text x="24" y="338" fill="rgba(255,255,255,0.25)" font-family="ui-monospace, monospace" font-size="8">CAD_LAYER: 03 // ARCHITECTURE_SCHEMATIC_v0.8</text>
+  <text x="616" y="338" fill="rgba(255,255,255,0.25)" font-family="ui-monospace, monospace" font-size="8" text-anchor="end">AGENTIC QA &amp; SDET ENGINEERING</text>
+</svg>

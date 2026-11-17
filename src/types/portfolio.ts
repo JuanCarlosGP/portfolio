@@ -12,6 +12,8 @@ export interface Project {
   isSlider?: boolean;
   terminalCommand?: string;
   terminalLines?: string[];
+  previewImage?: string;
+  isWip?: boolean;
 }
 
 export interface ExperienceItem {

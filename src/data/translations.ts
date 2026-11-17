@@ -71,11 +71,14 @@ export interface Translations {
     sub: string;
     items: {
       psp: { title: string; desc: string };
-      banking: { title: string; desc: string };
-      ecommerce: { title: string; desc: string };
-      contracts: { title: string; desc: string };
-      webhooks: { title: string; desc: string };
-      opensource: { title: string; desc: string };
+      rag: { title: string; desc: string };
+      agents: { title: string; desc: string };
+      redteam: { title: string; desc: string };
+      banking?: { title: string; desc: string };
+      ecommerce?: { title: string; desc: string };
+      contracts?: { title: string; desc: string };
+      webhooks?: { title: string; desc: string };
+      opensource?: { title: string; desc: string };
     };
   };
   gallery: {
@@ -273,6 +276,18 @@ export const translations: Record<Lang, Translations> = {
         psp: {
           title: 'PSP Hardware Diagnostic Tool & Tear-Down Mod',
           desc: 'Bare-metal C diagnostic tool for PSP-3004 (ARK-5) engineered to accelerate manual hardware validation: continuous assertion for 14 physical buttons (5s hold logic to rule out false contacts), trigonometric analog stick drift and jitter analysis, and battery telemetry. Accompanied by full console tear-down, transparent shell assembly, and 3600mAh battery mod.'
+        },
+        rag: {
+          title: 'RAG Evaluation & LLM-as-a-Judge Quality Gate',
+          desc: 'Automated CI/CD quality gate for Retrieval-Augmented Generation (RAG) pipelines. Uses LLM-as-a-Judge to continuously assert Groundedness, Faithfulness, and Context Relevance across a golden evaluation dataset. Fails the build if hallucination rate or semantic drift exceeds strict thresholds prior to production deployment.'
+        },
+        agents: {
+          title: 'Deterministic Agent Harness & Loop Verifier',
+          desc: 'POSIX-native deterministic test harness for multi-step LLM agents and tool calling. Features recorded VCR replay fixtures to eliminate flaky API latency and zero out CI token costs, paired with strict Draft 2020-12 JSON Schema validation and state machine loop detection to prevent agent recursion traps.'
+        },
+        redteam: {
+          title: 'LLM Red-Teaming & Security Guardrails Suite',
+          desc: 'Automated adversarial test suite aligned with OWASP Top 10 for LLMs. Runs automated prompt injection, jailbreak attempts, and simulated data exfiltration against model endpoints, validating that input/output guardrails intercept attacks and prevent credential leakage before production releases.'
         },
         banking: {
           title: 'Enterprise Banking E2E & Mobile Framework',
@@ -524,6 +539,18 @@ export const translations: Record<Lang, Translations> = {
         psp: {
           title: 'PSP Hardware Diagnostic Tool & Tear-Down Mod',
           desc: 'Herramienta de diagnóstico nativa en C para PSP-3004 (ARK-5) diseñada para acelerar la verificación manual de controles físicos: aserción continua de pulsación de 14 botones (hold de 5s para descartar falsos contactos), análisis trigonométrico de deriva y jitter del stick analógico, y telemetría de batería. Proyecto complementado con desmontaje integral y ensamblado de chasis transparente y batería de 3600mAh.'
+        },
+        rag: {
+          title: 'RAG Evaluation & LLM-as-a-Judge Quality Gate',
+          desc: 'Quality gate automatizado en CI/CD para pipelines RAG (Retrieval-Augmented Generation). Emplea LLM-as-a-Judge para evaluar continuamente fidelidad (groundedness), relevancia de contexto y precisión de respuestas sobre un dataset sintético calibrado, bloqueando la integración si la tasa de alucinación supera el umbral establecido.'
+        },
+        agents: {
+          title: 'Deterministic Agent Harness & Loop Verifier',
+          desc: 'Arnés de testing determinista para agentes LLM multi-paso y llamadas a herramientas (MCP / function calling). Integra fixtures cacheadas estilo VCR que eliminan el no-determinismo y los costes de API en CI, validación estricta de esquemas JSON Schema (Draft 2020-12) y aserciones de bucles de razonamiento infinito.'
+        },
+        redteam: {
+          title: 'LLM Red-Teaming & Security Guardrails Suite',
+          desc: 'Suite de pruebas adversarias automatizadas alineada con OWASP Top 10 para LLMs. Ejecuta vectores de inyección de prompts, intentos de jailbreak y exfiltración simulada de datos sensibles, verificando que los guardrails corporativos contengan los ataques y prevengan la fuga de credenciales o PII.'
         },
         banking: {
           title: 'Enterprise Banking E2E & Mobile Framework',

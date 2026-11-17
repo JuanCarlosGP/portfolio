@@ -6,28 +6,47 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const previewImgUrl = project.previewImage
+  ? `${BASE}${project.previewImage.startsWith('/') ? '' : '/'}${project.previewImage}`
+  : undefined;
 ---
 
 <article class="cmp-card">
-  <div class="project-preview">
+  <div class={`project-preview ${previewImgUrl ? 'project-preview--media' : ''}`}>
     <div class="preview-top">
-      <span style={`color: ${project.statusIndicatorColor};`}>● {project.statusText}</span>
+      <span style={`color: ${project.statusIndicatorColor};`} class="preview-status-indicator">
+        ● {project.statusText}
+      </span>
       <span>{project.statusCategory}</span>
     </div>
-    <div class="preview-terminal notranslate" translate="no">
-      {project.terminalCommand && (
-        <>
-          {project.terminalCommand}
-          <br />
-        </>
-      )}
-      {project.terminalLines && project.terminalLines.map((line, idx) => (
-        <>
-          {line}
-          {idx < project.terminalLines!.length - 1 && <br />}
-        </>
-      ))}
-    </div>
+    {previewImgUrl ? (
+      <div class="preview-media-viewport">
+        <img
+          src={previewImgUrl}
+          alt={`${project.title} - Work in Progress`}
+          class="preview-media-img"
+          loading="lazy"
+          width="640"
+          height="360"
+        />
+      </div>
+    ) : (
+      <div class="preview-terminal notranslate" translate="no">
+        {project.terminalCommand && (
+          <>
+            {project.terminalCommand}
+            <br />
+          </>
+        )}
+        {project.terminalLines && project.terminalLines.map((line, idx) => (
+          <>
+            {line}
+            {idx < project.terminalLines!.length - 1 && <br />}
+          </>
+        ))}
+      </div>
+    )}
   </div>
   <div class="preview-tags">
     {project.tags.map((tag) => (
