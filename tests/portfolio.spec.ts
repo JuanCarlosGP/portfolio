@@ -557,7 +557,7 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     }
 
     // Intercept form submission
-    await page.route('https://formsubmit.co/ajax/juancarlosgp212@gmail.com', async (route) => {
+    await page.route(/formsubmit\.co\/ajax\/.*/, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',

@@ -66,7 +66,7 @@ export function initContactForm() {
     if (errorBanner) errorBanner.classList.add('is-hidden');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/juancarlosgp212@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/f1eb07cbd01d33695a6d33542cd62487', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
