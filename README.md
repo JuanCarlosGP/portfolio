@@ -105,7 +105,7 @@ npx playwright show-report
 ## 🚀 Puesta en Marcha
 
 ### Prerrequisitos
-- **Node.js** >= 20.0.0
+- **Node.js** >= 22.0.0
 - **npm** >= 9.0.0
 
 ### Instalación
@@ -125,6 +125,8 @@ npm install
 | `npm run preview` | Previsualiza la build de producción generada en `dist/` |
 | `npm run check` | Analiza diagnósticos y tipados con `@astrojs/check` |
 | `npm run test` | Ejecuta la suite de Playwright E2E sobre la build de previsualización |
+| `npm run test:ui` | Abre el entorno interactivo de Playwright para depuración de tests |
+| `npm run test:report` | Muestra el reporte HTML interactivo de las ejecuciones de pruebas |
 
 ---
 
