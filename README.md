@@ -11,6 +11,12 @@
 
 > Portafolio técnico personal de **Juan Carlos Gutiérrez Pesquero**, QA Automation Engineer & SDET especializado en Playwright, WebdriverIO, arquitecturas de prueba sin falsos positivos, contratos de API y pipelines CI/CD de alta velocidad.
 
+<br />
+
+<p align="center">
+  <img src="./public/og-image.png" alt="Juan Carlos Gutiérrez — QA & SDET Portfolio Preview" width="100%" />
+</p>
+
 ---
 
 ## 🏛️ Arquitectura del Proyecto
@@ -72,6 +78,12 @@ portfolio/
   - Comparador split-screen deslizable (`#demo-stage`) con soporte táctil, ratón y teclado (flechas ARIA).
   - 5 escenarios dinámicos de prueba: *Website E2E*, *API Testing (Google Autocomplete)*, *Accessibility (WCAG 2.2 AAA)*, *CI/CD Matrix*, y *Performance (Lighthouse 100/100)*.
 - **Hardware Diagnostic Showcase**: Carrusel interactivo para el Proyecto 01 (Panel PSP) con vídeo en tiempo real, conmutador de sonido y fotografías de estudio.
+
+  <p align="center">
+    <img src="./public/psp-front.jpg" alt="PSP Diagnostic Tool Front" width="48%" />
+    &nbsp;
+    <img src="./public/psp-back.jpg" alt="PSP Diagnostic Tool Back" width="48%" />
+  </p>
 
 ---
 
