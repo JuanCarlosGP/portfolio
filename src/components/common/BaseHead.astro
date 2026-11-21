@@ -60,3 +60,37 @@ const socialImageURL = new URL(image, siteURL);
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImageURL} />
 <meta name="twitter:image:alt" content="Juan Carlos Gutiérrez — QA Automation Engineer & SDET Portfolio preview" />
+
+<!-- Google Fonts: Preconnect & Direct Stylesheet (eliminates render-blocking @import waterfall) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" />
+
+<!-- Structured Data (JSON-LD) for Search Engines & Technical Rich Snippets -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Juan Carlos Gutiérrez Pesquero",
+    "alternateName": "Juan Carlos Gutiérrez",
+    "jobTitle": "QA Automation Engineer & SDET",
+    "description": description,
+    "url": siteURL,
+    "image": socialImageURL.toString(),
+    "sameAs": [
+      "https://www.linkedin.com/in/juancarlosgutierrezpesquero/",
+      "https://github.com/JuanCarlosGP"
+    ],
+    "knowsAbout": [
+      "Playwright",
+      "Maestro",
+      "TypeScript",
+      "Software Development Engineer in Test (SDET)",
+      "CI/CD Pipelines",
+      "API Testing",
+      "Hardware Diagnostics",
+      "Automated Testing Architectures"
+    ]
+  }
+})} />
