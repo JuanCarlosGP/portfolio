@@ -2,11 +2,11 @@ import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const LOCAL_ARTIFACTS_DIR = '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b';
+const LOCAL_ARTIFACTS_DIR = process.env.ARTIFACTS_DIR;
 
 function getScreenshotPath(filename: string, testInfo?: { outputPath: (name: string) => string }): string {
   let targetPath: string;
-  if (fs.existsSync(LOCAL_ARTIFACTS_DIR)) {
+  if (LOCAL_ARTIFACTS_DIR && fs.existsSync(LOCAL_ARTIFACTS_DIR)) {
     targetPath = path.join(LOCAL_ARTIFACTS_DIR, filename);
   } else if (testInfo) {
     targetPath = testInfo.outputPath(filename);
@@ -44,6 +44,15 @@ test.describe('Portfolio Astro Architecture & SDET Quality Suite', () => {
     await expect(ogImage).toHaveAttribute('content', /og-image\.png/);
     const twitterCard = page.locator('meta[name="twitter:card"]');
     await expect(twitterCard).toHaveAttribute('content', 'summary_large_image');
+
+    // Structured Data (JSON-LD) assertion
+    const jsonLd = page.locator('script[type="application/ld+json"]');
+    await expect(jsonLd).toHaveCount(1);
+    const jsonLdContent = await jsonLd.textContent();
+    expect(jsonLdContent).toBeTruthy();
+    const parsed = JSON.parse(jsonLdContent!);
+    expect(parsed['@type']).toBe('ProfilePage');
+    expect(parsed.mainEntity.name).toContain('Juan Carlos');
   });
 
   test('Zero horizontal scrollbar overflow (strict CAD boundary)', async ({ page }) => {

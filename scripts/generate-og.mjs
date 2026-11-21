@@ -1,7 +1,14 @@
 import { chromium } from 'playwright';
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const avatarBase64 = fs.readFileSync('/home/jcmdfk/dev/port/public/avatar.png').toString('base64');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+
+const avatarPath = path.join(rootDir, 'public', 'avatar.png');
+const avatarBase64 = fs.readFileSync(avatarPath).toString('base64');
 
 const html = `
 <!doctype html>
@@ -448,8 +455,14 @@ const html = `
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
   await page.setContent(html, { waitUntil: 'networkidle' });
-  await page.screenshot({ path: '/home/jcmdfk/dev/port/public/og-image.png' });
-  await page.screenshot({ path: '/home/jcmdfk/.gemini/antigravity/brain/4031e39d-8cf7-4674-b99a-70ec760eaa5b/og_preview_card.png' });
+  const ogOutputPath = path.join(rootDir, 'public', 'og-image.png');
+  await page.screenshot({ path: ogOutputPath });
+
+  const artifactsDir = process.env.ARTIFACTS_DIR;
+  if (artifactsDir && fs.existsSync(artifactsDir)) {
+    await page.screenshot({ path: path.join(artifactsDir, 'og_preview_card.png') });
+  }
+
   await browser.close();
-  console.log('OG image successfully written to public/og-image.png');
+  console.log(`OG image successfully written to ${ogOutputPath}`);
 })();
